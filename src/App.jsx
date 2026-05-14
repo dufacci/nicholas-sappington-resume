@@ -7,11 +7,40 @@ import { Mail, Phone, Award, Code, FlaskConical, Zap, Sparkles, Send, Loader2, M
  * Glass: Enhanced Refractive Depth
  */
 
+const ALL_QUESTIONS = [
+  "Nutraperfecto Role Details",
+  "Lopass LLC Story",
+  "Charting Analyst Background",
+  "Tech Stack Overview",
+  "TCM Film Festival Role",
+  "The Gunter Audio Work",
+  "Sprint Sales Career",
+  "Language Skills",
+  "Education Background",
+  "Music Production Setup",
+  "Studio 808 Project",
+  "RIDEWAY App Concept",
+  "Only Pans Marketplace",
+  "Trading Automation Plans",
+  "Tesla DIY & Hands-On Skills",
+  "Life in San Francisco",
+  "What Drives Nicholas?",
+  "Side Projects Overview",
+  "Ableton & Sound Design",
+  "What Makes Nicholas Unique?",
+];
+
+function pickRandom4() {
+  const shuffled = [...ALL_QUESTIONS].sort(() => Math.random() - 0.5);
+  return shuffled.slice(0, 4);
+}
+
 const App = () => {
   const [userQuery, setUserQuery] = useState('');
   const [aiResponse, setAiResponse] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isPhotoHovered, setIsPhotoHovered] = useState(false);
+  const [quickQuestions] = useState(() => pickRandom4());
 
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ""; // Set in .env.local
 
@@ -231,12 +260,7 @@ const App = () => {
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
-                {[
-                  "Nutraperfecto Role Details",
-                  "Lopass LLC Story",
-                  "Charting Analyst Background",
-                  "Tech Stack Overview"
-                ].map((q) => (
+                {quickQuestions.map((q) => (
                   <button
                     key={q}
                     onClick={() => { setUserQuery(q); askAgent(q); }}
