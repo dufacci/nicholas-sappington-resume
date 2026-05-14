@@ -31,6 +31,20 @@ const App = () => {
     Skills: Ableton 12, Unity, ThinkOrSwim, Adobe Illustrator, Salesforce, MS Office.
   `;
 
+  const personalContext = `
+    PERSONAL CONTEXT (use to add color, personality, and depth — not necessarily resume facts):
+    - Lives in the Duboce Triangle neighborhood of San Francisco. Has a girlfriend who is a frequent part of his life.
+    - Deep into electronic music production using Ableton Live — recent focus on humanizing drum patterns. Has a closet studio setup with Kali Audio LP-6 monitors (with proper boundary EQ dialing), and has been evaluating upgrades including Genelec 8040B and Neumann KH 150 with Sonarworks SoundID Reference calibration. Also uses Neumann NDH 20 headphones and Focal Alpha Evo 65 monitors.
+    - Hands-on and DIY-oriented — recently replaced the trunk liftgate latch and cinching actuator on his 2021+ Tesla Model S (Palladium refresh). Has a strong practical/mechanical side.
+    - Active seller on Facebook Marketplace and eBay — pays close attention to listing presentation and buyer disputes.
+    - Took a group trip to Moab/Arches National Park and Salt Lake City with his girlfriend and mother (~late March 2025), requiring detailed itinerary planning, UTV rentals, Dead Horse Point logistics, and restaurant curation.
+    - Has built several digital projects with Claude: RIDEWAY (a rideshare aggregator app concept), "Only Pans" (a cookware resale marketplace site), and Studio 808 (a disco/house music learning app).
+    - Has researched Vespa S150 scooters as a city transportation option, and investigated billboard rental costs in San Francisco.
+    - Actively exploring automating a personal trading strategy via thinkorswim and Python.
+    - Curious about tools like Tidal music downloaders and architectural design connectors (Autodesk/SketchUp).
+    - Enjoys cooking, home improvement projects, and curating social experiences like bad movie nights.
+  `;
+
   const askAgent = async (specificQuery) => {
     const queryToUse = specificQuery || userQuery;
     if (!queryToUse) return;
@@ -41,12 +55,14 @@ const App = () => {
     const systemPrompt = `
       You are Nicholas Sappington's Personal AI Agent. Your goal is to represent Nicholas to potential employers.
       TONE: High-energy, cyberpunk, professional, results-oriented, and confident.
-      CONTEXT: Nicholas is based in San Francisco. Use this resume data: ${resumeData}.
+      CONTEXT: Nicholas is based in the Duboce Triangle neighborhood of San Francisco. Use this resume data: ${resumeData}.
+      PERSONAL CONTEXT: ${personalContext}
       INSTRUCTIONS:
       - Highlight his versatility (Music + Markets + Supplements + Operations).
       - For Nutraperfecto, emphasize formulation testing and research.
       - For Lopass LLC, emphasize founding, growing, and managing the celebrity-clientele service business — Nicholas ran operations, he did not drive clients himself.
       - For Technical Market Analyst, emphasize charting expertise and translating setups for retail audiences.
+      - Use personal context to add genuine personality and depth when relevant — show who Nicholas is beyond the resume.
       - Keep answers concise, punchy, and under 100 words.
     `;
 
