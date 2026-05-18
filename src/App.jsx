@@ -1,5 +1,26 @@
-import React, { useState } from 'react';
+import React, { useState, Component } from 'react';
 import { Mail, Phone, Award, Code, FlaskConical, Zap, Sparkles, Send, Loader2, MessageSquare, Info, ChevronRight, User, MapPin, Briefcase, BarChart3 } from 'lucide-react';
+
+class ErrorBoundary extends Component {
+  constructor(props) { super(props); this.state = { hasError: false }; }
+  static getDerivedStateFromError() { return { hasError: true }; }
+  componentDidCatch(err, info) { console.error('App crashed:', err, info); }
+  render() {
+    if (this.state.hasError) {
+      return (
+        <div style={{ minHeight: '100vh', background: '#05080a', color: '#E5FF00', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif', padding: '2rem', textAlign: 'center' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚡</div>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>NICHOLAS SAPPINGTON</h1>
+          <p style={{ color: '#aaa', marginBottom: '1.5rem' }}>nicholassappington@gmail.com · 310-621-8502</p>
+          <button onClick={() => window.location.reload()} style={{ background: '#E5FF00', color: '#000', border: 'none', padding: '0.75rem 2rem', borderRadius: '1rem', fontWeight: 900, cursor: 'pointer', fontSize: '0.85rem', letterSpacing: '0.1em' }}>
+            RELOAD
+          </button>
+        </div>
+      );
+    }
+    return this.props.children;
+  }
+}
 
 /**
  * NICHOLAS SAPPINGTON — LIQUID GLASS SHADER EDITION
@@ -178,8 +199,8 @@ const App = () => {
         {/* Bottom Right Magenta Glow */}
         <div className="absolute -bottom-[5%] right-[-5%] w-[40vw] h-[40vh] bg-[#ff00ff] opacity-[0.07] blur-[120px]"></div>
 
-        {/* Subtle Grain Overlay */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url('https://www.transparenttextures.com/patterns/black-paper.png')` }}></div>
+        {/* Subtle Grain Overlay — CSS-only, no external dependency */}
+        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '200px 200px' }}></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 pt-16 relative z-10">
@@ -446,4 +467,10 @@ const App = () => {
   );
 };
 
-export default App;
+const AppWithBoundary = () => (
+  <ErrorBoundary>
+    <App />
+  </ErrorBoundary>
+);
+
+export default AppWithBoundary;
