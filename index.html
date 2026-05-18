@@ -13,7 +13,41 @@
     <meta name="twitter:card" content="summary_large_image" />
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <!-- Instant loading screen — shown before React mounts, replaced automatically -->
+      <div id="splash" style="
+        position:fixed; inset:0;
+        background:#05080a;
+        display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        font-family:sans-serif; z-index:9999;
+      ">
+        <!-- Glowing ring spinner -->
+        <div style="
+          width:64px; height:64px;
+          border-radius:50%;
+          border:3px solid rgba(229,255,0,0.15);
+          border-top-color:#E5FF00;
+          animation:spin 0.9s linear infinite;
+          margin-bottom:2rem;
+          box-shadow:0 0 24px rgba(229,255,0,0.2);
+        "></div>
+        <div style="
+          font-size:1.4rem; font-weight:900;
+          letter-spacing:0.15em; color:#E5FF00;
+          text-transform:uppercase; margin-bottom:0.4rem;
+        ">Nicholas Sappington</div>
+        <div style="
+          font-size:0.65rem; font-weight:700;
+          letter-spacing:0.4em; color:rgba(229,255,0,0.45);
+          text-transform:uppercase;
+        ">San Francisco</div>
+        <style>
+          @keyframes spin { to { transform:rotate(360deg); } }
+          body { margin:0; background:#05080a; }
+        </style>
+      </div>
+    </div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
