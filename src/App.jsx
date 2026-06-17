@@ -256,50 +256,51 @@ const App = () => {
           </div>
         </header>
 
-        {/* GENERAL INFO AGENT (Interactive Layer) */}
-        <section className={`${liquidGlass} mb-16 border-[#E5FF00]/50 border-2`}>
-          {/* Glass Gloss Overlay */}
-          <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
+        {/* CORE CONTENT GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          <div className="flex items-center justify-between mb-8 gap-4 flex-wrap">
-            <div className="flex items-center gap-4">
-              <div className="w-12 h-12 rounded-2xl bg-[#E5FF00] flex items-center justify-center shadow-[0_0_20px_rgba(229,255,0,0.4)]">
-                <Sparkles size={24} className="text-black" />
-              </div>
-              <div>
-                <h2 className="text-2xl font-black uppercase tracking-tighter italic leading-none">General Info Agent</h2>
-                <p className="text-[10px] text-[#E5FF00] font-bold uppercase tracking-[0.4em] mt-1.5 opacity-80">Interactive SF Representative</p>
-              </div>
-            </div>
-            <div className="hidden md:flex items-center gap-3 bg-green-400/10 px-4 py-1.5 rounded-full border border-green-400/20">
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-              <span className="text-[10px] font-black uppercase text-green-400 tracking-widest">Agent Live</span>
-            </div>
-          </div>
+          <div className="lg:col-span-4 space-y-10">
+            {/* GENERAL INFO AGENT (Interactive Layer) */}
+            <div className={`${liquidGlass} border-[#E5FF00]/50 border-2`}>
+              <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-stretch">
-            <div className="flex flex-col">
-              <p className="text-sm font-bold text-zinc-100 mb-8 italic border-l-4 border-[#E5FF00] pl-6 leading-relaxed">
-                "Verified Agent Online. I represent Nicholas from San Francisco. Ask about his work at Nutraperfecto, his Lopass LLC operations, his charting analyst background, or his expertise in Ableton 12 and Illustrator."
+              <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#E5FF00] flex items-center justify-center shadow-[0_0_20px_rgba(229,255,0,0.4)]">
+                    <Sparkles size={20} className="text-black" />
+                  </div>
+                  <div>
+                    <h2 className="text-xl font-black uppercase tracking-tighter italic leading-none">General Info Agent</h2>
+                    <p className="text-[9px] text-[#E5FF00] font-bold uppercase tracking-[0.3em] mt-1 opacity-80">SF Representative</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20">
+                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                  <span className="text-[9px] font-black uppercase text-green-400 tracking-widest">Live</span>
+                </div>
+              </div>
+
+              <p className="text-xs font-bold text-zinc-100 mb-6 italic border-l-4 border-[#E5FF00] pl-4 leading-relaxed">
+                "Verified Agent Online. Ask about Nicholas's work at Nutraperfecto, his Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator expertise."
               </p>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8">
+              <div className="grid grid-cols-1 gap-2 mb-6">
                 {quickQuestions.map((q) => (
                   <button
                     key={q}
                     onClick={() => { setUserQuery(q); askAgent(q); }}
-                    className="text-left p-4 rounded-xl bg-white/5 border border-white/5 text-[10px] md:text-[11px] font-black uppercase tracking-tight hover:bg-[#E5FF00] hover:text-black transition-all flex items-center justify-between group"
+                    className="text-left p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] font-black uppercase tracking-tight hover:bg-[#E5FF00] hover:text-black transition-all flex items-center justify-between group"
                   >
                     {q} <ChevronRight size={14} className="opacity-0 group-hover:opacity-100" />
                   </button>
                 ))}
               </div>
 
-              <div className="mt-auto relative">
+              <div className="relative mb-6">
                 <input
                   type="text"
                   placeholder="Ask a question..."
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-5 pr-16 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#E5FF00]/50 font-bold"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 pr-14 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#E5FF00]/50 font-bold text-sm"
                   value={userQuery}
                   onChange={(e) => setUserQuery(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && askAgent()}
@@ -307,36 +308,30 @@ const App = () => {
                 <button
                   onClick={() => askAgent()}
                   disabled={isLoading}
-                  className="absolute right-3 top-3 h-12 w-12 bg-[#E5FF00] text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg"
+                  className="absolute right-2.5 top-2.5 h-10 w-10 bg-[#E5FF00] text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg"
                 >
-                  {isLoading ? <Loader2 className="animate-spin" /> : <Send size={22} />}
+                  {isLoading ? <Loader2 className="animate-spin" size={18}/> : <Send size={18} />}
                 </button>
+              </div>
+
+              <div className="relative min-h-[160px]">
+                {aiResponse ? (
+                  <div className="bg-black/60 border border-white/10 rounded-2xl p-6 text-sm leading-relaxed text-zinc-100 font-medium whitespace-pre-wrap animate-in fade-in zoom-in duration-500 h-full overflow-y-auto shadow-inner">
+                    <div className="flex items-center gap-2 mb-4 text-[#E5FF00]">
+                      <MessageSquare size={16}/>
+                      <span className="text-[9px] font-black uppercase tracking-[0.2em]">Verified Response</span>
+                    </div>
+                    {aiResponse}
+                  </div>
+                ) : (
+                  <div className="h-full min-h-[160px] border-2 border-white/5 border-dashed rounded-2xl flex flex-col items-center justify-center text-zinc-700 p-8 text-center bg-black/20">
+                    <Info size={32} className="mb-3 opacity-10" />
+                    <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30">Awaiting Input</p>
+                  </div>
+                )}
               </div>
             </div>
 
-            <div className="relative min-h-[300px]">
-              {aiResponse ? (
-                <div className="bg-black/60 border border-white/10 rounded-[2.5rem] p-10 text-base leading-relaxed text-zinc-100 font-medium whitespace-pre-wrap animate-in fade-in zoom-in duration-500 h-full overflow-y-auto shadow-inner">
-                   <div className="flex items-center gap-2 mb-6 text-[#E5FF00]">
-                    <MessageSquare size={18}/>
-                    <span className="text-[10px] font-black uppercase tracking-[0.2em]">Verified Response</span>
-                   </div>
-                   {aiResponse}
-                </div>
-              ) : (
-                <div className="h-full border-2 border-white/5 border-dashed rounded-[2.5rem] flex flex-col items-center justify-center text-zinc-700 p-12 text-center bg-black/20">
-                  <Info size={40} className="mb-4 opacity-10" />
-                  <p className="text-[10px] font-black uppercase tracking-[0.4em] opacity-30">Awaiting Recruiter Input</p>
-                </div>
-              )}
-            </div>
-          </div>
-        </section>
-
-        {/* CORE CONTENT GRID */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
-
-          <div className="lg:col-span-4 space-y-10">
             {/* Tech Stack */}
             <div className={liquidGlass}>
               <div className="mb-8 flex justify-center">
