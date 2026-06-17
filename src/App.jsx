@@ -249,6 +249,9 @@ const App = () => {
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest text-[#E5FF00] shadow-lg">
                 <Phone size={18}/> 310-621-8502
               </div>
+              <a href="/portfolio.html" className="flex items-center gap-3 bg-[#E5FF00] text-black border border-[#E5FF00] px-6 py-3 rounded-2xl hover:bg-white hover:border-white transition-all font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(229,255,0,0.3)]">
+                <FlaskConical size={18}/> View Portfolio
+              </a>
             </div>
           </div>
         </header>
