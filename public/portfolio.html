@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nick Sappington | Formulation Scientist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+
+    <style>
+        :root {
+            --bg-dark: #0a0a0a;
+            --off-white: #f3f4f6;
+            --pure-white: #ffffff;
+            --dim-white: #9ca3af;
+            --accent-mint: #a7f3d0;
+            --accent-muted: #273e35;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--off-white);
+            margin: 0;
+            padding: 1rem;
+            box-sizing: border-box;
+            line-height: 1.4;
+        }
+
+        .font-mono { font-family: 'Space Mono', monospace; }
+
+        /* Spin.co.uk inspired line weights — rounded where lines meet */
+        .border-thick { border: 5px solid var(--pure-white); border-radius: 22px; }
+        .border-medium { border: 2px solid var(--off-white); border-radius: 14px; }
+        .border-thin { border: 1px solid #3f3f46; border-radius: 10px; }
+        .border-b-thick { border-bottom: 5px solid var(--pure-white); }
+        .border-b-thin { border-bottom: 1px solid #3f3f46; }
+        .border-r-thin { border-right: 1px solid #3f3f46; }
+
+        /* Outer frame clips its inner blocks to the rounded corners */
+        main.border-thick { overflow: hidden; }
+
+        /* Typography overrides for impact */
+        .text-mega {
+            font-size: clamp(3rem, 8vw, 7rem);
+            line-height: 0.9;
+            letter-spacing: -0.03em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        /* Interactive diagram nodes */
+        .node { transition: all 0.3s ease; cursor: pointer; }
+        .node:hover { background-color: var(--pure-white); color: var(--bg-dark); }
+        .node.active {
+            background-color: var(--accent-mint);
+            color: var(--bg-dark);
+            border-color: var(--accent-mint);
+        }
+
+        /* Data table styling */
+        .data-table { width: 100%; border-collapse: collapse; }
+        .data-table th, .data-table td {
+            border-bottom: 1px solid #3f3f46;
+            padding: 0.85rem 0.5rem;
+            text-align: left;
+            vertical-align: middle;
+        }
+        .data-table tr:hover { background-color: #18181b; }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--bg-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--dim-white); }
+
+        .layer-btn.active { background-color: var(--pure-white); color: var(--bg-dark); }
+
+        /* Ingredient tooltip */
+        .ingredient { position: relative; cursor: help; display: inline-block; }
+        .ingredient .label {
+            border-bottom: 1px dashed var(--dim-white);
+            transition: color 0.2s ease;
+        }
+        .ingredient:hover .label { color: var(--accent-mint); }
+        .tooltip {
+            position: absolute;
+            left: 0;
+            bottom: 100%;
+            margin-bottom: 0.6rem;
+            width: 18rem;
+            max-width: 80vw;
+            padding: 0.85rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--pure-white);
+            box-shadow: 4px 4px 0px 0px rgba(255,255,255,1);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.2s ease, visibility 0.2s ease;
+            z-index: 50;
+            pointer-events: none;
+        }
+        .tooltip.primary { box-shadow: 4px 4px 0px 0px rgba(167,243,208,1); }
+        .ingredient:hover .tooltip { opacity: 1; visibility: visible; }
+        .tooltip-head {
+            font-weight: 700;
+            color: var(--accent-mint);
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 0.15em;
+            padding-bottom: 0.35rem;
+            border-bottom: 1px solid #3f3f46;
+            margin-bottom: 0.4rem;
+        }
+        .tooltip-body {
+            font-family: 'Space Mono', monospace;
+            font-size: 10px;
+            line-height: 1.6;
+            color: var(--off-white);
+        }
+        /* Lower rows flip the tooltip below to avoid clipping at the top */
+        .ingredient.flip .tooltip { bottom: auto; top: 100%; margin-bottom: 0; margin-top: 0.6rem; }
+
+        /* Projects dropdown (matches tooltip aesthetic) */
+        .project-menu { position: relative; }
+        .project-trigger { cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s ease; }
+        .project-trigger .chev { transition: transform 0.25s ease; }
+        .project-menu:hover .project-trigger, .project-menu.open .project-trigger { color: var(--accent-mint); }
+        .project-menu:hover .chev, .project-menu.open .chev { transform: rotate(180deg); }
+        .project-dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            margin-top: 0.6rem;
+            width: 19rem;
+            max-width: 85vw;
+            padding: 0.85rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--pure-white);
+            box-shadow: 4px 4px 0px 0px rgba(255,255,255,1);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-4px);
+            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
+            z-index: 60;
+        }
+        .project-menu:hover .project-dropdown, .project-menu.open .project-dropdown {
+            opacity: 1; visibility: visible; transform: translateY(0);
+        }
+        .project-item {
+            display: block;
+            padding: 0.55rem 0.6rem;
+            text-transform: none;
+            border: 1px solid transparent;
+            transition: background 0.15s ease, border-color 0.15s ease;
+        }
+        .project-item + .project-item { margin-top: 0.3rem; }
+        .project-item .pi-name {
+            display: block;
+            font-weight: 700;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+            color: var(--pure-white);
+        }
+        .project-item .pi-meta {
+            display: block;
+            font-family: 'Space Mono', monospace;
+            font-size: 9px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--dim-white);
+            margin-top: 0.15rem;
+        }
+        .project-item:hover { background: #18181b; border-color: #3f3f46; }
+        .project-item.active { border-color: var(--accent-mint); }
+        .project-item.active .pi-name { color: var(--accent-mint); }
+        .project-item.disabled { cursor: default; opacity: 0.5; }
+        .project-item.disabled:hover { background: transparent; border-color: transparent; }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col items-center">
+
+    <main class="w-full max-w-[1600px] border-thick flex flex-col">
+
+        <!-- Top Nav / Info Bar -->
+        <header class="grid grid-cols-1 md:grid-cols-3 border-b-thick uppercase font-mono text-sm tracking-wide">
+            <div class="p-4 border-b md:border-b-0 md:border-r-thin flex items-center justify-between">
+                <span>Nick Sappington</span>
+                <span class="text-dim-white text-xs">V.1.0</span>
+            </div>
+            <div class="p-4 border-b md:border-b-0 md:border-r-thin flex items-center">
+                <span>Formulation Scientist</span>
+            </div>
+            <div class="p-4 flex items-center project-menu" id="projectMenu">
+                <span class="project-trigger" onclick="toggleProjectMenu(event)">
+                    <span>Projects</span>
+                    <svg class="chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                </span>
+                <div class="project-dropdown">
+                    <span class="tooltip-head block">Select a Project</span>
+                    <a href="#hero" class="project-item active">
+                        <span class="pi-name">Nutraperfecto</span>
+                        <span class="pi-meta">Neuropathy Support · Currently viewing</span>
+                    </a>
+                    <span class="project-item disabled">
+                        <span class="pi-name">Project Two</span>
+                        <span class="pi-meta">Coming soon</span>
+                    </span>
+                    <span class="project-item disabled">
+                        <span class="pi-name">Project Three</span>
+                        <span class="pi-meta">Coming soon</span>
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Statement -->
+        <section id="hero" class="p-6 md:p-12 border-b-thick relative overflow-hidden">
+            <div class="absolute top-1/2 right-16 md:right-32 -translate-y-1/2 opacity-90 pointer-events-none">
+                <!-- Signature Logo Mark -->
+                <img src="/logo_mark.png" alt="Sappington signature logo" width="360" height="360" class="w-[280px] md:w-[360px] h-auto select-none"
+                     style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.55)) drop-shadow(0 0 30px rgba(255,255,255,0.35)) drop-shadow(0 0 60px rgba(255,255,255,0.20));" />
+            </div>
+
+            <h1 class="text-mega max-w-[90%]">
+                A Designer's<br>
+                Approach to<br>
+                <span class="text-transparent" style="-webkit-text-stroke: 2px white;">Formulation</span>
+            </h1>
+            <p class="font-mono mt-8 max-w-2xl text-dim-white leading-relaxed text-sm md:text-base border-l-2 border-accent-mint pl-4">
+                Bridging the gap between clinical data and consumer outcome. Case study focusing on Neuropathy Support—analyzing scientific journals on tingling and numbness to formulate a non-pharmaceutical, vitamin, mineral, and nootropic stack.
+            </p>
+        </section>
+
+        <!-- R&D Flow Pathway -->
+        <section class="grid grid-cols-1 lg:grid-cols-12 border-b-thick">
+
+            <!-- Section Title -->
+            <div class="col-span-1 lg:col-span-3 border-b lg:border-b-0 lg:border-r-thin p-6 flex flex-col justify-between">
+                <h2 class="text-2xl font-bold uppercase tracking-tight">R&amp;D Pathway</h2>
+                <div class="mt-8 font-mono text-xs text-dim-white leading-relaxed">
+                    <p class="mb-2">METHODOLOGY:</p>
+                    <p>01. Identify Pathology</p>
+                    <p>02. Literature Review</p>
+                    <p>03. Active Selection</p>
+                    <p>04. Final Synergy</p>
+                </div>
+            </div>
+
+            <!-- Interactive Diagram -->
+            <div class="col-span-1 lg:col-span-9 p-6 md:p-12 bg-[#050505]">
+                <div class="flex flex-col md:flex-row gap-4 relative">
+
+                    <!-- Diagram Line Background (Desktop) -->
+                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-[#3f3f46] -z-0"></div>
+
+                    <!-- Step 1 -->
+                    <div class="node flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step1', this)">
+                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 01</div>
+                        <h3 class="text-lg font-bold mb-2 uppercase">Neuropathy Pathology</h3>
+                        <p class="text-sm opacity-80">Mapping physiological root causes of peripheral numbness and tingling.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="node flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step2', this)">
+                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 02</div>
+                        <h3 class="text-lg font-bold mb-2 uppercase">Clinical Journals</h3>
+                        <p class="text-sm opacity-80">Aggregating peer-reviewed data on nerve regeneration and oxidative stress.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="node active flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step3', this)">
+                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 03</div>
+                        <h3 class="text-lg font-bold mb-2 uppercase">Nootropic/Mineral Targeting</h3>
+                        <p class="text-sm opacity-80">Selecting non-pharmaceutical interventions where prescriptions fall short.</p>
+                    </div>
+                </div>
+
+                <!-- Detail Panel (Updates on click) -->
+                <div class="mt-8 border-thin p-6 bg-[#0a0a0a]">
+                    <div class="flex justify-between items-start mb-4">
+                        <h4 id="detail-title" class="text-xl font-bold uppercase text-accent-mint">Phase 03: Nootropic &amp; Vitamin Selection</h4>
+                        <i data-feather="activity" class="text-dim-white"></i>
+                    </div>
+                    <p id="detail-desc" class="font-mono text-sm leading-relaxed text-dim-white">
+                        Standard pharmaceutical prescriptions often focus solely on symptom management. Our research isolated specific vitamins (like Benfotiamine), minerals (Magnesium/Zinc Citrate), and botanicals (Alpha-Lipoic Acid, Skullcap) that actively support myelin sheath repair and mitigate oxidative damage causing neuropathy symptoms.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Formula & Outcome Matrix -->
+        <section class="grid grid-cols-1 lg:grid-cols-2">
+
+            <!-- Technical Breakdown Table -->
+            <div class="border-b lg:border-b-0 lg:border-r-thin p-6 md:p-12">
+                <div class="flex justify-between items-end mb-8 border-b-thick pb-4">
+                    <h2 class="text-3xl font-bold uppercase">Formula Breakdown</h2>
+                    <span class="font-mono text-xs bg-white text-black px-2 py-1 rounded-md">SPEC 1.4A</span>
+                </div>
+
+                <p class="font-mono text-xs text-dim-white mb-4">Hover any ingredient to view its mechanism of action.</p>
+
+                <table class="data-table font-mono text-xs md:text-sm">
+                    <thead>
+                        <tr class="text-dim-white">
+                            <th>INGREDIENT (ACTIVE)</th>
+                            <th>FORM</th>
+                            <th>DOSAGE</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label">Magnesium</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">Essential for nerve transmission and neuromuscular conduction. Helps prevent nerve overstimulation and acts as a mild muscle relaxant.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Citrate</td>
+                            <td>Target specific</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label">Zinc</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">Acts as a potent antioxidant, protecting peripheral nerves from oxidative stress and supporting optimal cellular repair processes.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Citrate</td>
+                            <td>Target specific</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label">Selenium</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">A trace mineral and antioxidant cofactor that powers glutathione activity, shielding nerve tissue from free-radical damage.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Chelate</td>
+                            <td>Target specific</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label font-bold text-accent-mint">Alpha-Lipoic Acid</span>
+                                    <span class="tooltip primary">
+                                        <span class="tooltip-head block">Primary Active</span>
+                                        <span class="tooltip-body block">A powerful endogenous antioxidant shown in multiple double-blind trials to significantly reduce symptoms of peripheral neuropathy, including burning and tingling.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Antioxidant</td>
+                            <td>Primary active</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label">Acetyl-L-Carnitine</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">An amino acid derivative that promotes peripheral nerve regeneration and provides analgesic effects in patients with neuropathic pain.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Amino Acid</td>
+                            <td>Primary active</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient">
+                                    <span class="label">L-Arginine</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">A precursor to nitric oxide that promotes vasodilation, improving microcirculation and oxygen delivery to peripheral nerves.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Amino Acid</td>
+                            <td>Vasodilator</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label">Skullcap Extract</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Botanical Action</span>
+                                        <span class="tooltip-body block">A traditional nervine tonic utilized to soothe an overactive nervous system, helping to mitigate errant neuropathic pain signals.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Botanical</td>
+                            <td>Nervine</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label">Feverfew Extract</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Botanical Action</span>
+                                        <span class="tooltip-body block">A botanical anti-inflammatory rich in parthenolide, helping to dampen the inflammatory signaling that aggravates nerve pain.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Botanical</td>
+                            <td>Anti-inflammatory</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label">Ginger &amp; Turmeric</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Botanical Action</span>
+                                        <span class="tooltip-body block">A synergistic botanical pair delivering curcumin and gingerols — natural anti-inflammatories that also enhance absorption of the co-actives.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Botanical</td>
+                            <td>Bio-enhancer</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label">Coenzyme Q10</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">A mitochondrial coenzyme that drives cellular energy production, supporting the high metabolic demands of nerve repair.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Ubiquinone</td>
+                            <td>Cellular Energy</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label font-bold text-accent-mint">Benfotiamine</span>
+                                    <span class="tooltip primary">
+                                        <span class="tooltip-head block">Primary Active</span>
+                                        <span class="tooltip-body block">A highly bioavailable, fat-soluble derivative of Vitamin B1. Critical for blocking metabolic pathways that lead to nerve damage and assisting in myelin repair.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Vitamin B1 Deriv.</td>
+                            <td>Nerve Repair</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="ingredient flip">
+                                    <span class="label">Inositol</span>
+                                    <span class="tooltip">
+                                        <span class="tooltip-head block">Mechanism of Action</span>
+                                        <span class="tooltip-body block">A carbocyclic signaling molecule that supports healthy nerve-cell communication and membrane function.</span>
+                                    </span>
+                                </span>
+                            </td>
+                            <td>Carbocyclic</td>
+                            <td>Signaling</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Concept to Outcome Layers -->
+            <div class="p-6 md:p-12 bg-[#050505] flex flex-col">
+                <div class="flex justify-between items-end mb-8 border-b-thick pb-4">
+                    <h2 class="text-3xl font-bold uppercase">Outcome Layers</h2>
+                    <div class="flex space-x-2 font-mono text-xs">
+                        <button onclick="switchLayer('concept')" id="btn-concept" class="layer-btn border-thin px-3 py-1 hover:bg-white hover:text-black transition">Concept</button>
+                        <button onclick="switchLayer('outcome')" id="btn-outcome" class="layer-btn active border-thin px-3 py-1 transition">Outcome</button>
+                    </div>
+                </div>
+
+                <!-- Visual Display Area -->
+                <div class="flex-1 border-medium relative flex items-center justify-center p-8 bg-bg-dark overflow-hidden min-h-[400px]">
+                    <!-- Background Grid Pattern -->
+                    <div class="absolute inset-0 opacity-10"
+                         style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 20px 20px;">
+                    </div>
+
+                    <!-- CONCEPT LAYER (Hidden by default) -->
+                    <div id="layer-concept" class="absolute inset-0 flex items-center justify-center hidden opacity-0 transition-opacity duration-500">
+                        <div class="text-center font-mono">
+                            <svg class="mx-auto mb-4 text-dim-white" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                            </svg>
+                            <p class="text-accent-mint border border-accent-mint px-4 py-2 inline-block">FORMULATION DRAFT 01</p>
+                            <p class="mt-4 text-xs text-dim-white max-w-xs mx-auto">Initial molecular balancing focusing on Benfotiamine and ALA synergy for myelin regeneration.</p>
+                        </div>
+                    </div>
+
+                    <!-- OUTCOME LAYER (Active by default) -->
+                    <div id="layer-outcome" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500">
+                        <img src="/product.png" alt="Nutraperfecto Neuropathy Support Gummies bottle"
+                             class="relative z-10 max-h-[360px] w-auto object-contain"
+                             style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.55)) drop-shadow(0 0 30px rgba(255,255,255,0.35)) drop-shadow(0 0 60px rgba(255,255,255,0.20));">
+                        <p class="mt-8 font-mono text-xs tracking-widest text-white border-b border-accent-mint pb-1">FINAL MARKET-READY PRODUCT</p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="p-6 border-t-thick flex flex-col md:flex-row justify-between items-center font-mono text-xs text-dim-white gap-4">
+            <div>&copy; 2026 NICK SAPPINGTON. FORMULATION ARCHITECTURE.</div>
+            <div class="flex space-x-6">
+                <a href="#" class="hover:text-white transition">LINKEDIN</a>
+                <a href="#" class="hover:text-white transition">CONTACT LAB</a>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        feather.replace();
+
+        // Projects dropdown: toggle on click/tap, close on outside click
+        function toggleProjectMenu(event) {
+            event.stopPropagation();
+            document.getElementById('projectMenu').classList.toggle('open');
+        }
+        document.addEventListener('click', function(e) {
+            const menu = document.getElementById('projectMenu');
+            if (menu && !menu.contains(e.target)) menu.classList.remove('open');
+        });
+
+        const pathwayData = {
+            step1: {
+                title: "Phase 01: Neuropathy Pathology",
+                desc: "Initial R&D focused on the biological mechanisms of peripheral neuropathy. We mapped out how oxidative stress and poor microcirculation directly cause myelin sheath degradation, resulting in the characteristic tingling and numbness."
+            },
+            step2: {
+                title: "Phase 02: Clinical Journals & Literature Review",
+                desc: "An extensive dive into scientific literature. We analyzed hundreds of peer-reviewed journals specifically targeting studies where subjects exhibited numbness and tingling, identifying metabolic pathways that traditional pharmaceuticals often ignore."
+            },
+            step3: {
+                title: "Phase 03: Nootropic & Vitamin Selection",
+                desc: "Standard pharmaceutical prescriptions often focus solely on symptom management. Our research isolated specific vitamins (like Benfotiamine), minerals (Magnesium/Zinc Citrate), and botanicals (Alpha-Lipoic Acid, Skullcap) that actively support myelin sheath repair and mitigate oxidative damage."
+            }
+        };
+
+        function updateDetail(stepKey, element) {
+            document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
+            element.classList.add('active');
+
+            const titleEl = document.getElementById('detail-title');
+            const descEl = document.getElementById('detail-desc');
+
+            titleEl.style.opacity = 0;
+            descEl.style.opacity = 0;
+
+            setTimeout(() => {
+                titleEl.innerText = pathwayData[stepKey].title;
+                descEl.innerText = pathwayData[stepKey].desc;
+                titleEl.style.opacity = 1;
+                descEl.style.opacity = 1;
+            }, 200);
+        }
+
+        function switchLayer(layer) {
+            const conceptLayer = document.getElementById('layer-concept');
+            const outcomeLayer = document.getElementById('layer-outcome');
+            const btnConcept = document.getElementById('btn-concept');
+            const btnOutcome = document.getElementById('btn-outcome');
+
+            if (layer === 'concept') {
+                conceptLayer.classList.remove('hidden');
+                setTimeout(() => conceptLayer.classList.remove('opacity-0'), 50);
+                outcomeLayer.classList.add('opacity-0');
+                setTimeout(() => outcomeLayer.classList.add('hidden'), 500);
+                btnConcept.classList.add('active');
+                btnOutcome.classList.remove('active');
+            } else {
+                outcomeLayer.classList.remove('hidden');
+                setTimeout(() => outcomeLayer.classList.remove('opacity-0'), 50);
+                conceptLayer.classList.add('opacity-0');
+                setTimeout(() => conceptLayer.classList.add('hidden'), 500);
+                btnOutcome.classList.add('active');
+                btnConcept.classList.remove('active');
+            }
+        }
+    </script>
+</body>
+</html>
