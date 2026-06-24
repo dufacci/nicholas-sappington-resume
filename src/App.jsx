@@ -78,7 +78,7 @@ const App = () => {
     - Sprint (2014-2017): Assistant Store Manager & Sales Representative. Top 10 business sales in district. Salesforce expert.
     Education: CSU Los Angeles (B.A. Political Science, 3.5 GPA), Santa Monica College (A.A. Humanities).
     Languages: English (Native), Spanish (Advanced), French (Intermediate).
-    Skills: Ableton 12, Unity, ThinkOrSwim, Adobe Illustrator, Salesforce, MS Office.
+    Skills: Ableton 12, Claude Code/Cowork & Gemini Canvas, ThinkOrSwim, Adobe Illustrator, Salesforce, MS Office.
   `;
 
   const personalContext = `
@@ -340,7 +340,7 @@ const App = () => {
                 </div>
               </div>
               <div className="grid grid-cols-1 gap-3">
-                {['Ableton 12', 'Unity', 'ThinkOrSwim', 'Adobe Illustrator', 'Salesforce', 'MS Office'].map(p => (
+                {['Ableton 12', 'Claude Code/Cowork & Gemini Canvas', 'ThinkOrSwim', 'Adobe Illustrator', 'Salesforce', 'MS Office'].map(p => (
                   <div key={p} className="bg-white/5 border border-white/10 p-5 rounded-2xl text-center text-sm font-black uppercase tracking-widest hover:border-[#E5FF00] hover:text-[#E5FF00] transition-all cursor-default">
                     {p}
                   </div>
