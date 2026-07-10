@@ -259,9 +259,9 @@ const App = () => {
         {/* CORE CONTENT GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
 
-          <div className="lg:col-span-4 space-y-10">
+          <div className="contents lg:block lg:col-span-4 lg:space-y-10">
             {/* GENERAL INFO AGENT (Interactive Layer) */}
-            <div className={`${liquidGlass} border-[#E5FF00]/50 border-2`}>
+            <div className={`${liquidGlass} border-[#E5FF00]/50 border-2 order-1 lg:order-none max-md:p-6!`}>
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
 
               <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
@@ -285,11 +285,11 @@ const App = () => {
               </p>
 
               <div className="grid grid-cols-1 gap-2 mb-6">
-                {quickQuestions.map((q) => (
+                {quickQuestions.map((q, i) => (
                   <button
                     key={q}
                     onClick={() => { setUserQuery(q); askAgent(q); }}
-                    className="text-left p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] font-black uppercase tracking-tight hover:bg-[#E5FF00] hover:text-black transition-all flex items-center justify-between group"
+                    className={`text-left p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] font-black uppercase tracking-tight hover:bg-[#E5FF00] hover:text-black transition-all flex items-center justify-between group ${i >= 2 ? 'max-md:hidden' : ''}`}
                   >
                     {q} <ChevronRight size={14} className="opacity-0 group-hover:opacity-100" />
                   </button>
@@ -314,7 +314,7 @@ const App = () => {
                 </button>
               </div>
 
-              <div className="relative min-h-[160px]">
+              <div className="relative min-h-[120px] md:min-h-[160px]">
                 {aiResponse ? (
                   <div className="bg-black/60 border border-white/10 rounded-2xl p-6 text-sm leading-relaxed text-zinc-100 font-medium whitespace-pre-wrap animate-in fade-in zoom-in duration-500 h-full overflow-y-auto shadow-inner">
                     <div className="flex items-center gap-2 mb-4 text-[#E5FF00]">
@@ -324,7 +324,7 @@ const App = () => {
                     {aiResponse}
                   </div>
                 ) : (
-                  <div className="h-full min-h-[160px] border-2 border-white/5 border-dashed rounded-2xl flex flex-col items-center justify-center text-zinc-700 p-8 text-center bg-black/20">
+                  <div className="h-full min-h-[120px] md:min-h-[160px] border-2 border-white/5 border-dashed rounded-2xl flex flex-col items-center justify-center text-zinc-700 p-6 md:p-8 text-center bg-black/20">
                     <Info size={32} className="mb-3 opacity-10" />
                     <p className="text-[9px] font-black uppercase tracking-[0.3em] opacity-30">Awaiting Input</p>
                   </div>
@@ -333,7 +333,7 @@ const App = () => {
             </div>
 
             {/* Tech Stack */}
-            <div className={liquidGlass}>
+            <div className={`${liquidGlass} order-3 lg:order-none`}>
               <div className="mb-8 flex justify-center">
                 <div className="relative px-8 py-3 rounded-full bg-white/5 border border-white/10 text-[#E5FF00] font-black uppercase tracking-widest text-xs">
                   Tech Stack
@@ -357,7 +357,7 @@ const App = () => {
             </div>
 
             {/* Languages */}
-            <div className={liquidGlass}>
+            <div className={`${liquidGlass} order-4 lg:order-none`}>
               <div className="mb-8 flex justify-center">
                 <div className="relative px-8 py-3 rounded-full bg-white/5 border border-[#00f2ff]/30 text-[#00f2ff] font-black uppercase tracking-widest text-xs">
                   Linguistics
@@ -379,9 +379,9 @@ const App = () => {
             </div>
           </div>
 
-          <div className="lg:col-span-8 space-y-10">
+          <div className="contents lg:block lg:col-span-8 lg:space-y-10">
             {/* NUTRAPERFECTO */}
-            <div className={`${liquidGlass} border-l-[16px] border-l-[#E5FF00]`}>
+            <div className={`${liquidGlass} border-l-[16px] border-l-[#E5FF00] order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter leading-none">Nutraperfecto</h2>
@@ -402,7 +402,7 @@ const App = () => {
             </div>
 
             {/* LOPASS LLC */}
-            <div className={`${liquidGlass} border-l-[12px] border-l-[#00f2ff]`}>
+            <div className={`${liquidGlass} border-l-[12px] border-l-[#00f2ff] order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl font-black uppercase italic tracking-tighter leading-none">Lopass LLC</h2>
@@ -422,7 +422,7 @@ const App = () => {
             </div>
 
             {/* TECHNICAL MARKET ANALYST */}
-            <div className={liquidGlass}>
+            <div className={`${liquidGlass} order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-2">
                 <div>
                   <h2 className="text-3xl font-black uppercase italic tracking-tighter leading-none">Technical Market Analyst</h2>
@@ -438,7 +438,7 @@ const App = () => {
             </div>
 
             {/* THE GUNTER */}
-            <div className={liquidGlass}>
+            <div className={`${liquidGlass} order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-2">
                 <div>
                   <h2 className="text-3xl font-black uppercase italic tracking-tighter leading-none text-zinc-400">The Gunter</h2>
@@ -452,7 +452,7 @@ const App = () => {
             </div>
 
             {/* EDUCATION */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 order-2 lg:order-none">
                <div className={liquidGlass}>
                   <h4 className="font-black uppercase text-[#E5FF00] text-[10px] tracking-[0.3em] mb-4">CSU Los Angeles</h4>
                   <p className="font-black text-2xl italic uppercase leading-tight">B.A. Liberal Arts</p>
