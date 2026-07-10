@@ -1,1 +1,13 @@
 @import "tailwindcss";
+
+/* Pulsing glow for the agent "Live" badge */
+@keyframes livePulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(74, 222, 128, 0.45)); opacity: 0.82; }
+  50%      { filter: drop-shadow(0 0 12px rgba(74, 222, 128, 0.95)); opacity: 1; }
+}
+
+/* Pulsing glow for the "View Portfolio" pill */
+@keyframes portfolioPulse {
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(229, 255, 0, 0.40)); opacity: 0.92; }
+  50%      { filter: drop-shadow(0 0 16px rgba(229, 255, 0, 0.90)); opacity: 1; }
+}

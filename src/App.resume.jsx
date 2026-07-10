@@ -10,7 +10,7 @@ class ErrorBoundary extends Component {
       return (
         <div style={{ minHeight: '100vh', background: '#05080a', color: '#E5FF00', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif', padding: '2rem', textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚡</div>
-          <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>NICHOLAS SAPPINGTON</h1>
+          <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>NICK SAPPINGTON</h1>
           <p style={{ color: '#aaa', marginBottom: '1.5rem' }}>nicholassappington@gmail.com · 310-621-8502</p>
           <button onClick={() => window.location.reload()} style={{ background: '#E5FF00', color: '#000', border: 'none', padding: '0.75rem 2rem', borderRadius: '1rem', fontWeight: 900, cursor: 'pointer', fontSize: '0.85rem', letterSpacing: '0.1em' }}>
             RELOAD
@@ -23,7 +23,7 @@ class ErrorBoundary extends Component {
 }
 
 /**
- * NICHOLAS SAPPINGTON — LIQUID GLASS SHADER EDITION
+ * NICK SAPPINGTON — LIQUID GLASS SHADER EDITION
  * Shading: Cyberpunk Poster (Dark Star)
  * Glass: Enhanced Refractive Depth
  */
@@ -45,10 +45,10 @@ const ALL_QUESTIONS = [
   "Trading Automation Plans",
   "Tesla DIY & Hands-On Skills",
   "Life in San Francisco",
-  "What Drives Nicholas?",
+  "What Drives Nick?",
   "Side Projects Overview",
   "Ableton & Sound Design",
-  "What Makes Nicholas Unique?",
+  "What Makes Nick Unique?",
 ];
 
 function pickRandom4() {
@@ -66,12 +66,12 @@ const App = () => {
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ""; // Set in .env.local
 
   const resumeData = `
-    Name: Nicholas Sappington
+    Name: Nick Sappington
     Location: San Francisco, CA
     Contact: nicholassappington@gmail.com | 310-621-8502
     Experience:
     - Nutraperfecto (2024-2026): Formulation & Research Specialist. Premium ingredient sourcing and engineering proprietary blends. Focus on researching ingredients that work well together and testing formulations.
-    - Lopass LLC (2023-2026): Founder & Operator. Built and ran a Los Angeles black-car chauffeur service for celebrity, entertainment, and high-net-worth clientele — airport transfers and special events. Managed the business itself (driver roster, dispatch, client relationships, brand reputation for discretion and reliability) — Nicholas ran operations and did not drive clients personally. Negotiated and closed a successful exit (sold the company).
+    - Lopass LLC (2023-2026): Founder & Operator. Built and ran a Los Angeles black-car chauffeur service for celebrity, entertainment, and high-net-worth clientele — airport transfers and special events. Managed the business itself (driver roster, dispatch, client relationships, brand reputation for discretion and reliability) — Nick ran operations and did not drive clients personally. Negotiated and closed a successful exit (sold the company).
     - TCM Film Festival (2024): Production Manager. Managed logistics for guest filmmakers and VIPs.
     - Technical Market Analyst (2020-2022): Paid charting / technical-analysis contributor for the Royce Jacob and MapleStax brands across YouTube and Twitter (X). Translated complex options and equity setups into clear visuals for retail audiences and published live trade ideas to subscriber communities.
     - The Gunter (2017-2018): Audio Production & Lead Sound Designer. Secured funding and lead sound effects library direction.
@@ -103,16 +103,16 @@ const App = () => {
     setAiResponse('');
 
     const systemPrompt = `
-      You are Nicholas Sappington's Personal AI Agent. Your goal is to represent Nicholas to potential employers.
+      You are Nick Sappington's Personal AI Agent. Your goal is to represent Nick to potential employers.
       TONE: High-energy, cyberpunk, professional, results-oriented, and confident.
-      CONTEXT: Nicholas is based in the Duboce Triangle neighborhood of San Francisco. Use this resume data: ${resumeData}.
+      CONTEXT: Nick is based in the Duboce Triangle neighborhood of San Francisco. Use this resume data: ${resumeData}.
       PERSONAL CONTEXT: ${personalContext}
       INSTRUCTIONS:
       - Highlight his versatility (Music + Markets + Supplements + Operations).
       - For Nutraperfecto, emphasize formulation testing and research.
-      - For Lopass LLC, emphasize founding, growing, and managing the celebrity-clientele service business — Nicholas ran operations, he did not drive clients himself.
+      - For Lopass LLC, emphasize founding, growing, and managing the celebrity-clientele service business — Nick ran operations, he did not drive clients himself.
       - For Technical Market Analyst, emphasize charting expertise and translating setups for retail audiences.
-      - Use personal context to add genuine personality and depth when relevant — show who Nicholas is beyond the resume.
+      - Use personal context to add genuine personality and depth when relevant — show who Nick is beyond the resume.
       - Keep answers concise, punchy, and under 100 words.
     `;
 
@@ -217,7 +217,7 @@ const App = () => {
               <div className="w-full h-full rounded-[4rem] bg-[#05080a] overflow-hidden relative flex items-center justify-center border border-white/20 shadow-inner">
                 <img
                   src="/Gemini_Generated_Image_w5iolew5iolew5io copy.png"
-                  alt="Nicholas Sappington"
+                  alt="Nick Sappington"
                   className="w-full h-full object-cover opacity-90 transition-all duration-500"
                   onError={(e) => {
                     e.target.style.display = 'none';
@@ -239,7 +239,7 @@ const App = () => {
 
           <div className="flex-1 text-center lg:text-left min-w-0">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase tracking-normal leading-[1.05] mb-4 drop-shadow-[0_10px_30px_rgba(0,0,0,1)]">
-              NICHOLAS<br/>
+              NICK<br/>
               <span className="text-[#E5FF00] drop-shadow-[0_0_40px_rgba(229,255,0,0.2)]">SAPPINGTON</span>
             </h1>
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
@@ -249,7 +249,7 @@ const App = () => {
               <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest text-[#E5FF00] shadow-lg">
                 <Phone size={18}/> 310-621-8502
               </div>
-              <a href="/portfolio.html" className="flex items-center gap-3 bg-[#E5FF00] text-black border border-[#E5FF00] px-6 py-3 rounded-2xl hover:bg-white hover:border-white transition-all font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(229,255,0,0.3)]">
+              <a href="/portfolio.html" style={{ animation: 'portfolioPulse 1.8s ease-in-out infinite' }} className="flex items-center gap-3 bg-[#E5FF00] text-black border border-[#E5FF00] px-6 py-3 rounded-2xl hover:bg-white hover:border-white transition-all font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(229,255,0,0.3)]">
                 <FlaskConical size={18}/> View Portfolio
               </a>
             </div>
@@ -274,14 +274,16 @@ const App = () => {
                     <p className="text-[9px] text-[#E5FF00] font-bold uppercase tracking-[0.3em] mt-1 opacity-80">SF Representative</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-2 bg-green-400/10 px-3 py-1 rounded-full border border-green-400/20">
-                  <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                <div
+                  className="flex items-center bg-green-400/10 px-3.5 py-1 rounded-full border border-green-400/40"
+                  style={{ animation: 'livePulse 1.8s ease-in-out infinite' }}
+                >
                   <span className="text-[9px] font-black uppercase text-green-400 tracking-widest">Live</span>
                 </div>
               </div>
 
               <p className="text-xs font-bold text-zinc-100 mb-6 italic border-l-4 border-[#E5FF00] pl-4 leading-relaxed">
-                "Verified Agent Online. Ask about Nicholas's work at Nutraperfecto, his Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator expertise."
+                "Verified Agent Online. Ask about Nick's work at Nutraperfecto, his Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator expertise."
               </p>
 
               <div className="grid grid-cols-1 gap-2 mb-6">
