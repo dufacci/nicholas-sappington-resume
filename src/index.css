@@ -8,6 +8,6 @@
 
 /* Pulsing glow for the "View Portfolio" pill */
 @keyframes portfolioPulse {
-  0%, 100% { filter: drop-shadow(0 0 2px rgba(229, 255, 0, 0.40)); opacity: 0.92; }
-  50%      { filter: drop-shadow(0 0 16px rgba(229, 255, 0, 0.90)); opacity: 1; }
+  0%, 100% { filter: drop-shadow(0 0 2px rgba(233, 245, 165, 0.40)); opacity: 0.92; }
+  50%      { filter: drop-shadow(0 0 16px rgba(233, 245, 165, 0.90)); opacity: 1; }
 }

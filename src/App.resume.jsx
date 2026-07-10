@@ -8,11 +8,11 @@ class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div style={{ minHeight: '100vh', background: '#05080a', color: '#E5FF00', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif', padding: '2rem', textAlign: 'center' }}>
+        <div style={{ minHeight: '100vh', background: '#05080a', color: '#E9F5A5', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', fontFamily: 'sans-serif', padding: '2rem', textAlign: 'center' }}>
           <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>⚡</div>
           <h1 style={{ fontSize: '1.5rem', fontWeight: 900, marginBottom: '0.5rem' }}>NICK SAPPINGTON</h1>
           <p style={{ color: '#aaa', marginBottom: '1.5rem' }}>nicholassappington@gmail.com · 310-621-8502</p>
-          <button onClick={() => window.location.reload()} style={{ background: '#E5FF00', color: '#000', border: 'none', padding: '0.75rem 2rem', borderRadius: '1rem', fontWeight: 900, cursor: 'pointer', fontSize: '0.85rem', letterSpacing: '0.1em' }}>
+          <button onClick={() => window.location.reload()} style={{ background: '#E9F5A5', color: '#000', border: 'none', padding: '0.75rem 2rem', borderRadius: '1rem', fontWeight: 900, cursor: 'pointer', fontSize: '0.85rem', letterSpacing: '0.1em' }}>
             RELOAD
           </button>
         </div>
@@ -179,16 +179,16 @@ const App = () => {
     border border-white/20
     shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_10px_20px_rgba(255,255,255,0.05),inset_-5px_-5px_15px_rgba(0,242,255,0.05),inset_5px_5px_15px_rgba(255,0,255,0.05)]
     transition-all duration-500
-    hover:border-[#E5FF00]/40 hover:bg-black/80
+    hover:border-[#E9F5A5]/40 hover:bg-black/80
   `;
 
   return (
-    <div className="min-h-screen bg-[#05080a] text-white font-sans selection:bg-[#E5FF00] selection:text-black overflow-x-hidden relative pb-40">
+    <div className="min-h-screen bg-[#05080a] text-white font-sans selection:bg-[#E9F5A5] selection:text-black overflow-x-hidden relative pb-40">
 
       {/* CYBERPUNK POSTER SHADING (Static, Moody) */}
       <div className="fixed inset-0 pointer-events-none">
         {/* Top-Right Yellow Glow */}
-        <div className="absolute -top-[5%] right-[5%] w-[60vw] h-[40vh] bg-[#E5FF00] opacity-[0.12] blur-[160px]"></div>
+        <div className="absolute -top-[5%] right-[5%] w-[60vw] h-[40vh] bg-[#E9F5A5] opacity-[0.12] blur-[160px]"></div>
 
         {/* Deep Center Void */}
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#05080a] to-[#020304]"></div>
@@ -225,14 +225,14 @@ const App = () => {
                   }}
                 />
                 <div style={{display: 'none'}} className="absolute inset-0 items-center justify-center bg-zinc-900">
-                   <User size={100} className="text-[#E5FF00] opacity-20" />
+                   <User size={100} className="text-[#E9F5A5] opacity-20" />
                 </div>
                 {/* Internal Refraction Highlight */}
                 <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/40 pointer-events-none"></div>
               </div>
             </div>
             {/* San Francisco Tag */}
-            <div className="absolute -bottom-4 -right-2 bg-[#E5FF00] text-black px-6 py-2 rounded-2xl shadow-[0_10px_30px_rgba(229,255,0,0.3)] font-black text-xs md:text-sm uppercase tracking-widest z-20 border border-white/20">
+            <div className="absolute -bottom-4 -right-2 bg-[#E9F5A5] text-black px-6 py-2 rounded-2xl shadow-[0_10px_30px_rgba(233,245,165,0.3)] font-black text-xs md:text-sm uppercase tracking-widest z-20 border border-white/20">
               San Francisco Based
             </div>
           </div>
@@ -240,16 +240,16 @@ const App = () => {
           <div className="flex-1 text-center lg:text-left min-w-0">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black italic uppercase tracking-normal leading-[1.05] mb-4 drop-shadow-[0_10px_30px_rgba(0,0,0,1)]">
               NICK<br/>
-              <span className="text-[#E5FF00] drop-shadow-[0_0_40px_rgba(229,255,0,0.2)]">SAPPINGTON</span>
+              <span className="text-[#E9F5A5] drop-shadow-[0_0_40px_rgba(233,245,165,0.2)]">SAPPINGTON</span>
             </h1>
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-              <a href="mailto:nicholassappington@gmail.com" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl hover:bg-[#E5FF00] hover:text-black transition-all font-bold text-xs uppercase tracking-widest shadow-lg">
+              <a href="mailto:nicholassappington@gmail.com" className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl hover:bg-[#E9F5A5] hover:text-black transition-all font-bold text-xs uppercase tracking-widest shadow-lg">
                 <Mail size={18}/> nicholassappington@gmail.com
               </a>
-              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest text-[#E5FF00] shadow-lg">
+              <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-6 py-3 rounded-2xl font-bold text-xs uppercase tracking-widest text-[#E9F5A5] shadow-lg">
                 <Phone size={18}/> 310-621-8502
               </div>
-              <a href="/portfolio.html" style={{ animation: 'portfolioPulse 1.8s ease-in-out infinite' }} className="flex items-center gap-3 bg-[#E5FF00] text-black border border-[#E5FF00] px-6 py-3 rounded-2xl hover:bg-white hover:border-white transition-all font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(229,255,0,0.3)]">
+              <a href="/portfolio.html" style={{ animation: 'portfolioPulse 1.8s ease-in-out infinite' }} className="flex items-center gap-3 bg-[#E9F5A5] text-black border border-[#E9F5A5] px-6 py-3 rounded-2xl hover:bg-white hover:border-white transition-all font-black text-xs uppercase tracking-widest shadow-[0_10px_30px_rgba(233,245,165,0.3)]">
                 <FlaskConical size={18}/> View Portfolio
               </a>
             </div>
@@ -261,17 +261,17 @@ const App = () => {
 
           <div className="contents lg:block lg:col-span-4 lg:space-y-10">
             {/* GENERAL INFO AGENT (Interactive Layer) */}
-            <div className={`${liquidGlass} border-[#E5FF00]/50 border-2 order-1 lg:order-none max-md:p-6!`}>
+            <div className={`${liquidGlass} border-[#E9F5A5]/50 border-2 order-1 lg:order-none max-md:p-6!`}>
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
 
               <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-[#E5FF00] flex items-center justify-center shadow-[0_0_20px_rgba(229,255,0,0.4)]">
+                  <div className="w-10 h-10 rounded-xl bg-[#E9F5A5] flex items-center justify-center shadow-[0_0_20px_rgba(233,245,165,0.4)]">
                     <Sparkles size={20} className="text-black" />
                   </div>
                   <div>
                     <h2 className="text-xl font-black uppercase tracking-tighter italic leading-none">General Info Agent</h2>
-                    <p className="text-[9px] text-[#E5FF00] font-bold uppercase tracking-[0.3em] mt-1 opacity-80">SF Representative</p>
+                    <p className="text-[9px] text-[#E9F5A5] font-bold uppercase tracking-[0.3em] mt-1 opacity-80">SF Representative</p>
                   </div>
                 </div>
                 <div
@@ -282,7 +282,7 @@ const App = () => {
                 </div>
               </div>
 
-              <p className="text-xs font-bold text-zinc-100 mb-6 italic border-l-4 border-[#E5FF00] pl-4 leading-relaxed">
+              <p className="text-xs font-bold text-zinc-100 mb-6 italic border-l-4 border-[#E9F5A5] pl-4 leading-relaxed">
                 "Verified Agent Online. Ask about Nick's work at Nutraperfecto, his Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator expertise."
               </p>
 
@@ -291,7 +291,7 @@ const App = () => {
                   <button
                     key={q}
                     onClick={() => { setUserQuery(q); askAgent(q); }}
-                    className={`text-left p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] font-black uppercase tracking-tight hover:bg-[#E5FF00] hover:text-black transition-all flex items-center justify-between group ${i >= 2 ? 'max-md:hidden' : ''}`}
+                    className={`text-left p-3 rounded-xl bg-white/5 border border-white/5 text-[10px] font-black uppercase tracking-tight hover:bg-[#E9F5A5] hover:text-black transition-all flex items-center justify-between group ${i >= 2 ? 'max-md:hidden' : ''}`}
                   >
                     {q} <ChevronRight size={14} className="opacity-0 group-hover:opacity-100" />
                   </button>
@@ -302,7 +302,7 @@ const App = () => {
                 <input
                   type="text"
                   placeholder="Ask a question..."
-                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 pr-14 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#E5FF00]/50 font-bold text-sm"
+                  className="w-full bg-white/5 border border-white/10 rounded-2xl p-4 pr-14 text-white placeholder:text-white/20 focus:outline-none focus:ring-2 focus:ring-[#E9F5A5]/50 font-bold text-sm"
                   value={userQuery}
                   onChange={(e) => setUserQuery(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && askAgent()}
@@ -310,7 +310,7 @@ const App = () => {
                 <button
                   onClick={() => askAgent()}
                   disabled={isLoading}
-                  className="absolute right-2.5 top-2.5 h-10 w-10 bg-[#E5FF00] text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg"
+                  className="absolute right-2.5 top-2.5 h-10 w-10 bg-[#E9F5A5] text-black rounded-xl flex items-center justify-center hover:scale-105 active:scale-95 transition-all shadow-lg"
                 >
                   {isLoading ? <Loader2 className="animate-spin" size={18}/> : <Send size={18} />}
                 </button>
@@ -319,7 +319,7 @@ const App = () => {
               <div className="relative min-h-[120px] md:min-h-[160px]">
                 {aiResponse ? (
                   <div className="bg-black/60 border border-white/10 rounded-2xl p-6 text-sm leading-relaxed text-zinc-100 font-medium whitespace-pre-wrap animate-in fade-in zoom-in duration-500 h-full overflow-y-auto shadow-inner">
-                    <div className="flex items-center gap-2 mb-4 text-[#E5FF00]">
+                    <div className="flex items-center gap-2 mb-4 text-[#E9F5A5]">
                       <MessageSquare size={16}/>
                       <span className="text-[9px] font-black uppercase tracking-[0.2em]">Verified Response</span>
                     </div>
@@ -337,7 +337,7 @@ const App = () => {
             {/* Tech Stack */}
             <div className={`${liquidGlass} order-3 lg:order-none`}>
               <div className="mb-8 flex justify-center">
-                <div className="relative px-8 py-3 rounded-full bg-white/5 border border-white/10 text-[#E5FF00] font-black uppercase tracking-widest text-xs">
+                <div className="relative px-8 py-3 rounded-full bg-white/5 border border-white/10 text-[#E9F5A5] font-black uppercase tracking-widest text-xs">
                   Tech Stack
                 </div>
               </div>
@@ -350,7 +350,7 @@ const App = () => {
                   { name: 'Salesforce', icon: '/logos/salesforce.svg' },
                   { name: 'MS Office', icon: '/logos/msoffice.svg' },
                 ].map(p => (
-                  <div key={p.name} className="bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-3 text-sm font-black uppercase tracking-wide hover:border-[#E5FF00] hover:text-[#E5FF00] transition-all cursor-default">
+                  <div key={p.name} className="bg-white/5 border border-white/10 p-4 rounded-2xl flex items-center gap-3 text-sm font-black uppercase tracking-wide hover:border-[#E9F5A5] hover:text-[#E9F5A5] transition-all cursor-default">
                     <img src={p.icon} alt="" className="w-6 h-6 object-contain shrink-0" />
                     <span>{p.name}</span>
                   </div>
@@ -366,7 +366,7 @@ const App = () => {
                 </div>
               </div>
               <div className="space-y-6">
-                {[{ n: 'English', l: 'Native', c: '#E5FF00' }, { n: 'Spanish', l: 'Advanced', c: '#00f2ff' }, { n: 'French', l: 'Intermed.', c: '#ff00ff' }].map(lang => (
+                {[{ n: 'English', l: 'Native', c: '#E9F5A5' }, { n: 'Spanish', l: 'Advanced', c: '#00f2ff' }, { n: 'French', l: 'Intermed.', c: '#ff00ff' }].map(lang => (
                    <div key={lang.n}>
                       <div className="flex justify-between text-[11px] font-black uppercase mb-3 opacity-90">
                         <span>{lang.n}</span>
@@ -383,21 +383,21 @@ const App = () => {
 
           <div className="contents lg:block lg:col-span-8 lg:space-y-10">
             {/* NUTRAPERFECTO */}
-            <div className={`${liquidGlass} border-l-[16px] border-l-[#E5FF00] order-2 lg:order-none`}>
+            <div className={`${liquidGlass} border-l-[16px] border-l-[#E9F5A5] order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter leading-none">Nutraperfecto</h2>
-                  <p className="text-[#E5FF00] font-bold text-sm tracking-[0.2em] mt-3 opacity-90">Formulation & Research Specialist</p>
+                  <p className="text-[#E9F5A5] font-bold text-sm tracking-[0.2em] mt-3 opacity-90">Formulation & Research Specialist</p>
                 </div>
-                <div className="bg-[#E5FF00] text-black px-8 py-2.5 rounded-2xl text-[11px] font-black shadow-xl italic">2024 — 2026</div>
+                <div className="bg-[#E9F5A5] text-black px-8 py-2.5 rounded-2xl text-[11px] font-black shadow-xl italic">2024 — 2026</div>
               </div>
               <div className="space-y-6 text-zinc-100 text-lg leading-relaxed">
                 <p className="flex gap-6 items-start">
-                  <FlaskConical className="shrink-0 text-[#E5FF00] mt-1" size={24}/>
+                  <FlaskConical className="shrink-0 text-[#E9F5A5] mt-1" size={24}/>
                   <span>Engineered proprietary formulation blends by identifying synergistic active ingredients through rigorous research and testing.</span>
                 </p>
                 <p className="flex gap-4 items-start bg-white/5 p-4 rounded-2xl border border-white/5">
-                   <Zap className="shrink-0 text-[#E5FF00] mt-1" size={20}/>
+                   <Zap className="shrink-0 text-[#E9F5A5] mt-1" size={20}/>
                    <span className="text-sm italic">Managed global sourcing for supplement releases, ensuring scientific efficacy and ingredient purity.</span>
                 </p>
               </div>
@@ -456,12 +456,12 @@ const App = () => {
             {/* EDUCATION */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 order-2 lg:order-none">
                <div className={liquidGlass}>
-                  <h4 className="font-black uppercase text-[#E5FF00] text-[10px] tracking-[0.3em] mb-4">CSU Los Angeles</h4>
+                  <h4 className="font-black uppercase text-[#E9F5A5] text-[10px] tracking-[0.3em] mb-4">CSU Los Angeles</h4>
                   <p className="font-black text-2xl italic uppercase leading-tight">B.A. Liberal Arts</p>
                   <p className="text-[10px] text-zinc-500 font-bold mt-2 tracking-widest uppercase">Political Science | 3.5 GPA</p>
                </div>
                <div className={liquidGlass}>
-                  <h4 className="font-black uppercase text-[#E5FF00] text-[10px] tracking-[0.3em] mb-4">Santa Monica College</h4>
+                  <h4 className="font-black uppercase text-[#E9F5A5] text-[10px] tracking-[0.3em] mb-4">Santa Monica College</h4>
                   <p className="font-black text-2xl italic uppercase leading-tight">A.A. Humanities</p>
                </div>
             </div>
@@ -470,7 +470,7 @@ const App = () => {
       </div>
 
       {/* Glossy Footer Bar */}
-      <div className="fixed bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#E5FF00] to-transparent opacity-40 shadow-[0_0_20px_rgba(229,255,0,0.5)]"></div>
+      <div className="fixed bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-transparent via-[#E9F5A5] to-transparent opacity-40 shadow-[0_0_20px_rgba(233,245,165,0.5)]"></div>
     </div>
   );
 };
