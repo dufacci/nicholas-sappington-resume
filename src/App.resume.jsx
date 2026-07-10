@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react';
+import React, { useState, useEffect, Component } from 'react';
 import { Mail, Phone, Award, Code, FlaskConical, Zap, Sparkles, Send, Loader2, MessageSquare, Info, ChevronRight, User, MapPin, Briefcase, BarChart3 } from 'lucide-react';
 
 class ErrorBoundary extends Component {
@@ -62,6 +62,23 @@ const App = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isPhotoHovered, setIsPhotoHovered] = useState(false);
   const [quickQuestions] = useState(() => pickRandom4());
+
+  // Parallax: one shared CSS var drives BOTH the background grid and each card's
+  // inner "lens" dots, so the dots drift even under the glass bubbles.
+  useEffect(() => {
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        document.documentElement.style.setProperty('--dot-shift', `${window.scrollY * -0.4}px`);
+        document.documentElement.style.setProperty('--dot-shift-lens', `${window.scrollY * -0.2}px`);
+      });
+    };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    return () => { window.removeEventListener('scroll', onScroll); if (raf) cancelAnimationFrame(raf); };
+  }, []);
 
   const apiKey = import.meta.env.VITE_GEMINI_API_KEY || ""; // Set in .env.local
 
@@ -171,36 +188,38 @@ const App = () => {
     }
   };
 
-  // STRONGER LIQUID GLASS EFFECT — multi-layer shadows for rim lighting + internal refraction depth
-  const liquidGlass = `
-    relative overflow-hidden
-    bg-black/70 backdrop-blur-[40px]
-    rounded-[2.5rem] p-8
-    border border-white/20
-    shadow-[0_20px_50px_rgba(0,0,0,0.8),inset_0_1px_1px_rgba(255,255,255,0.3),inset_0_10px_20px_rgba(255,255,255,0.05),inset_-5px_-5px_15px_rgba(0,242,255,0.05),inset_5px_5px_15px_rgba(255,0,255,0.05)]
-    transition-all duration-500
-    hover:border-[#E9F5A5]/40 hover:bg-black/80
-  `;
+  // Liquid-glass card classes — visuals live in index.css (.lg-card / .lg-a / .lg-b)
+  // Variant B = featured (agent, Nutraperfecto, tech stack); Variant A = everything else.
+  const glassA = "lg-card lg-a p-8";
+  const glassB = "lg-card lg-b p-8";
 
   return (
-    <div className="min-h-screen bg-[#05080a] text-white font-sans selection:bg-[#E9F5A5] selection:text-black overflow-x-hidden relative pb-40">
+    <div className="min-h-screen bg-[#0d1117] text-white font-sans selection:bg-[#E9F5A5] selection:text-black overflow-x-hidden relative pb-40">
 
-      {/* CYBERPUNK POSTER SHADING (Static, Moody) */}
+      {/* CYBERPUNK POSTER SHADING (lifted tone + texture) */}
       <div className="fixed inset-0 pointer-events-none">
-        {/* Top-Right Yellow Glow */}
-        <div className="absolute -top-[5%] right-[5%] w-[60vw] h-[40vh] bg-[#E9F5A5] opacity-[0.12] blur-[160px]"></div>
+        {/* Top-Right Pastel Glow */}
+        <div className="absolute -top-[8%] right-[2%] w-[60vw] h-[42vh] bg-[#E9F5A5] opacity-[0.20] blur-[150px]"></div>
 
-        {/* Deep Center Void */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#05080a] to-[#020304]"></div>
+        {/* Soft bottom vignette for grounding */}
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/30"></div>
 
         {/* Bottom Left Cyan Glow */}
-        <div className="absolute -bottom-[10%] -left-[10%] w-[50vw] h-[50vh] bg-[#00f2ff] opacity-[0.1] blur-[140px]"></div>
+        <div className="absolute -bottom-[12%] -left-[12%] w-[52vw] h-[52vh] bg-[#00f2ff] opacity-[0.16] blur-[130px]"></div>
 
         {/* Bottom Right Magenta Glow */}
-        <div className="absolute -bottom-[5%] right-[-5%] w-[40vw] h-[40vh] bg-[#ff00ff] opacity-[0.07] blur-[120px]"></div>
+        <div className="absolute -bottom-[8%] right-[-8%] w-[46vw] h-[46vh] bg-[#ff00ff] opacity-[0.12] blur-[120px]"></div>
+
+        {/* Scattered-symbol texture — two layered copies (disguises the repeat), glowing, drifts on scroll */}
+        <div className="absolute inset-0 will-change-[background-position]" style={{
+          backgroundImage: 'var(--sym-tile), var(--sym-tile)',
+          backgroundSize: '340px 340px, 250px 250px',
+          backgroundPosition: '0 var(--dot-shift, 0px), 150px calc(90px + var(--dot-shift, 0px))',
+          filter: 'drop-shadow(0 0 2px rgba(233,245,165,0.55)) drop-shadow(0 0 6px rgba(255,255,255,0.30))'
+        }}></div>
 
         {/* Subtle Grain Overlay — CSS-only, no external dependency */}
-        <div className="absolute inset-0 opacity-[0.04] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '200px 200px' }}></div>
+        <div className="absolute inset-0 opacity-[0.06] pointer-events-none mix-blend-overlay" style={{ backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")`, backgroundSize: '200px 200px' }}></div>
       </div>
 
       <div className="max-w-6xl mx-auto px-6 pt-16 relative z-10">
@@ -261,7 +280,7 @@ const App = () => {
 
           <div className="contents lg:block lg:col-span-4 lg:space-y-10">
             {/* GENERAL INFO AGENT (Interactive Layer) */}
-            <div className={`${liquidGlass} border-[#E9F5A5]/50 border-2 order-1 lg:order-none max-md:p-6!`}>
+            <div className={`${glassB} border-[#E9F5A5]/50 border-2 order-1 lg:order-none max-md:p-6!`}>
               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent"></div>
 
               <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
@@ -335,7 +354,7 @@ const App = () => {
             </div>
 
             {/* Tech Stack */}
-            <div className={`${liquidGlass} order-3 lg:order-none`}>
+            <div className={`${glassB} order-3 lg:order-none`}>
               <div className="mb-8 flex justify-center">
                 <div className="relative px-8 py-3 rounded-full bg-white/5 border border-white/10 text-[#E9F5A5] font-black uppercase tracking-widest text-xs">
                   Tech Stack
@@ -359,7 +378,7 @@ const App = () => {
             </div>
 
             {/* Languages */}
-            <div className={`${liquidGlass} order-4 lg:order-none`}>
+            <div className={`${glassA} order-4 lg:order-none`}>
               <div className="mb-8 flex justify-center">
                 <div className="relative px-8 py-3 rounded-full bg-white/5 border border-[#00f2ff]/30 text-[#00f2ff] font-black uppercase tracking-widest text-xs">
                   Linguistics
@@ -383,7 +402,7 @@ const App = () => {
 
           <div className="contents lg:block lg:col-span-8 lg:space-y-10">
             {/* NUTRAPERFECTO */}
-            <div className={`${liquidGlass} border-l-[16px] border-l-[#E9F5A5] order-2 lg:order-none`}>
+            <div className={`${glassB} border-l-[16px] border-l-[#E9F5A5] order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter leading-none">Nutraperfecto</h2>
@@ -404,7 +423,7 @@ const App = () => {
             </div>
 
             {/* LOPASS LLC */}
-            <div className={`${liquidGlass} border-l-[12px] border-l-[#00f2ff] order-2 lg:order-none`}>
+            <div className={`${glassA} border-l-[12px] border-l-[#00f2ff] order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl font-black uppercase italic tracking-tighter leading-none">Lopass LLC</h2>
@@ -424,7 +443,7 @@ const App = () => {
             </div>
 
             {/* TECHNICAL MARKET ANALYST */}
-            <div className={`${liquidGlass} order-2 lg:order-none`}>
+            <div className={`${glassA} order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-2">
                 <div>
                   <h2 className="text-3xl font-black uppercase italic tracking-tighter leading-none">Technical Market Analyst</h2>
@@ -440,7 +459,7 @@ const App = () => {
             </div>
 
             {/* THE GUNTER */}
-            <div className={`${liquidGlass} order-2 lg:order-none`}>
+            <div className={`${glassA} order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-2">
                 <div>
                   <h2 className="text-3xl font-black uppercase italic tracking-tighter leading-none text-zinc-400">The Gunter</h2>
@@ -455,12 +474,12 @@ const App = () => {
 
             {/* EDUCATION */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 order-2 lg:order-none">
-               <div className={liquidGlass}>
+               <div className={glassA}>
                   <h4 className="font-black uppercase text-[#E9F5A5] text-[10px] tracking-[0.3em] mb-4">CSU Los Angeles</h4>
                   <p className="font-black text-2xl italic uppercase leading-tight">B.A. Liberal Arts</p>
                   <p className="text-[10px] text-zinc-500 font-bold mt-2 tracking-widest uppercase">Political Science | 3.5 GPA</p>
                </div>
-               <div className={liquidGlass}>
+               <div className={glassA}>
                   <h4 className="font-black uppercase text-[#E9F5A5] text-[10px] tracking-[0.3em] mb-4">Santa Monica College</h4>
                   <p className="font-black text-2xl italic uppercase leading-tight">A.A. Humanities</p>
                </div>
