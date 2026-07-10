@@ -402,7 +402,7 @@ const App = () => {
 
           <div className="contents lg:block lg:col-span-8 lg:space-y-10">
             {/* NUTRAPERFECTO */}
-            <div className={`${glassB} border-l-[16px] border-l-[#E9F5A5] order-2 lg:order-none`}>
+            <div className={`${glassB} lg-edge-nutra order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl md:text-5xl font-black uppercase italic tracking-tighter leading-none">Nutraperfecto</h2>
@@ -423,7 +423,7 @@ const App = () => {
             </div>
 
             {/* LOPASS LLC */}
-            <div className={`${glassA} border-l-[12px] border-l-[#00f2ff] order-2 lg:order-none`}>
+            <div className={`${glassA} lg-edge-lopass order-2 lg:order-none`}>
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl font-black uppercase italic tracking-tighter leading-none">Lopass LLC</h2>
