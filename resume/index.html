@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NS Resume</title>
+    <meta property="og:title" content="NS Resume" />
+    <meta property="og:description" content="Nick Sappington — San Francisco Based" />
+    <!-- Auto screenshot of the live site via Microlink (free, no key). To revert to the static image, use: https://nicholas-sappington.netlify.app/preview.png -->
+    <meta property="og:image" content="https://api.microlink.io/?url=https://nicksappington.com/resume/&amp;screenshot=true&amp;meta=false&amp;embed=screenshot.url&amp;viewport.width=1200&amp;viewport.height=630" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:url" content="https://nicksappington.com/resume/" />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <div id="root">
+      <!-- Instant loading screen — shown before React mounts, replaced automatically -->
+      <div id="splash" style="
+        position:fixed; inset:0;
+        background:#0d1117;
+        display:flex; flex-direction:column;
+        align-items:center; justify-content:center;
+        font-family:sans-serif; z-index:9999;
+      ">
+        <!-- Glowing ring spinner -->
+        <div style="
+          width:64px; height:64px;
+          border-radius:50%;
+          border:3px solid rgba(233,245,165,0.15);
+          border-top-color:#E9F5A5;
+          animation:spin 0.9s linear infinite;
+          margin-bottom:2rem;
+          box-shadow:0 0 24px rgba(233,245,165,0.2);
+        "></div>
+        <div style="
+          font-size:1.4rem; font-weight:900;
+          letter-spacing:0.15em; color:#E9F5A5;
+          text-transform:uppercase; margin-bottom:0.4rem;
+        ">Nick Sappington</div>
+        <div style="
+          font-size:0.65rem; font-weight:700;
+          letter-spacing:0.4em; color:rgba(233,245,165,0.45);
+          text-transform:uppercase;
+        ">San Francisco</div>
+        <style>
+          @keyframes spin { to { transform:rotate(360deg); } }
+          body { margin:0; background:#0d1117; }
+        </style>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
