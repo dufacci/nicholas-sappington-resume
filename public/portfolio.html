@@ -1,601 +1,747 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nick Sappington | Formulation Scientist</title>
-    <meta name="description" content="A designer's approach to formulation — case study on a non-pharmaceutical neuropathy support stack by Nick Sappington." />
-    <meta property="og:title" content="Nick Sappington | A Designer's Approach to Formulation" />
-    <meta property="og:description" content="Case study: analyzing clinical journals to formulate a vitamin, mineral, and nootropic neuropathy support stack." />
-    <meta property="og:image" content="https://nicksappington.com/product.png" />
-    <meta property="og:url" content="https://nicksappington.com/portfolio.html" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.29.0/feather.min.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>Nick Sappington | Designing a Formulation</title>
+<meta name="description" content="A designer's approach to formulation — case study on a non-pharmaceutical neuropathy support stack by Nick Sappington.">
+<meta property="og:title" content="Nick Sappington | A Designer's Approach to Formulation">
+<meta property="og:description" content="Case study: analyzing clinical journals to formulate a vitamin, mineral, and nootropic neuropathy support stack.">
+<!-- Auto screenshot of the live page via Microlink, matching index.html and /resume/. -->
+<meta property="og:image" content="https://api.microlink.io/?url=https://nicksappington.com/portfolio.html&amp;screenshot=true&amp;meta=false&amp;embed=screenshot.url&amp;viewport.width=1200&amp;viewport.height=630">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://nicksappington.com/portfolio.html">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            --bg-dark: #0a0a0a;
-            --off-white: #f3f4f6;
-            --pure-white: #ffffff;
-            --dim-white: #9ca3af;
-            --accent-mint: #a7f3d0;
-            --accent-muted: #273e35;
-        }
+<style>
+  :root {
+    --bg: #000000;
+    --dim: #9a9a9a;
+    --dimmer: #6a6a6a;
+    --rule: #222222;
+    --white: #ffffff;
 
-        body {
-            font-family: 'Space Grotesk', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--off-white);
-            margin: 0;
-            padding: 1rem;
-            box-sizing: border-box;
-            line-height: 1.4;
-        }
+    --neon-green: #39FF14;
+    --neon-yellow: #FFFF00;
+    --neon-magenta: #FF00FF;
+    --neon-cyan: #00FFFF;
 
-        .font-mono { font-family: 'Space Mono', monospace; }
+    /* One shared rhythm value so every section starts on the same beat. */
+    --gutter: 1.25rem;
+  }
 
-        /* Spin.co.uk inspired line weights — rounded where lines meet */
-        .border-thick { border: 5px solid var(--pure-white); border-radius: 22px; }
-        .border-medium { border: 2px solid var(--off-white); border-radius: 14px; }
-        .border-thin { border: 1px solid #3f3f46; border-radius: 10px; }
-        .border-b-thick { border-bottom: 5px solid var(--pure-white); }
-        .border-b-thin { border-bottom: 1px solid #3f3f46; }
-        .border-r-thin { border-right: 1px solid #3f3f46; }
+  @media (min-width: 900px) { :root { --gutter: 3rem; } }
 
-        /* Outer frame clips its inner blocks to the rounded corners */
-        main.border-thick { overflow: hidden; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Typography overrides for impact */
-        .text-mega {
-            font-size: clamp(3rem, 8vw, 7rem);
-            line-height: 0.9;
-            letter-spacing: -0.03em;
-            font-weight: 700;
-            text-transform: uppercase;
-        }
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
 
-        /* Interactive diagram nodes */
-        .node { transition: all 0.3s ease; cursor: pointer; }
-        .node:hover { background-color: var(--pure-white); color: var(--bg-dark); }
-        .node.active {
-            background-color: var(--accent-mint);
-            color: var(--bg-dark);
-            border-color: var(--accent-mint);
-        }
+  body {
+    background: var(--bg);
+    color: var(--dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
 
-        /* Data table styling */
-        .data-table { width: 100%; border-collapse: collapse; }
-        .data-table th, .data-table td {
-            border-bottom: 1px solid #3f3f46;
-            padding: 0.85rem 0.5rem;
-            text-align: left;
-            vertical-align: middle;
-        }
-        .data-table tr:hover { background-color: #18181b; }
+  h1, h2, h3, h4, .heading, .label {
+    font-family: "Courier Prime", monospace;
+    text-transform: uppercase;
+    color: var(--white);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: var(--bg-dark); }
-        ::-webkit-scrollbar-thumb { background: var(--dim-white); }
+  a { color: var(--white); text-decoration: none; transition: color .2s, background .2s; }
+  a:hover { color: var(--bg); background: var(--neon-yellow); }
 
-        .layer-btn.active { background-color: var(--pure-white); color: var(--bg-dark); }
+  /* Keyboard users get a visible ring everywhere; mouse users never see it. */
+  :focus-visible {
+    outline: 2px solid var(--neon-cyan);
+    outline-offset: 3px;
+  }
 
-        /* Ingredient tooltip */
-        .ingredient { position: relative; cursor: help; display: inline-block; }
-        .ingredient .label {
-            border-bottom: 1px dashed var(--dim-white);
-            transition: color 0.2s ease;
-        }
-        .ingredient:hover .label { color: var(--accent-mint); }
-        .tooltip {
-            position: absolute;
-            left: 0;
-            bottom: 100%;
-            margin-bottom: 0.6rem;
-            width: 18rem;
-            max-width: 80vw;
-            padding: 0.85rem;
-            background: var(--bg-dark);
-            border: 2px solid var(--pure-white);
-            box-shadow: 4px 4px 0px 0px rgba(255,255,255,1);
-            opacity: 0;
-            visibility: hidden;
-            transition: opacity 0.2s ease, visibility 0.2s ease;
-            z-index: 50;
-            pointer-events: none;
-        }
-        .tooltip.primary { box-shadow: 4px 4px 0px 0px rgba(167,243,208,1); }
-        .ingredient:hover .tooltip { opacity: 1; visibility: visible; }
-        .tooltip-head {
-            font-weight: 700;
-            color: var(--accent-mint);
-            text-transform: uppercase;
-            font-size: 10px;
-            letter-spacing: 0.15em;
-            padding-bottom: 0.35rem;
-            border-bottom: 1px solid #3f3f46;
-            margin-bottom: 0.4rem;
-        }
-        .tooltip-body {
-            font-family: 'Space Mono', monospace;
-            font-size: 10px;
-            line-height: 1.6;
-            color: var(--off-white);
-        }
-        /* Lower rows flip the tooltip below to avoid clipping at the top */
-        .ingredient.flip .tooltip { bottom: auto; top: 100%; margin-bottom: 0; margin-top: 0.6rem; }
+  .skip-link {
+    position: absolute; left: var(--gutter); top: -100px; z-index: 999;
+    background: var(--neon-cyan); color: #000; padding: .6rem 1rem;
+    font-size: .7rem; letter-spacing: .1em; text-transform: uppercase;
+  }
+  .skip-link:focus { top: .75rem; }
 
-        /* Projects dropdown (matches tooltip aesthetic) */
-        .project-menu { position: relative; }
-        .project-trigger { cursor: pointer; display: inline-flex; align-items: center; gap: 0.4rem; transition: color 0.2s ease; }
-        .project-trigger .chev { transition: transform 0.25s ease; }
-        .project-menu:hover .project-trigger, .project-menu.open .project-trigger { color: var(--accent-mint); }
-        .project-menu:hover .chev, .project-menu.open .chev { transform: rotate(180deg); }
-        .project-dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            margin-top: 0.6rem;
-            width: 19rem;
-            max-width: 85vw;
-            padding: 0.85rem;
-            background: var(--bg-dark);
-            border: 2px solid var(--pure-white);
-            box-shadow: 4px 4px 0px 0px rgba(255,255,255,1);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-4px);
-            transition: opacity 0.2s ease, visibility 0.2s ease, transform 0.2s ease;
-            z-index: 60;
-        }
-        .project-menu:hover .project-dropdown, .project-menu.open .project-dropdown {
-            opacity: 1; visibility: visible; transform: translateY(0);
-        }
-        .project-item {
-            display: block;
-            padding: 0.55rem 0.6rem;
-            text-transform: none;
-            border: 1px solid transparent;
-            transition: background 0.15s ease, border-color 0.15s ease;
-        }
-        .project-item + .project-item { margin-top: 0.3rem; }
-        .project-item .pi-name {
-            display: block;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 0.04em;
-            color: var(--pure-white);
-        }
-        .project-item .pi-meta {
-            display: block;
-            font-family: 'Space Mono', monospace;
-            font-size: 9px;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            color: var(--dim-white);
-            margin-top: 0.15rem;
-        }
-        .project-item:hover { background: #18181b; border-color: #3f3f46; }
-        .project-item.active { border-color: var(--accent-mint); }
-        .project-item.active .pi-name { color: var(--accent-mint); }
-        .project-item.disabled { cursor: default; opacity: 0.5; }
-        .project-item.disabled:hover { background: transparent; border-color: transparent; }
-    </style>
+  /* ---------- Per-letter hover (from the landing page) ---------- */
+  .hover-split .ltr { display: inline-block; color: inherit; transition: color .2s ease-out; }
+  .ltr:nth-child(5n + 1):hover { color: var(--neon-green); }
+  .ltr:nth-child(5n + 2):hover { color: var(--neon-yellow); }
+  .ltr:nth-child(5n + 3):hover { color: var(--neon-magenta); }
+  .ltr:nth-child(5n + 4):hover { color: var(--neon-cyan); }
+  .ltr:nth-child(5n):hover     { color: rgba(57,255,20,.8); }
+
+  /* ---------- Squiggles ---------- */
+  .squiggle { display: block; flex: 1 1 auto; min-width: 40px; height: 34px; opacity: .75; }
+  .squiggle svg {
+    display: block; width: 100%; height: 100%; overflow: visible;
+    fill: none; stroke: var(--white);
+    stroke-width: 2.2; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,.6));
+    transition: stroke-dashoffset 700ms ease-out;
+  }
+  .squiggle.drawn svg { stroke-dashoffset: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .squiggle svg { transition: none; stroke-dashoffset: 0; }
+    * { animation: none !important; }
+  }
+
+  /* ---------- Sticky wayfinding bar ---------- */
+  /* The single biggest usability gap in v2: a long scroll with no sense of
+     where you are or how to get back. This is always on screen. */
+  .topbar {
+    position: sticky; top: 0; z-index: 200;
+    display: flex; align-items: center; gap: 1rem;
+    padding: .7rem var(--gutter);
+    background: rgba(0,0,0,.88);
+    -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace;
+    font-size: .72rem; letter-spacing: .12em; text-transform: uppercase;
+  }
+  .topbar .back { color: var(--dim); white-space: nowrap; }
+  .topbar .back:hover { color: #000; background: var(--neon-cyan); }
+  .topbar .here { color: var(--white); white-space: nowrap; }
+  .topbar .sep { color: var(--rule); }
+
+  .section-nav { display: none; margin-left: auto; gap: 1.25rem; }
+  @media (min-width: 900px) { .section-nav { display: flex; } }
+  .section-nav a { color: var(--dimmer); background: none; }
+  .section-nav a:hover { color: var(--white); background: none; }
+  .section-nav a.current { color: var(--white); }
+  .section-nav a.current::before { content: "▸ "; color: var(--neon-green); }
+
+  /* Scroll progress hairline sitting on the bar's bottom edge. */
+  .progress {
+    position: absolute; left: 0; bottom: -1px; height: 1px;
+    width: 0%; background: var(--neon-green);
+    box-shadow: 0 0 6px var(--neon-green);
+  }
+
+  /* ---------- Shell ---------- */
+  .wrap { max-width: 1500px; margin: 0 auto; }
+  section { padding: 3.5rem var(--gutter); }
+  @media (min-width: 900px) { section { padding: 5rem var(--gutter); } }
+
+  /* Numbered spine — every section announces itself the same way. */
+  .sec-head { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 2rem; }
+  .sec-num {
+    font-family: "Courier Prime", monospace; font-size: .75rem;
+    letter-spacing: .2em; color: var(--neon-green); flex: 0 0 auto;
+  }
+  .sec-title { font-size: clamp(1.35rem, 3.2vw, 2.1rem); line-height: 1; letter-spacing: -.01em; }
+  /* Capped: stretched across a full 1200px row the wave flattens into a line.
+     align-self centres it against the title — a block SVG has no baseline of
+     its own and would otherwise hang off the top of the row. */
+  .sec-head .squiggle { height: 26px; max-width: 320px; opacity: .5; align-self: center; }
+  @media (max-width: 640px) { .sec-head .squiggle { display: none; } }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: 3rem; padding-bottom: 2.5rem; }
+  .hero h1 {
+    font-size: clamp(2.4rem, 9vw, 6.5rem);
+    line-height: .95; letter-spacing: -.02em; color: var(--white);
+    margin-bottom: 1.5rem;
+  }
+  .hero-squiggle { height: 48px; max-width: 620px; margin-bottom: 2rem; }
+  .lede {
+    max-width: 62ch; font-size: clamp(.95rem, 1.6vw, 1.15rem);
+    line-height: 1.7; color: #cfcfcf;
+  }
+  .lede strong { color: var(--white); font-weight: 500; }
+
+  /* At-a-glance strip: answers "what am I looking at" without scrolling. */
+  .facts {
+    display: grid; grid-template-columns: repeat(2, minmax(0,1fr));
+    gap: 1px; margin-top: 2.5rem; background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+  @media (min-width: 760px) { .facts { grid-template-columns: repeat(4, minmax(0,1fr)); } }
+  .fact { background: var(--bg); padding: 1rem 1.1rem; }
+  .fact dt {
+    font-family: "Courier Prime", monospace; font-size: .62rem;
+    letter-spacing: .18em; text-transform: uppercase; color: var(--dimmer);
+    margin-bottom: .4rem;
+  }
+  .fact dd { font-size: 1.05rem; color: var(--white); font-weight: 500; }
+
+  /* ---------- Research phases (accessible tablist) ---------- */
+  /* v2 used click-only divs. These are real buttons: tab-reachable, arrow-key
+     navigable, and they announce which panel they control. */
+  .phase-tabs { display: flex; flex-direction: column; gap: 0; border-top: 1px solid var(--rule); }
+  @media (min-width: 900px) { .phase-tabs { flex-direction: row; gap: 2.5rem; border-top: none; } }
+
+  .phase-tab {
+    /* display:block — a button's default centring would float the shorter
+       tab's text down relative to its taller neighbours. */
+    display: block;
+    flex: 1; text-align: left; cursor: pointer;
+    background: none; border: none; border-bottom: 1px solid var(--rule);
+    padding: 1.1rem 0; font: inherit; color: inherit;
+    transition: border-color .2s ease, color .2s ease;
+  }
+  @media (min-width: 900px) { .phase-tab { border-bottom: 2px solid var(--rule); } }
+
+  .phase-tab .pnum {
+    display: block; font-family: "Courier Prime", monospace;
+    font-size: .68rem; letter-spacing: .2em; color: var(--dimmer); margin-bottom: .5rem;
+  }
+  .phase-tab .pname {
+    display: block; font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-weight: 700; font-size: .95rem; letter-spacing: .05em;
+    color: var(--dim); margin-bottom: .35rem; transition: color .2s ease;
+  }
+  .phase-tab .pblurb { display: block; font-size: .78rem; color: var(--dimmer); }
+
+  .phase-tab:hover { border-bottom-color: var(--neon-green); }
+  .phase-tab:hover .pname { color: var(--neon-green); }
+  .phase-tab[aria-selected="true"] { border-bottom-color: var(--white); }
+  .phase-tab[aria-selected="true"] .pnum { color: var(--neon-green); }
+  .phase-tab[aria-selected="true"] .pname { color: var(--white); }
+
+  .phase-panel { padding-top: 2rem; max-width: 70ch; }
+  .phase-panel h3 { font-size: 1rem; margin-bottom: .85rem; }
+  .phase-panel p { color: #c4c4c4; }
+
+  /* ---------- Formula ---------- */
+  .formula-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; }
+  @media (min-width: 1024px) { .formula-grid { grid-template-columns: minmax(0,1.15fr) minmax(0,.85fr); gap: 4rem; } }
+
+  .filters { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+  .filter {
+    font-family: "Courier Prime", monospace; font-size: .68rem; letter-spacing: .1em;
+    text-transform: uppercase; cursor: pointer;
+    background: none; border: 1px solid var(--rule); color: var(--dim);
+    padding: .35rem .7rem; transition: all .15s ease;
+  }
+  .filter:hover { border-color: var(--dim); color: var(--white); }
+  .filter[aria-pressed="true"] { border-color: var(--neon-green); color: var(--neon-green); }
+  .filter .n { color: var(--dimmer); margin-left: .4rem; }
+  .filter[aria-pressed="true"] .n { color: var(--neon-green); }
+
+  .hint { font-size: .72rem; color: var(--dimmer); margin-bottom: 1rem; }
+
+  /* Each ingredient is a disclosure, not a hover tooltip — works on touch,
+     works with a keyboard, and the mechanism text stays readable. */
+  .ing-list { list-style: none; border-top: 1px solid var(--rule); }
+  .ing { border-bottom: 1px solid var(--rule); }
+  .ing[hidden] { display: none; }
+
+  .ing-btn {
+    display: grid; grid-template-columns: 1fr auto auto; align-items: center;
+    gap: .75rem; width: 100%; cursor: pointer;
+    background: none; border: none; padding: .75rem .25rem;
+    font: inherit; color: inherit; text-align: left;
+  }
+  .ing-btn:hover { background: rgba(255,255,255,.04); }
+  .ing-name {
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    letter-spacing: .04em; color: var(--dim); transition: color .2s;
+  }
+  .ing-btn:hover .ing-name { color: var(--white); }
+  .ing.is-primary .ing-name { color: var(--white); }
+  .ing.is-primary .ing-name::after {
+    content: "★"; color: var(--neon-green); font-size: .6em;
+    vertical-align: super; margin-left: .35rem;
+  }
+  .ing-role {
+    font-family: "Courier Prime", monospace; font-size: .66rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--dimmer);
+    white-space: nowrap;
+  }
+  @media (max-width: 520px) { .ing-role { display: none; } }
+  .ing-chev { color: var(--dimmer); font-size: .7rem; transition: transform .2s ease, color .2s; }
+  .ing-btn[aria-expanded="true"] .ing-chev { transform: rotate(90deg); color: var(--neon-green); }
+
+  .ing-body { display: none; padding: 0 .25rem 1.1rem 1.1rem; border-left: 1px solid var(--rule); margin-left: .25rem; }
+  .ing-btn[aria-expanded="true"] + .ing-body { display: block; }
+  .ing-body .mech-label {
+    font-family: "Courier Prime", monospace; font-size: .62rem; letter-spacing: .18em;
+    text-transform: uppercase; color: var(--neon-green); display: block; margin-bottom: .4rem;
+  }
+  .ing-body p { font-size: .82rem; color: #c4c4c4; max-width: 62ch; }
+  .ing-meta { margin-top: .6rem; font-size: .68rem; color: var(--dimmer); }
+
+  .empty { padding: 2rem .25rem; font-size: .8rem; color: var(--dimmer); }
+
+  /* ---------- Bottle ---------- */
+  /* Sticks alongside the ingredient list on desktop so the product stays in
+     view while you read the formula. */
+  .render-col { position: relative; }
+  @media (min-width: 1024px) { .render-inner { position: sticky; top: 6rem; } }
+
+  .render-head {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-bottom: 1px solid var(--rule); padding-bottom: .7rem; margin-bottom: 1.5rem;
+  }
+  .render-head h3 { font-size: .95rem; }
+  .render-head .spec { font-family: "Courier Prime", monospace; font-size: .65rem; letter-spacing: .15em; color: var(--dimmer); }
+
+  .stage {
+    position: relative; display: flex; align-items: center; justify-content: center;
+    min-height: 420px; padding: 2rem 0; overflow: hidden;
+  }
+  .stage-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(var(--rule) 1px, transparent 1px),
+      linear-gradient(90deg, var(--rule) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, #000 30%, transparent 100%);
+  }
+  .stage-halo {
+    position: absolute; inset: 0; z-index: 1; pointer-events: none;
+    background: radial-gradient(ellipse 42% 52% at 50% 48%, rgba(255,255,255,.16), transparent 70%);
+  }
+  .bottle {
+    position: relative; z-index: 2; display: block;
+    max-height: 380px; max-width: 100%; width: auto; object-fit: contain;
+    filter:
+      drop-shadow(0 0 12px rgba(255,255,255,.55))
+      drop-shadow(0 0 30px rgba(255,255,255,.35))
+      drop-shadow(0 0 60px rgba(255,255,255,.20));
+  }
+  .render-caption { margin-top: 1.25rem; font-size: .75rem; color: var(--dim); max-width: 44ch; }
+
+  /* ---------- Outcome ---------- */
+  .outcome-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); }
+  @media (min-width: 760px) { .outcome-grid { grid-template-columns: repeat(3, 1fr); } }
+  .outcome-cell { background: var(--bg); padding: 1.5rem; }
+  .outcome-cell h3 { font-size: .8rem; margin-bottom: .7rem; color: var(--neon-green); }
+  .outcome-cell p { font-size: .82rem; color: #c4c4c4; }
+
+  /* ---------- Next / footer ---------- */
+  .next {
+    display: flex; flex-wrap: wrap; gap: 1rem; align-items: center;
+    justify-content: space-between; border-top: 1px solid var(--rule);
+    padding: 2.5rem var(--gutter);
+  }
+  .next-link {
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: clamp(1.1rem, 3vw, 1.8rem); letter-spacing: -.01em;
+    color: var(--white); background: none;
+  }
+  .next-link:hover { color: #000; background: var(--neon-yellow); }
+  .next-label { font-family: "Courier Prime", monospace; font-size: .65rem; letter-spacing: .2em; color: var(--dimmer); text-transform: uppercase; }
+
+  footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+    padding: 1.5rem var(--gutter); border-top: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace; font-size: .65rem;
+    letter-spacing: .12em; text-transform: uppercase; color: var(--dimmer);
+  }
+  footer a { color: var(--dimmer); }
+</style>
 </head>
-<body class="min-h-screen flex flex-col items-center">
+<body>
 
-    <main class="w-full max-w-[1600px] border-thick flex flex-col">
+<a class="skip-link" href="#main">Skip to content</a>
 
-        <!-- Top Nav / Info Bar -->
-        <header class="grid grid-cols-1 md:grid-cols-3 border-b-thick uppercase font-mono text-sm tracking-wide">
-            <div class="p-4 border-b md:border-b-0 md:border-r-thin flex items-center justify-between">
-                <span>Nick Sappington</span>
-                <span class="text-dim-white text-xs">V.1.0</span>
-            </div>
-            <div class="p-4 border-b md:border-b-0 md:border-r-thin flex items-center">
-                <span>Formulation Scientist</span>
-            </div>
-            <div class="p-4 flex items-center project-menu" id="projectMenu">
-                <span class="project-trigger" onclick="toggleProjectMenu(event)">
-                    <span>Projects</span>
-                    <svg class="chev" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
-                </span>
-                <div class="project-dropdown">
-                    <span class="tooltip-head block">Select a Project</span>
-                    <a href="#hero" class="project-item active">
-                        <span class="pi-name">Nutraperfecto</span>
-                        <span class="pi-meta">Neuropathy Support · Currently viewing</span>
-                    </a>
-                    <span class="project-item disabled">
-                        <span class="pi-name">Project Two</span>
-                        <span class="pi-meta">Coming soon</span>
-                    </span>
-                    <span class="project-item disabled">
-                        <span class="pi-name">Project Three</span>
-                        <span class="pi-meta">Coming soon</span>
-                    </span>
-                </div>
-            </div>
-        </header>
+<!-- Squiggle sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sq1" viewBox="5.6 13.7 435.2 47.8" preserveAspectRatio="none">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m437.8 33.8c-5-7.8-14.3-13.8-24.8-14.3-27.4-1.2-40.7 27.9-61.7 35.8s-40.4-0.3-54.9-6.9c-20.7-12.3-36.9-23.4-56.4-23.3-30.5 0-55.4 24.5-85 31.9-39.5 6-62.8-21.9-91.9-35.8-16.8-7.5-43.1-7.7-54.5 16.7"/>
+  </symbol>
+  <symbol id="sq2" viewBox="5 53.4 437.3 53.4" preserveAspectRatio="none">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m439.3 77.1c-4.3-2.8-10.3-3.2-17.4-0.1-12.4 5.6-18.9 13.8-30.9 14.1s-22.3-5.5-37-6.6c-25.6-1.4-47.8 13.9-74.9 18.5-17.1 2.8-36-1.3-43.8-15-8.2-13.8-2.7-31 11.4-31.6 14.3-0.5 18 16.8 7.8 25.1-3.5 2.8-8.8 5.6-18.3 5.8-14.5-0.2-28.5-11.3-44-14.5-22.8-3.8-37.2 14.8-57.3 21.3-11.8 3.8-26.2 2.5-40.7-2-19-5.4-36-15-55.3-17-11.7-0.4-22.3 1.5-30.9 10.1"/>
+  </symbol>
+  <symbol id="sq3" viewBox="9.7 106.1 427.3 35.4" preserveAspectRatio="none">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m12.7 132.9c24.6 2 48.2-8.8 73.6-15.9 15.7-4.4 36-9 52.8-3 5.6 1.9 19.2 6.9 19.2 15.1-0.3 9.3-11.3 9.3-12.7 0.8-1.1-6 8.4-19.8 33.8-20.7 34.5-1.3 61.6 19.4 94.3 25.2 10.4 1.6 26.3 1.4 32.9-5 10.4-7.5 5.5-22.3-6.2-19.9-15.9 3.4-14.3 22.6 0.3 27.4 12 4.1 24.8-0.3 35.8-4.5 17-6.8 27.4-7.4 46.5-5.8l51 4.6"/>
+  </symbol>
+</svg>
 
-        <!-- Hero Statement -->
-        <section id="hero" class="p-6 md:p-12 border-b-thick relative overflow-hidden">
-            <div class="absolute right-2 top-4 -translate-y-0 md:top-1/2 md:right-32 md:-translate-y-1/2 opacity-60 md:opacity-90 pointer-events-none">
-                <!-- Signature Logo Mark -->
-                <img src="/logo_mark.png" alt="Sappington signature logo" width="360" height="360" class="w-[225px] md:w-[360px] h-auto select-none"
-                     style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.55)) drop-shadow(0 0 30px rgba(255,255,255,0.35)) drop-shadow(0 0 60px rgba(255,255,255,0.20));" />
-            </div>
+<div class="topbar">
+  <a class="back" href="/">← Index</a>
+  <span class="sep">/</span>
+  <span class="here"># 02 Nutraperfecto</span>
+  <nav class="section-nav" aria-label="Sections">
+    <a href="#context">Context</a>
+    <a href="#research">Research</a>
+    <a href="#formula">Formula</a>
+    <a href="#outcome">Outcome</a>
+  </nav>
+  <div class="progress" id="progress"></div>
+</div>
 
-            <h1 class="text-mega max-w-[90%]">
-                A Designer's<br>
-                Approach to<br>
-                <span class="text-transparent" style="-webkit-text-stroke: 2px white;">Formulation</span>
-            </h1>
-            <p class="font-mono mt-8 max-w-2xl text-dim-white leading-relaxed text-sm md:text-base border-l-2 border-accent-mint pl-4">
-                Bridging the gap between clinical data and consumer outcome. Case study focusing on Neuropathy Support—analyzing scientific journals on tingling and numbness to formulate a non-pharmaceutical, vitamin, mineral, and nootropic stack.
-            </p>
-        </section>
+<main id="main" class="wrap">
 
-        <!-- R&D Flow Pathway -->
-        <section class="grid grid-cols-1 lg:grid-cols-12 border-b-thick">
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="context">
+    <h1 class="hover-split">Designing a<br>Formulation</h1>
+    <span class="squiggle hero-squiggle" data-draw><svg preserveAspectRatio="none" viewBox="5.6 13.7 435.2 47.8"><use href="#sq1"/></svg></span>
 
-            <!-- Section Title -->
-            <div class="col-span-1 lg:col-span-3 border-b lg:border-b-0 lg:border-r-thin p-6 flex flex-col justify-between">
-                <h2 class="text-2xl font-bold uppercase tracking-tight">R&amp;D Pathway</h2>
-                <div class="mt-8 font-mono text-xs text-dim-white leading-relaxed">
-                    <p class="mb-2">METHODOLOGY:</p>
-                    <p>01. Identify Pathology</p>
-                    <p>02. Literature Review</p>
-                    <p>03. Active Selection</p>
-                    <p>04. Final Synergy</p>
-                </div>
-            </div>
+    <p class="lede">
+      <strong>A designer's approach to supplement R&amp;D.</strong> Peripheral neuropathy —
+      the tingling and numbness in hands and feet — is usually managed with prescriptions
+      aimed at masking the symptom. This case study works the other direction: read the
+      clinical literature first, find the mechanisms behind the sensation, then build a
+      non-pharmaceutical stack of vitamins, minerals, and botanicals around them.
+    </p>
 
-            <!-- Interactive Diagram -->
-            <div class="col-span-1 lg:col-span-9 p-6 md:p-12 bg-[#050505]">
-                <div class="flex flex-col md:flex-row gap-4 relative">
+    <dl class="facts">
+      <div class="fact"><dt>Role</dt><dd>Formulation &amp; Research</dd></div>
+      <div class="fact"><dt>Years</dt><dd>2024 — 2026</dd></div>
+      <div class="fact"><dt>Actives</dt><dd>15 ingredients</dd></div>
+      <div class="fact"><dt>Status</dt><dd>Shipped to market</dd></div>
+    </dl>
+  </section>
 
-                    <!-- Diagram Line Background (Desktop) -->
-                    <div class="hidden md:block absolute top-1/2 left-0 w-full h-[1px] bg-[#3f3f46] -z-0"></div>
+  <!-- ============ RESEARCH ============ -->
+  <section id="research">
+    <div class="sec-head">
+      <span class="sec-num">01</span>
+      <h2 class="sec-title hover-split">Research</h2>
+      <span class="squiggle" data-draw aria-hidden="true"><svg preserveAspectRatio="none" viewBox="5 53.4 437.3 53.4"><use href="#sq2"/></svg></span>
+    </div>
 
-                    <!-- Step 1 -->
-                    <div class="node flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step1', this)">
-                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 01</div>
-                        <h3 class="text-lg font-bold mb-2 uppercase">Neuropathy Pathology</h3>
-                        <p class="text-sm opacity-80">Mapping physiological root causes of peripheral numbness and tingling.</p>
-                    </div>
+    <div class="phase-tabs" role="tablist" aria-label="Research phases">
+      <button class="phase-tab" role="tab" id="tab-1" aria-controls="panel-1" aria-selected="true">
+        <span class="pnum">Phase 01</span>
+        <span class="pname">Neuropathy Pathology</span>
+        <span class="pblurb">Mapping the physiological root causes of peripheral numbness.</span>
+      </button>
+      <button class="phase-tab" role="tab" id="tab-2" aria-controls="panel-2" aria-selected="false" tabindex="-1">
+        <span class="pnum">Phase 02</span>
+        <span class="pname">Clinical Journals</span>
+        <span class="pblurb">Aggregating peer-reviewed data on nerve regeneration.</span>
+      </button>
+      <button class="phase-tab" role="tab" id="tab-3" aria-controls="panel-3" aria-selected="false" tabindex="-1">
+        <span class="pnum">Phase 03</span>
+        <span class="pname">Nootropic Targeting</span>
+        <span class="pblurb">Selecting non-pharmaceutical interventions.</span>
+      </button>
+    </div>
 
-                    <!-- Step 2 -->
-                    <div class="node flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step2', this)">
-                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 02</div>
-                        <h3 class="text-lg font-bold mb-2 uppercase">Clinical Journals</h3>
-                        <p class="text-sm opacity-80">Aggregating peer-reviewed data on nerve regeneration and oxidative stress.</p>
-                    </div>
+    <div class="phase-panel" role="tabpanel" id="panel-1" aria-labelledby="tab-1" tabindex="0">
+      <h3>Phase 01 — Neuropathy Pathology</h3>
+      <p>Initial R&amp;D focused on the biological mechanism rather than the complaint. Oxidative
+      stress and poor microcirculation degrade the myelin sheath insulating peripheral nerves;
+      the exposed nerve misfires, and that misfire is what a person feels as tingling or numbness.
+      Naming the cause chain gave the formulation something concrete to target.</p>
+    </div>
 
-                    <!-- Step 3 -->
-                    <div class="node active flex-1 border-medium p-4 bg-bg-dark z-10" onclick="updateDetail('step3', this)">
-                        <div class="font-mono text-xs text-dim-white mb-4 border-b-thin pb-2">PHASE 03</div>
-                        <h3 class="text-lg font-bold mb-2 uppercase">Nootropic/Mineral Targeting</h3>
-                        <p class="text-sm opacity-80">Selecting non-pharmaceutical interventions where prescriptions fall short.</p>
-                    </div>
-                </div>
+    <div class="phase-panel" role="tabpanel" id="panel-2" aria-labelledby="tab-2" tabindex="0" hidden>
+      <h3>Phase 02 — Clinical Journals &amp; Literature</h3>
+      <p>An extensive read through the scientific literature, filtered to studies where subjects
+      reported numbness and tingling specifically. The goal was to find metabolic pathways that
+      pharmaceutical protocols tend to skip — nutrient deficiencies, mitochondrial energy deficits,
+      and inflammatory signaling around irritated nerves.</p>
+    </div>
 
-                <!-- Detail Panel (Updates on click) -->
-                <div class="mt-8 border-thin p-6 bg-[#0a0a0a]">
-                    <div class="flex justify-between items-start mb-4">
-                        <h4 id="detail-title" class="text-xl font-bold uppercase text-accent-mint">Phase 03: Nootropic &amp; Vitamin Selection</h4>
-                        <i data-feather="activity" class="text-dim-white"></i>
-                    </div>
-                    <p id="detail-desc" class="font-mono text-sm leading-relaxed text-dim-white">
-                        Standard pharmaceutical prescriptions often focus solely on symptom management. Our research isolated specific vitamins (like Benfotiamine), minerals (Magnesium/Zinc Citrate), and botanicals (Alpha-Lipoic Acid, Skullcap) that actively support myelin sheath repair and mitigate oxidative damage causing neuropathy symptoms.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <div class="phase-panel" role="tabpanel" id="panel-3" aria-labelledby="tab-3" tabindex="0" hidden>
+      <h3>Phase 03 — Nootropic &amp; Vitamin Selection</h3>
+      <p>Each candidate ingredient had to earn its place against a mechanism identified in Phase 01.
+      That produced three primary actives — Alpha-Lipoic Acid, Benfotiamine, Acetyl-L-Carnitine —
+      supported by minerals for conduction, antioxidants for oxidative load, and botanicals for
+      inflammation and circulation. Nothing is in the stack for label appeal.</p>
+    </div>
+  </section>
 
-        <!-- Formula & Outcome Matrix -->
-        <section class="grid grid-cols-1 lg:grid-cols-2">
+  <!-- ============ FORMULA ============ -->
+  <section id="formula">
+    <div class="sec-head">
+      <span class="sec-num">02</span>
+      <h2 class="sec-title hover-split">Formula</h2>
+      <span class="squiggle" data-draw aria-hidden="true"><svg preserveAspectRatio="none" viewBox="9.7 106.1 427.3 35.4"><use href="#sq3"/></svg></span>
+    </div>
 
-            <!-- Technical Breakdown Table -->
-            <div class="border-b lg:border-b-0 lg:border-r-thin p-6 md:p-12">
-                <div class="flex justify-between items-end mb-8 border-b-thick pb-4">
-                    <h2 class="text-3xl font-bold uppercase">Formula Breakdown</h2>
-                    <span class="font-mono text-xs bg-white text-black px-2 py-1 rounded-md">SPEC 1.4A</span>
-                </div>
+    <div class="formula-grid">
+      <div>
+        <div class="filters" id="filters" role="group" aria-label="Filter ingredients by function"></div>
+        <p class="hint">Select an ingredient to read its mechanism of action. <span id="count"></span></p>
+        <ul class="ing-list" id="ingList"></ul>
+        <p class="empty" id="empty" hidden>No ingredients in this category.</p>
+      </div>
 
-                <p class="font-mono text-xs text-dim-white mb-4">Hover any ingredient to view its mechanism of action.</p>
+      <div class="render-col">
+        <div class="render-inner">
+          <div class="render-head">
+            <h3 class="hover-split">Final Render</h3>
+            <span class="spec">Spec 1.4A</span>
+          </div>
+          <div class="stage">
+            <div class="stage-grid" aria-hidden="true"></div>
+            <div class="stage-halo" aria-hidden="true"></div>
+            <img class="bottle" src="/product_nobg.png"
+                 alt="Nutraperfecto Neuropathy Support gummies bottle"
+                 onerror="this.style.display='none'">
+          </div>
+          <p class="render-caption">Market-ready spec — all fifteen actives at label dose,
+          delivered as a gummy to avoid the pill-fatigue that kills adherence.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-                <table class="data-table font-mono text-xs md:text-sm">
-                    <thead>
-                        <tr class="text-dim-white">
-                            <th>INGREDIENT (ACTIVE)</th>
-                            <th>FORM</th>
-                            <th>DOSAGE</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label">Magnesium</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">Essential for nerve transmission and neuromuscular conduction. Helps prevent nerve overstimulation and acts as a mild muscle relaxant.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Citrate</td>
-                            <td>Target specific</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label">Zinc</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">Acts as a potent antioxidant, protecting peripheral nerves from oxidative stress and supporting optimal cellular repair processes.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Citrate</td>
-                            <td>Target specific</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label">Selenium</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">A trace mineral and antioxidant cofactor that powers glutathione activity, shielding nerve tissue from free-radical damage.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Chelate</td>
-                            <td>Target specific</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label font-bold text-accent-mint">Alpha-Lipoic Acid</span>
-                                    <span class="tooltip primary">
-                                        <span class="tooltip-head block">Primary Active</span>
-                                        <span class="tooltip-body block">A powerful endogenous antioxidant shown in multiple double-blind trials to significantly reduce symptoms of peripheral neuropathy, including burning and tingling.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Antioxidant</td>
-                            <td>Primary active</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label">Acetyl-L-Carnitine</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">An amino acid derivative that promotes peripheral nerve regeneration and provides analgesic effects in patients with neuropathic pain.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Amino Acid</td>
-                            <td>Primary active</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient">
-                                    <span class="label">L-Arginine</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">A precursor to nitric oxide that promotes vasodilation, improving microcirculation and oxygen delivery to peripheral nerves.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Amino Acid</td>
-                            <td>Vasodilator</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label">Skullcap Extract</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Botanical Action</span>
-                                        <span class="tooltip-body block">A traditional nervine tonic utilized to soothe an overactive nervous system, helping to mitigate errant neuropathic pain signals.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Botanical</td>
-                            <td>Nervine</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label">Feverfew Extract</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Botanical Action</span>
-                                        <span class="tooltip-body block">A botanical anti-inflammatory rich in parthenolide, helping to dampen the inflammatory signaling that aggravates nerve pain.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Botanical</td>
-                            <td>Anti-inflammatory</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label">Ginger &amp; Turmeric</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Botanical Action</span>
-                                        <span class="tooltip-body block">A synergistic botanical pair delivering curcumin and gingerols — natural anti-inflammatories that also enhance absorption of the co-actives.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Botanical</td>
-                            <td>Bio-enhancer</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label">Coenzyme Q10</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">A mitochondrial coenzyme that drives cellular energy production, supporting the high metabolic demands of nerve repair.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Ubiquinone</td>
-                            <td>Cellular Energy</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label font-bold text-accent-mint">Benfotiamine</span>
-                                    <span class="tooltip primary">
-                                        <span class="tooltip-head block">Primary Active</span>
-                                        <span class="tooltip-body block">A highly bioavailable, fat-soluble derivative of Vitamin B1. Critical for blocking metabolic pathways that lead to nerve damage and assisting in myelin repair.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Vitamin B1 Deriv.</td>
-                            <td>Nerve Repair</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="ingredient flip">
-                                    <span class="label">Inositol</span>
-                                    <span class="tooltip">
-                                        <span class="tooltip-head block">Mechanism of Action</span>
-                                        <span class="tooltip-body block">A carbocyclic signaling molecule that supports healthy nerve-cell communication and membrane function.</span>
-                                    </span>
-                                </span>
-                            </td>
-                            <td>Carbocyclic</td>
-                            <td>Signaling</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+  <!-- ============ OUTCOME ============ -->
+  <section id="outcome">
+    <div class="sec-head">
+      <span class="sec-num">03</span>
+      <h2 class="sec-title hover-split">Outcome</h2>
+      <span class="squiggle" data-draw aria-hidden="true"><svg preserveAspectRatio="none" viewBox="5.6 13.7 435.2 47.8"><use href="#sq1"/></svg></span>
+    </div>
 
-            <!-- Concept to Outcome Layers -->
-            <div class="p-6 md:p-12 bg-[#050505] flex flex-col">
-                <div class="flex justify-between items-end mb-8 border-b-thick pb-4">
-                    <h2 class="text-3xl font-bold uppercase">Outcome Layers</h2>
-                    <div class="flex space-x-2 font-mono text-xs">
-                        <button onclick="switchLayer('concept')" id="btn-concept" class="layer-btn border-thin px-3 py-1 hover:bg-white hover:text-black transition">Concept</button>
-                        <button onclick="switchLayer('outcome')" id="btn-outcome" class="layer-btn active border-thin px-3 py-1 transition">Outcome</button>
-                    </div>
-                </div>
+    <div class="outcome-grid">
+      <div class="outcome-cell">
+        <h3>Mechanism-first</h3>
+        <p>Every active traces back to a documented pathway from the research phase, so the
+        label can be defended line by line rather than justified after the fact.</p>
+      </div>
+      <div class="outcome-cell">
+        <h3>Format for adherence</h3>
+        <p>A gummy delivery format was chosen deliberately — the best formulation is worthless
+        if the customer stops taking it in week two.</p>
+      </div>
+      <div class="outcome-cell">
+        <h3>Sourcing &amp; purity</h3>
+        <p>Global ingredient sourcing managed against efficacy and purity requirements, with
+        forms specified (citrate, benfotiamine) rather than left to the manufacturer.</p>
+      </div>
+    </div>
+  </section>
 
-                <!-- Visual Display Area -->
-                <div class="flex-1 border-medium relative flex items-center justify-center p-8 bg-bg-dark overflow-hidden min-h-[400px]">
-                    <!-- Background Grid Pattern -->
-                    <div class="absolute inset-0 opacity-10"
-                         style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 20px 20px;">
-                    </div>
+  <div class="next">
+    <div>
+      <div class="next-label">Next</div>
+      <a class="next-link" href="/resume/">NS Resume ↗</a>
+    </div>
+    <div>
+      <div class="next-label">Get in touch</div>
+      <a class="next-link" href="mailto:nicholassappington@gmail.com">Contact ↗</a>
+    </div>
+  </div>
+</main>
 
-                    <!-- CONCEPT LAYER (Hidden by default) -->
-                    <div id="layer-concept" class="absolute inset-0 flex items-center justify-center hidden opacity-0 transition-opacity duration-500">
-                        <div class="text-center font-mono">
-                            <svg class="mx-auto mb-4 text-dim-white" width="120" height="120" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-                            </svg>
-                            <p class="text-accent-mint border border-accent-mint px-4 py-2 inline-block">FORMULATION DRAFT 01</p>
-                            <p class="mt-4 text-xs text-dim-white max-w-xs mx-auto">Initial molecular balancing focusing on Benfotiamine and ALA synergy for myelin regeneration.</p>
-                        </div>
-                    </div>
+<footer>
+  <span>&copy; 2026 Nick Sappington</span>
+  <span>San Francisco</span>
+  <a href="https://www.linkedin.com/in/n-sapp/">LinkedIn</a>
+</footer>
 
-                    <!-- OUTCOME LAYER (Active by default) -->
-                    <div id="layer-outcome" class="absolute inset-0 flex flex-col items-center justify-center transition-opacity duration-500">
-                        <img src="/product.png" alt="Nutraperfecto Neuropathy Support Gummies bottle"
-                             class="relative z-10 max-h-[360px] w-auto object-contain"
-                             style="filter: drop-shadow(0 0 12px rgba(255,255,255,0.55)) drop-shadow(0 0 30px rgba(255,255,255,0.35)) drop-shadow(0 0 60px rgba(255,255,255,0.20));">
-                        <p class="mt-8 font-mono text-xs tracking-widest text-white border-b border-accent-mint pb-1">FINAL MARKET-READY PRODUCT</p>
-                    </div>
-                </div>
+<script>
+// ---------------------------------------------------------------- ingredients
+const TAGS = {
+  primary:    'Primary active',
+  nerve:      'Nerve signal',
+  antioxidant:'Antioxidant',
+  antiinflam: 'Anti-inflam.',
+  circulation:'Circulation',
+  botanical:  'Botanical'
+};
 
-            </div>
-        </section>
+const INGREDIENTS = [
+  { name: 'Alpha-Lipoic Acid',  form: 'Antioxidant',       role: 'Primary active', tags: ['primary','antioxidant'],
+    mech: 'A powerful endogenous antioxidant, and the single most studied intervention here — shown to significantly reduce the symptoms of peripheral neuropathy in clinical trials.' },
+  { name: 'Benfotiamine',       form: 'Vitamin B1 deriv.', role: 'Nerve repair',   tags: ['primary','nerve'],
+    mech: 'A fat-soluble derivative of Vitamin B1 with far higher bioavailability than thiamine. Blocks the pathways that drive nerve damage in the first place.' },
+  { name: 'Acetyl-L-Carnitine', form: 'Amino acid',        role: 'Regeneration',   tags: ['primary','nerve'],
+    mech: 'Promotes peripheral nerve regeneration and carries a documented analgesic effect in patients with neuropathic pain.' },
+  { name: 'Magnesium',          form: 'Citrate',           role: 'Conduction',     tags: ['nerve'],
+    mech: 'Essential to nerve transmission and neuromuscular conduction. Helps keep nerves from overfiring — the misfire that reads as tingling.' },
+  { name: 'Zinc',               form: 'Citrate',           role: 'Antioxidant',    tags: ['antioxidant'],
+    mech: 'Acts as a potent antioxidant, shielding peripheral nerves from oxidative stress and supporting cellular repair.' },
+  { name: 'Selenium',           form: 'Mineral',           role: 'Antioxidant',    tags: ['antioxidant'],
+    mech: 'Cofactor for glutathione peroxidase — it reinforces the body’s own antioxidant defense rather than adding another one from outside.' },
+  { name: 'Coenzyme Q10',       form: 'Ubiquinone',        role: 'Mitochondrial',  tags: ['antioxidant'],
+    mech: 'Drives mitochondrial ATP production and scavenges free radicals, protecting nerve cells from energy-deficit damage.' },
+  { name: 'Quercetin',          form: 'Flavonoid',         role: 'Anti-inflam.',   tags: ['antiinflam'],
+    mech: 'A flavonoid antioxidant that stabilizes mast cells and dampens the inflammatory cascade around irritated nerves.' },
+  { name: 'L-Arginine',         form: 'Amino acid',        role: 'Circulation',    tags: ['circulation'],
+    mech: 'Nitric oxide precursor promoting vasodilation, which improves microcirculation and oxygen delivery to peripheral nerves.' },
+  { name: 'L-Glutamine',        form: 'Amino acid',        role: 'Support',        tags: ['nerve'],
+    mech: 'A conditionally essential amino acid supporting neurotransmitter synthesis and providing metabolic fuel to nerve tissue.' },
+  { name: 'Inositol',           form: 'Vitamin-like',      role: 'Signaling',      tags: ['nerve'],
+    mech: 'A carbocyclic sugar supporting nerve signal transduction and healthy myelin membrane composition.' },
+  { name: 'Skullcap Extract',   form: 'Botanical',         role: 'Nervine',        tags: ['botanical','nerve'],
+    mech: 'A traditional nervine tonic used to soothe an overactive nervous system and quiet errant pain signals.' },
+  { name: 'Feverfew Extract',   form: 'Botanical',         role: 'Anti-inflam.',   tags: ['botanical','antiinflam'],
+    mech: 'Contains parthenolide, an anti-inflammatory shown to dampen neurogenic inflammation and pain signaling.' },
+  { name: 'Ginger Extract',     form: 'Botanical',         role: 'Circulation',    tags: ['botanical','circulation'],
+    mech: 'Gingerols provide anti-inflammatory and circulatory support, aiding nutrient delivery to distal nerves.' },
+  { name: 'Turmeric Extract',   form: 'Botanical',         role: 'Anti-inflam.',   tags: ['botanical','antiinflam'],
+    mech: 'Curcumin provides broad anti-inflammatory and antioxidant activity, mitigating chronic nerve inflammation.' }
+];
 
-        <!-- Footer -->
-        <footer class="p-6 border-t-thick flex flex-col md:flex-row justify-between items-center font-mono text-xs text-dim-white gap-4">
-            <div>&copy; 2026 NICK SAPPINGTON. FORMULATION ARCHITECTURE.</div>
-            <div class="flex space-x-6">
-                <a href="https://www.linkedin.com/in/n-sapp/" target="_blank" rel="noopener" class="hover:text-white transition">LINKEDIN</a>
-                <a href="mailto:nicholassappington@gmail.com" class="hover:text-white transition">Contact Formulation Specialist — nicholassappington@gmail.com</a>
-            </div>
-        </footer>
+const listEl   = document.getElementById('ingList');
+const filtEl   = document.getElementById('filters');
+const countEl  = document.getElementById('count');
+const emptyEl  = document.getElementById('empty');
 
-    </main>
+function renderList() {
+  listEl.innerHTML = '';
+  INGREDIENTS.forEach((ing, i) => {
+    const li = document.createElement('li');
+    li.className = 'ing' + (ing.tags.includes('primary') ? ' is-primary' : '');
+    li.dataset.tags = ing.tags.join(' ');
+    li.innerHTML = `
+      <button class="ing-btn" aria-expanded="false" aria-controls="ing-body-${i}">
+        <span class="ing-name">${ing.name}</span>
+        <span class="ing-role">${ing.role}</span>
+        <span class="ing-chev" aria-hidden="true">▸</span>
+      </button>
+      <div class="ing-body" id="ing-body-${i}">
+        <span class="mech-label">Mechanism of action</span>
+        <p>${ing.mech}</p>
+        <div class="ing-meta">Form: ${ing.form} &nbsp;·&nbsp; ${
+          // Drop any tag that merely repeats the form (Antioxidant / Antioxidant).
+          ing.tags.map(t => TAGS[t]).filter(l => l.toLowerCase() !== ing.form.toLowerCase()).join(' · ')
+        }</div>
+      </div>`;
+    listEl.appendChild(li);
+  });
 
-    <script>
-        feather.replace();
+  listEl.addEventListener('click', (e) => {
+    const btn = e.target.closest('.ing-btn');
+    if (!btn) return;
+    btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') !== 'true');
+  });
+}
 
-        // Projects dropdown: toggle on click/tap, close on outside click
-        function toggleProjectMenu(event) {
-            event.stopPropagation();
-            document.getElementById('projectMenu').classList.toggle('open');
-        }
-        document.addEventListener('click', function(e) {
-            const menu = document.getElementById('projectMenu');
-            if (menu && !menu.contains(e.target)) menu.classList.remove('open');
-        });
+function renderFilters() {
+  const counts = { all: INGREDIENTS.length };
+  Object.keys(TAGS).forEach(t => {
+    counts[t] = INGREDIENTS.filter(i => i.tags.includes(t)).length;
+  });
 
-        const pathwayData = {
-            step1: {
-                title: "Phase 01: Neuropathy Pathology",
-                desc: "Initial R&D focused on the biological mechanisms of peripheral neuropathy. We mapped out how oxidative stress and poor microcirculation directly cause myelin sheath degradation, resulting in the characteristic tingling and numbness."
-            },
-            step2: {
-                title: "Phase 02: Clinical Journals & Literature Review",
-                desc: "An extensive dive into scientific literature. We analyzed hundreds of peer-reviewed journals specifically targeting studies where subjects exhibited numbness and tingling, identifying metabolic pathways that traditional pharmaceuticals often ignore."
-            },
-            step3: {
-                title: "Phase 03: Nootropic & Vitamin Selection",
-                desc: "Standard pharmaceutical prescriptions often focus solely on symptom management. Our research isolated specific vitamins (like Benfotiamine), minerals (Magnesium/Zinc Citrate), and botanicals (Alpha-Lipoic Acid, Skullcap) that actively support myelin sheath repair and mitigate oxidative damage."
-            }
-        };
+  const mk = (key, label) => {
+    const b = document.createElement('button');
+    b.className = 'filter';
+    b.dataset.filter = key;
+    b.setAttribute('aria-pressed', key === 'all');
+    b.innerHTML = `${label}<span class="n">${counts[key]}</span>`;
+    return b;
+  };
 
-        function updateDetail(stepKey, element) {
-            document.querySelectorAll('.node').forEach(node => node.classList.remove('active'));
-            element.classList.add('active');
+  filtEl.appendChild(mk('all', 'All'));
+  Object.entries(TAGS).forEach(([k, label]) => filtEl.appendChild(mk(k, label)));
 
-            const titleEl = document.getElementById('detail-title');
-            const descEl = document.getElementById('detail-desc');
+  filtEl.addEventListener('click', (e) => {
+    const b = e.target.closest('.filter');
+    if (!b) return;
+    filtEl.querySelectorAll('.filter').forEach(f => f.setAttribute('aria-pressed', f === b));
+    applyFilter(b.dataset.filter);
+  });
+}
 
-            titleEl.style.opacity = 0;
-            descEl.style.opacity = 0;
+function applyFilter(key) {
+  let shown = 0;
+  listEl.querySelectorAll('.ing').forEach(li => {
+    const match = key === 'all' || li.dataset.tags.split(' ').includes(key);
+    li.hidden = !match;
+    if (match) shown++;
+    // Collapse anything filtered out so it doesn't reappear expanded.
+    if (!match) li.querySelector('.ing-btn').setAttribute('aria-expanded', 'false');
+  });
+  emptyEl.hidden = shown > 0;
+  countEl.textContent = `Showing ${shown} of ${INGREDIENTS.length}.`;
+}
 
-            setTimeout(() => {
-                titleEl.innerText = pathwayData[stepKey].title;
-                descEl.innerText = pathwayData[stepKey].desc;
-                titleEl.style.opacity = 1;
-                descEl.style.opacity = 1;
-            }, 200);
-        }
+// ---------------------------------------------------------------- phase tabs
+function initTabs() {
+  const tabs = [...document.querySelectorAll('[role="tab"]')];
 
-        function switchLayer(layer) {
-            const conceptLayer = document.getElementById('layer-concept');
-            const outcomeLayer = document.getElementById('layer-outcome');
-            const btnConcept = document.getElementById('btn-concept');
-            const btnOutcome = document.getElementById('btn-outcome');
+  const select = (tab) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+  };
 
-            if (layer === 'concept') {
-                conceptLayer.classList.remove('hidden');
-                setTimeout(() => conceptLayer.classList.remove('opacity-0'), 50);
-                outcomeLayer.classList.add('opacity-0');
-                setTimeout(() => outcomeLayer.classList.add('hidden'), 500);
-                btnConcept.classList.add('active');
-                btnOutcome.classList.remove('active');
-            } else {
-                outcomeLayer.classList.remove('hidden');
-                setTimeout(() => outcomeLayer.classList.remove('opacity-0'), 50);
-                conceptLayer.classList.add('opacity-0');
-                setTimeout(() => conceptLayer.classList.add('hidden'), 500);
-                btnOutcome.classList.add('active');
-                btnConcept.classList.remove('active');
-            }
-        }
-    </script>
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => select(tab));
+    tab.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(tab);
+      let next = null;
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next = tabs[(i + 1) % tabs.length];
+      if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   next = tabs[(i - 1 + tabs.length) % tabs.length];
+      if (e.key === 'Home') next = tabs[0];
+      if (e.key === 'End')  next = tabs[tabs.length - 1];
+      if (next) { e.preventDefault(); select(next); next.focus(); }
+    });
+  });
+}
+
+// ------------------------------------------------------- per-letter splitting
+function splitLetters() {
+  document.querySelectorAll('.hover-split').forEach((el) => {
+    [...el.childNodes].forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      // Collapse source indentation first — otherwise every newline + indent
+      // becomes a run of real non-breaking spaces and shoves the heading right.
+      const text = node.textContent.replace(/\s+/g, ' ');
+      if (!text.trim()) { node.remove(); return; }
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        const span = document.createElement('span');
+        span.className = 'ltr';
+        span.textContent = ch === ' ' ? ' ' : ch;
+        frag.appendChild(span);
+      }
+      el.replaceChild(frag, node);
+    });
+  });
+}
+
+// -------------------------------------------------- scroll progress + current
+function initScrollUI() {
+  const bar = document.getElementById('progress');
+  const links = [...document.querySelectorAll('.section-nav a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+
+  const onScroll = () => {
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (!('IntersectionObserver' in window)) return;
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const i = sections.indexOf(entry.target);
+      links.forEach((a, j) => a.classList.toggle('current', i === j));
+    });
+  }, { rootMargin: '-20% 0px -70% 0px' });
+  sections.forEach(s => io.observe(s));
+}
+
+// Squiggles draw themselves in as they scroll into view.
+function initSquiggles() {
+  const els = [...document.querySelectorAll('[data-draw]')];
+  if (!('IntersectionObserver' in window)) { els.forEach(e => e.classList.add('drawn')); return; }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('drawn'); io.unobserve(e.target); }
+    });
+  }, { threshold: 0.4 });
+  els.forEach(e => io.observe(e));
+}
+
+renderFilters();
+renderList();
+applyFilter('all');
+initTabs();
+splitLetters();
+initScrollUI();
+initSquiggles();
+</script>
 </body>
 </html>
