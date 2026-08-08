@@ -235,7 +235,7 @@ const App = () => {
             >
               <div className="w-full h-full rounded-[4rem] bg-[#05080a] overflow-hidden relative flex items-center justify-center border border-white/20 shadow-inner">
                 <img
-                  src="/Gemini_Generated_Image_w5iolew5iolew5io copy.png"
+                  src="/nick-photo.png"
                   alt="Nick Sappington"
                   className="w-full h-full object-cover opacity-90 transition-all duration-500"
                   onError={(e) => {
