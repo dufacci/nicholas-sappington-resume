@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ëjj — A mind, sustained.</title>
+<meta name="description" content="EJJ is lubricant for a healthy, active mind. Seven actives, correctly dosed. Nothing more. Nothing extra.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================================
+     EJJ — VARIANT A · "APOTHECARY"
+     The original editorial scroll, turned into a store. Same charcoal/cream
+     palette, same Cormorant + clinical-sans pairing, same generous negative
+     space — but the narrative now carries commerce inside it: a sticky buy bar
+     that arrives once the hero is past, a real purchase block, and an FAQ.
+     The philosophy still leads; the price is never the first thing you read.
+     ========================================================================== */
+
+  :root {
+    --ink: #0b0b0d;
+    --ink-2: #141317;
+    --cream: #ece5d4;
+    --cream-bright: #f2eee4;
+    --mute: #a9a599;
+    --faint: #8a877d;
+    --line: rgba(255,255,255,.09);
+    --amber: #b8763a;
+
+    --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+    --clinical: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+
+    --pad: 1.5rem;
+  }
+  @media (min-width: 900px) { :root { --pad: 2.5rem; } }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+
+  body {
+    background: var(--ink); color: var(--mute);
+    font-family: var(--clinical); font-size: 15px; line-height: 1.65;
+    -webkit-font-smoothing: antialiased; overflow-x: hidden;
+  }
+
+  a { color: inherit; text-decoration: none; }
+  :focus-visible { outline: 1px solid var(--cream); outline-offset: 4px; }
+  ::selection { background: var(--cream); color: var(--ink); }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
+
+  .eyebrow {
+    font-size: 11px; text-transform: uppercase; letter-spacing: .32em;
+    color: var(--faint); font-weight: 500;
+  }
+  .display {
+    font-family: var(--serif); font-weight: 300; color: var(--cream-bright);
+    line-height: .98; letter-spacing: -.01em;
+  }
+
+  /* Reveal-on-scroll, in the spirit of the GSAP build but CSS-only. */
+  .rise { opacity: 0; transform: translateY(28px); transition: opacity .9s ease-out, transform .9s ease-out; }
+  .rise.in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .rise { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ---------- Announcement + nav ---------- */
+  .ticker {
+    background: var(--cream); color: var(--ink);
+    font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+    text-align: center; padding: .55rem 1rem; font-weight: 500;
+  }
+
+  nav {
+    position: sticky; top: 0; z-index: 60;
+    background: rgba(11,11,13,.72);
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav-links { display: none; gap: 2.25rem; }
+  @media (min-width: 820px) { .nav-links { display: flex; } }
+  .nav-links a { font-size: 12.5px; color: var(--mute); transition: color .25s; }
+  .nav-links a:hover { color: var(--cream); }
+
+  .mark { display: flex; align-items: baseline; gap: .6rem; }
+  .mark img { height: 26px; width: auto; display: block; }
+  .mark .fallback { font-family: var(--serif); color: var(--cream); font-size: 26px; line-height: 1; }
+
+  .cart-btn {
+    display: inline-flex; align-items: center; gap: .5rem; cursor: pointer;
+    background: none; border: 1px solid var(--line); color: var(--mute);
+    font-family: var(--clinical); font-size: 10.5px; letter-spacing: .2em;
+    text-transform: uppercase; padding: .55rem .9rem; transition: all .25s;
+  }
+  .cart-btn:hover { border-color: var(--cream); color: var(--cream); }
+  .cart-btn .count { color: var(--ink); background: var(--cream); padding: 0 .35rem; font-weight: 700; }
+
+  /* ---------- Hero ---------- */
+  .hero { background: radial-gradient(120% 90% at 50% 0%, #17161a 0%, var(--ink) 62%); overflow: hidden; }
+  .hero-copy { text-align: center; padding: 5rem 0 1rem; }
+  .hero h1 { font-size: clamp(3.2rem, 11vw, 6.5rem); margin: 1.4rem 0 0; }
+  .hero .sub { max-width: 30rem; margin: 1.6rem auto 0; color: var(--mute); }
+
+  .hero-stage {
+    position: relative; display: flex; align-items: flex-end; justify-content: center;
+    height: 560px; margin-top: -1rem;
+  }
+  .hero-halo {
+    position: absolute; bottom: 3rem; left: 50%; transform: translateX(-50%);
+    width: 540px; height: 230px; max-width: 90vw; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(184,118,58,.26), transparent);
+    filter: blur(40px); pointer-events: none;
+  }
+  .hero-bottle {
+    position: relative; z-index: 2; height: 520px; width: auto; max-width: 82vw;
+    object-fit: contain; display: block;
+    filter: drop-shadow(0 40px 60px rgba(0,0,0,.7));
+  }
+  .hero-fade {
+    position: absolute; inset-inline: 0; bottom: 0; height: 8rem; z-index: 3; pointer-events: none;
+    background: linear-gradient(to top, var(--ink), transparent);
+  }
+
+  /* Price sits under the hero — present, but after the promise. */
+  .hero-price {
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+    gap: 1.25rem; padding: 0 0 5rem; text-align: center;
+  }
+  .price-tag { font-family: var(--serif); font-size: 2rem; color: var(--cream); line-height: 1; }
+  .price-tag small { font-family: var(--clinical); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); display: block; margin-top: .5rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
+    cursor: pointer; border: 1px solid var(--cream); background: var(--cream); color: var(--ink);
+    font-family: var(--clinical); font-size: 11px; font-weight: 700;
+    letter-spacing: .22em; text-transform: uppercase;
+    padding: 1.05rem 2.2rem; transition: all .25s ease;
+  }
+  .btn:hover { background: transparent; color: var(--cream); }
+  .btn.ghost { background: transparent; color: var(--cream); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--cream); }
+
+  /* ---------- Sections ---------- */
+  section { padding: 7rem 0; }
+  @media (max-width: 700px) { section { padding: 4.5rem 0; } }
+  .rule-top { border-top: 1px solid var(--line); }
+
+  .manifesto p.lead {
+    font-family: var(--serif); font-weight: 300; font-size: clamp(1.7rem, 4.2vw, 2.6rem);
+    line-height: 1.32; color: #e6e2d6; max-width: 22ch;
+  }
+  .manifesto p.after { max-width: 26rem; margin-top: 2rem; }
+
+  /* Group shot band */
+  .band { position: relative; height: 72vh; min-height: 440px; overflow: hidden; padding: 0; }
+  .band img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .band .scrim {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--ink) 0%, rgba(11,11,13,.3) 32%, rgba(11,11,13,.55) 70%, var(--ink) 100%);
+  }
+  .band .band-copy {
+    position: relative; z-index: 2; height: 100%;
+    display: flex; flex-direction: column; align-items: center; justify-content: flex-end;
+    text-align: center; padding-bottom: 4rem;
+  }
+  .band .band-copy p { font-family: var(--serif); font-weight: 300; font-size: clamp(1.7rem, 4.4vw, 2.9rem); color: var(--cream-bright); max-width: 20ch; line-height: 1.22; }
+
+  /* Formula list */
+  .sec-head { margin-bottom: 3.5rem; }
+  .sec-head h2 { font-size: clamp(2.1rem, 5.2vw, 3.4rem); margin-top: .9rem; }
+
+  .formula { border-top: 1px solid var(--line); }
+  .formula li {
+    list-style: none; display: grid; align-items: baseline; gap: .35rem 1.5rem;
+    grid-template-columns: 1fr auto; padding: 1.5rem 0; border-bottom: 1px solid var(--line);
+  }
+  @media (min-width: 720px) { .formula li { grid-template-columns: minmax(0,1fr) 7rem minmax(0,1fr); } }
+  .formula .name { font-family: var(--serif); font-size: 1.5rem; color: var(--cream); }
+  .formula .dose { font-size: 13px; letter-spacing: .05em; color: #c9c4b6; justify-self: end; }
+  @media (min-width: 720px) { .formula .dose { justify-self: start; } }
+  .formula .note { grid-column: 1 / -1; font-size: 11.5px; text-transform: uppercase; letter-spacing: .18em; color: var(--faint); }
+  @media (min-width: 720px) { .formula .note { grid-column: auto; justify-self: end; } }
+
+  /* ---------- Purchase block ---------- */
+  .buy { background: var(--ink-2); }
+  .buy-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: center; }
+  @media (min-width: 900px) { .buy-grid { grid-template-columns: minmax(0,1fr) minmax(0,26rem); gap: 5rem; } }
+
+  .buy-shot { position: relative; display: flex; align-items: center; justify-content: center; min-height: 380px; }
+  .buy-shot .halo {
+    position: absolute; width: 380px; height: 380px; max-width: 90%; border-radius: 50%;
+    background: radial-gradient(closest-side, rgba(184,118,58,.22), transparent); filter: blur(30px);
+  }
+  .buy-shot img { position: relative; z-index: 2; height: 420px; max-width: 100%; width: auto; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,.6)); }
+
+  .buy-panel h2 { font-size: clamp(2rem, 5vw, 2.9rem); margin: .8rem 0 1rem; }
+  .buy-panel .blurb { margin-bottom: 2rem; max-width: 32ch; }
+
+  .opt { display: block; cursor: pointer; border: 1px solid var(--line); padding: 1.1rem 1.2rem; margin-bottom: .75rem; transition: border-color .2s, background .2s; }
+  .opt:hover { border-color: rgba(236,229,212,.4); }
+  .opt input { position: absolute; opacity: 0; pointer-events: none; }
+  .opt-row { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  .opt-name { font-size: 12px; letter-spacing: .18em; text-transform: uppercase; color: var(--mute); display: flex; align-items: center; gap: .7rem; }
+  .opt-name::before {
+    content: ""; width: 9px; height: 9px; border: 1px solid var(--faint); border-radius: 50%;
+    flex: 0 0 auto; transition: all .2s;
+  }
+  .opt-price { font-family: var(--serif); font-size: 1.4rem; color: var(--cream); }
+  .opt-note { font-size: 11.5px; color: var(--faint); margin-top: .5rem; padding-left: 1.4rem; }
+  .opt:has(input:checked) { border-color: var(--cream); background: rgba(236,229,212,.04); }
+  .opt:has(input:checked) .opt-name { color: var(--cream); }
+  .opt:has(input:checked) .opt-name::before { background: var(--cream); border-color: var(--cream); box-shadow: 0 0 0 3px rgba(236,229,212,.15); }
+  .opt .save { color: var(--amber); letter-spacing: .14em; }
+
+  .qty-row { display: flex; align-items: center; gap: 1rem; margin: 1.75rem 0 1.25rem; }
+  .qty { display: flex; align-items: center; border: 1px solid var(--line); }
+  .qty button {
+    width: 2.6rem; height: 2.6rem; cursor: pointer; background: none; border: none;
+    color: var(--mute); font-size: 15px; transition: color .2s;
+  }
+  .qty button:hover { color: var(--cream); }
+  .qty .n { min-width: 2.4rem; text-align: center; color: var(--cream); font-size: 13px; }
+  .qty-label { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--faint); }
+
+  .buy-panel .btn { width: 100%; }
+  .trust { display: grid; gap: .55rem; margin-top: 1.5rem; }
+  .trust div { font-size: 11.5px; color: var(--faint); display: flex; gap: .6rem; }
+  .trust div::before { content: "—"; color: var(--amber); }
+
+  /* ---------- Supplement facts ---------- */
+  .facts-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; align-items: start; }
+  @media (min-width: 960px) { .facts-grid { grid-template-columns: minmax(0,1fr) minmax(0,26rem); gap: 5rem; } }
+  .facts-copy h2 { font-size: clamp(2rem, 4.6vw, 2.9rem); margin: .9rem 0 1.4rem; }
+  .facts-copy p { max-width: 30ch; }
+
+  .panel { background: #f4f1ea; color: #000; padding: 1.6rem; box-shadow: 0 30px 60px rgba(0,0,0,.55); }
+  .panel h3 { font-size: 1.7rem; font-weight: 800; letter-spacing: -.02em; }
+  .panel .serv { font-size: 12.5px; }
+  .panel .bar { border-top: 7px solid #000; margin-top: .5rem; }
+  .panel .heads { display: flex; justify-content: flex-end; gap: 1.5rem; border-bottom: 1px solid #000; padding: .25rem 0; font-size: 11.5px; font-weight: 700; }
+  .panel .row { display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid rgba(0,0,0,.55); padding: .35rem 0; font-size: 12.5px; }
+  .panel .row span.vals { display: flex; gap: 1.5rem; font-variant-numeric: tabular-nums; }
+  .panel .row span.dv { width: 2.6rem; text-align: right; }
+  .panel .foot { margin-top: .6rem; border-top: 4px solid #000; padding-top: .5rem; font-size: 10.5px; }
+
+  /* ---------- Statement ---------- */
+  .statement { min-height: 88vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+  .statement p { font-family: var(--serif); font-weight: 300; font-size: clamp(3rem, 10vw, 5.8rem); line-height: 1.04; }
+  .statement p:first-child { color: var(--cream-bright); }
+  .statement p:last-child { color: var(--faint); }
+
+  /* ---------- Actives ---------- */
+  .cards { display: grid; grid-template-columns: 1fr; gap: 1.25rem; }
+  @media (min-width: 800px) { .cards { grid-template-columns: repeat(3, 1fr); } }
+  .card {
+    border: 1px solid var(--line); background: var(--ink-2); padding: 2rem;
+    min-height: 16rem; display: flex; flex-direction: column; justify-content: space-between;
+    transition: border-color .3s, transform .3s;
+  }
+  .card:hover { border-color: rgba(236,229,212,.28); transform: translateY(-3px); }
+  .card .n { font-family: var(--serif); font-size: 1.6rem; color: var(--cream); }
+  .card p { font-size: 13.5px; }
+
+  /* ---------- Ritual ---------- */
+  .ritual-grid { display: grid; grid-template-columns: 1fr; gap: 3rem; align-items: center; }
+  @media (min-width: 900px) { .ritual-grid { grid-template-columns: 1fr 1fr; gap: 4rem; } }
+  .ritual-grid h2 { font-size: clamp(2rem, 4.8vw, 3.1rem); margin: .9rem 0 1.4rem; }
+  .ritual-grid p { max-width: 30ch; }
+  .ritual-shot { display: flex; justify-content: center; }
+  .ritual-shot img { height: 400px; max-width: 100%; width: auto; object-fit: contain; filter: drop-shadow(0 30px 50px rgba(0,0,0,.6)); }
+
+  /* ---------- FAQ ---------- */
+  .faq { border-top: 1px solid var(--line); }
+  .faq details { border-bottom: 1px solid var(--line); }
+  .faq summary {
+    cursor: pointer; list-style: none; padding: 1.5rem 0;
+    display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+    font-family: var(--serif); font-size: 1.35rem; color: var(--cream);
+  }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; color: var(--faint); font-family: var(--clinical); font-size: 1.1rem; transition: transform .25s; }
+  .faq details[open] summary::after { transform: rotate(45deg); }
+  .faq .a { padding: 0 0 1.6rem; max-width: 60ch; font-size: 14px; }
+
+  /* ---------- Sticky buy bar ---------- */
+  /* Appears only once the hero has scrolled past, so it never competes with
+     the opening statement. */
+  .sticky-buy {
+    position: fixed; inset-inline: 0; bottom: 0; z-index: 70;
+    background: rgba(11,11,13,.9);
+    -webkit-backdrop-filter: blur(18px); backdrop-filter: blur(18px);
+    border-top: 1px solid var(--line);
+    transform: translateY(110%); transition: transform .45s cubic-bezier(.2,.7,.3,1);
+  }
+  .sticky-buy.show { transform: none; }
+  .sticky-in { display: flex; align-items: center; justify-content: space-between; gap: 1.25rem; padding: .85rem 0; }
+  .sticky-left { display: flex; align-items: center; gap: 1rem; min-width: 0; }
+  .sticky-left img { height: 42px; width: auto; flex: 0 0 auto; }
+  .sticky-name { font-family: var(--serif); font-size: 1.15rem; color: var(--cream); line-height: 1.1; }
+  .sticky-sub { font-size: 10.5px; letter-spacing: .18em; text-transform: uppercase; color: var(--faint); }
+  @media (max-width: 620px) { .sticky-sub, .sticky-left img { display: none; } }
+  .sticky-buy .btn { padding: .85rem 1.6rem; white-space: nowrap; }
+
+  /* ---------- Footer ---------- */
+  footer { border-top: 1px solid var(--line); padding: 6rem 0 8rem; text-align: center; }
+  footer .bigmark img { height: 76px; width: auto; }
+  footer .bigmark .fallback { font-family: var(--serif); font-size: 4.5rem; color: var(--cream); }
+  .disclaimer { max-width: 34rem; margin: 2.75rem auto 0; font-size: 11px; line-height: 1.7; color: #6f6c63; }
+  .foot-row {
+    margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--line);
+    display: flex; flex-direction: column; gap: 1rem; align-items: center; justify-content: space-between;
+    font-size: 11px; letter-spacing: .05em; color: #6f6c63;
+  }
+  @media (min-width: 640px) { .foot-row { flex-direction: row; } }
+  .foot-row a:hover { color: var(--mute); }
+</style>
+</head>
+<body>
+
+<div class="ticker">Free shipping over $50 · 30-day supply in every bottle</div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a class="mark" href="#top" aria-label="EJJ home">
+      <img src="assets/wordmark.png" alt="ëjj" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fallback',textContent:'ëjj'}))">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#formula">The Formula</a></li>
+      <li><a href="#facts">What's Inside</a></li>
+      <li><a href="#actives">Actives</a></li>
+      <li><a href="#ritual">Ritual</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <button class="cart-btn" data-add>Cart <span class="count" data-count>0</span></button>
+  </div>
+</nav>
+
+<main id="top">
+
+  <!-- ============================ HERO ============================ -->
+  <section class="hero" style="padding:0">
+    <div class="wrap hero-copy">
+      <p class="eyebrow rise">Daily Cognitive Maintenance · 60 Capsules</p>
+      <h1 class="display rise">A mind,<br>sustained.</h1>
+      <p class="sub rise">EJJ is lubricant for a healthy, active mind. Seven actives,
+      correctly dosed. Nothing more. Nothing extra.</p>
+    </div>
+
+    <div class="hero-stage">
+      <div class="hero-halo" aria-hidden="true"></div>
+      <img class="hero-bottle rise" src="assets/bottle.png" alt="EJJ nootropic supplement bottle, 60 vegetarian capsules">
+      <div class="hero-fade" aria-hidden="true"></div>
+    </div>
+
+    <div class="wrap hero-price rise">
+      <div class="price-tag">$68<small>30-day supply</small></div>
+      <a class="btn" href="#buy">Add to cart</a>
+      <a class="btn ghost" href="#formula">Read the formula</a>
+    </div>
+  </section>
+
+  <!-- ============================ PREMISE ============================ -->
+  <section class="manifesto rule-top">
+    <div class="wrap">
+      <p class="eyebrow rise">The Premise</p>
+      <p class="lead display rise" style="margin-top:2rem">Most days run on less than a full tank.</p>
+      <p class="after rise">Shortfalls in key vitamins and cognitos surface as small misfires — the lost
+      word, the slow start, the task that takes twice as long. EJJ tops up what the day drains: a
+      maintenance dose of the compounds a working mind runs on.</p>
+    </div>
+  </section>
+
+  <!-- ============================ BAND ============================ -->
+  <section class="band">
+    <img src="assets/group.jpg" alt="A group of EJJ bottles" onerror="this.style.display='none'">
+    <div class="scrim" aria-hidden="true"></div>
+    <div class="wrap band-copy">
+      <p class="rise">One formula. Poured into every bottle, exactly the same.</p>
+    </div>
+  </section>
+
+  <!-- ============================ FORMULA ============================ -->
+  <section id="formula" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow rise">The Formula</p>
+        <h2 class="display rise">Seven actives.<br>Correctly dosed.</h2>
+      </div>
+      <ul class="formula" id="formulaList"></ul>
+    </div>
+  </section>
+
+  <!-- ============================ BUY ============================ -->
+  <section id="buy" class="buy rule-top">
+    <div class="wrap buy-grid">
+      <div class="buy-shot rise">
+        <div class="halo" aria-hidden="true"></div>
+        <img src="assets/bottle.png" alt="EJJ bottle">
+      </div>
+
+      <div class="buy-panel">
+        <p class="eyebrow rise">One Product</p>
+        <h2 class="display rise">ëjj — 60 capsules</h2>
+        <p class="blurb rise">Two capsules a day, thirty days in a bottle. No proprietary
+        blends, no hidden fillers.</p>
+
+        <div class="rise">
+          <label class="opt">
+            <input type="radio" name="plan" value="sub" checked>
+            <span class="opt-row">
+              <span class="opt-name">Subscribe &amp; save</span>
+              <span class="opt-price">$58</span>
+            </span>
+            <span class="opt-note">Delivered every 30 days · <span class="save">save 15%</span> · cancel anytime</span>
+          </label>
+
+          <label class="opt">
+            <input type="radio" name="plan" value="once">
+            <span class="opt-row">
+              <span class="opt-name">One-time purchase</span>
+              <span class="opt-price">$68</span>
+            </span>
+            <span class="opt-note">A single 30-day bottle</span>
+          </label>
+        </div>
+
+        <div class="qty-row rise">
+          <span class="qty-label">Quantity</span>
+          <div class="qty">
+            <button type="button" data-qty="-1" aria-label="Decrease quantity">−</button>
+            <span class="n" data-qty-n>1</span>
+            <button type="button" data-qty="1" aria-label="Increase quantity">+</button>
+          </div>
+        </div>
+
+        <button class="btn rise" data-add data-live>Add to cart — <span data-total>$58</span></button>
+
+        <div class="trust rise">
+          <div>Free shipping on orders over $50</div>
+          <div>30-day money-back guarantee</div>
+          <div>Third-party tested · made in the USA</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ FACTS ============================ -->
+  <section id="facts" class="rule-top">
+    <div class="wrap facts-grid">
+      <div class="facts-copy">
+        <p class="eyebrow rise">What's Inside</p>
+        <h2 class="display rise">A full panel,<br>printed in the open.</h2>
+        <p class="rise">No proprietary blends, no hidden fillers. Two capsules a day, thirty days
+        in a bottle. The label is the whole story.</p>
+      </div>
+
+      <div class="panel rise">
+        <h3>Supplement Facts</h3>
+        <p class="serv">Serving Size: 2 Capsules</p>
+        <p class="serv">Servings Per Container: 30</p>
+        <div class="bar"></div>
+        <div class="heads"><span>Amount</span><span>%DV</span></div>
+        <div id="factRows"></div>
+        <div class="foot">
+          <p>*Daily Value not established.</p>
+          <p>Other ingredients: gelatin capsule.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ STATEMENT ============================ -->
+  <section class="statement">
+    <p class="rise">Nothing more.</p>
+    <p class="rise">Nothing extra.</p>
+  </section>
+
+  <!-- ============================ ACTIVES ============================ -->
+  <section id="actives" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow rise">The Actives, In Brief</p>
+      </div>
+      <div class="cards">
+        <article class="card rise">
+          <span class="n">Citicoline</span>
+          <p>Raises acetylcholine and supports membrane repair — the backbone of focus, recall,
+          and mental stamina.</p>
+        </article>
+        <article class="card rise">
+          <span class="n">Rhodiola Rosea</span>
+          <p>An adaptogen that blunts the cortisol spike of a hard day, so the slow start and the
+          lost word show up less often.</p>
+        </article>
+        <article class="card rise">
+          <span class="n">L-Theanine</span>
+          <p>Promotes alpha-wave activity for calm, unhurried attention — clarity without the edge.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ RITUAL ============================ -->
+  <section id="ritual" class="rule-top">
+    <div class="wrap ritual-grid">
+      <div>
+        <p class="eyebrow rise">The Ritual</p>
+        <h2 class="display rise">Two capsules.<br>Once daily.</h2>
+        <p class="rise">Sixty capsules to a bottle — a thirty-day supply. Taken with your morning
+        water, before the day asks its first hard question of you.</p>
+      </div>
+      <div class="ritual-shot rise"><img src="assets/bottle.png" alt="EJJ bottle"></div>
+    </div>
+  </section>
+
+  <!-- ============================ FAQ ============================ -->
+  <section id="faq" class="rule-top">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow rise">Questions</p>
+        <h2 class="display rise">Before you order.</h2>
+      </div>
+      <div class="faq rise">
+        <details open>
+          <summary>How soon will I notice anything?</summary>
+          <div class="a">Citicoline and L-Theanine act within hours. Bacopa and Rhodiola are
+          cumulative — most people describe a steadier baseline somewhere in weeks two to four,
+          which is why the bottle is a thirty-day supply rather than a sample.</div>
+        </details>
+        <details>
+          <summary>Can I take it with coffee?</summary>
+          <div class="a">Yes. L-Theanine is the reason it pairs well — it takes the edge off
+          caffeine without taking the lift with it.</div>
+        </details>
+        <details>
+          <summary>Why only one product?</summary>
+          <div class="a">Because one correctly dosed formula does the job. A second SKU would exist
+          to sell you something, not to give you anything the first one lacks.</div>
+        </details>
+        <details>
+          <summary>What if it isn't for me?</summary>
+          <div class="a">Thirty days, money back, bottle included. Write to us and we'll handle it.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="bigmark rise">
+      <img src="assets/wordmark.png" alt="ëjj" onerror="this.replaceWith(Object.assign(document.createElement('span'),{className:'fallback',textContent:'ëjj'}))">
+    </div>
+    <p class="disclaimer rise">These statements have not been evaluated by the Food and Drug
+    Administration. This product is not intended to diagnose, treat, cure, or prevent any disease.</p>
+    <div class="foot-row">
+      <span>© <span id="yr"></span> EJJ</span>
+      <span style="display:flex;gap:1.5rem">
+        <a href="#formula">Formula</a><a href="#facts">Science</a><a href="#faq">Contact</a>
+      </span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-buy" id="stickyBuy">
+  <div class="wrap sticky-in">
+    <div class="sticky-left">
+      <img src="assets/bottle.png" alt="">
+      <div>
+        <div class="sticky-name">ëjj — 60 capsules</div>
+        <div class="sticky-sub">Subscribe $58 · One-time $68</div>
+      </div>
+    </div>
+    <button class="btn" data-add>Add to cart</button>
+  </div>
+</div>
+
+<script>
+const FORMULA = [
+  ['Citicoline', '500 mg', 'choline system drive'],
+  ['Rhodiola Rosea', '400 mg', 'cortisol modulation'],
+  ['Bacopa', '300 mg', 'synaptic plasticity'],
+  ['Panax Ginseng', '200 mg', 'adaptogenic energy'],
+  ['Ginkgo Biloba', '100 mg', 'cerebral blood flow'],
+  ['L-Theanine', '100 mg', 'alpha-wave calm'],
+  ['B-Vitamin Complex', '—', 'neuro cofactors'],
+];
+
+const FACTS = [
+  ['Thiamine (B1)', '1 mg', '83%'], ['Riboflavin (B2)', '1.4 mg', '108%'],
+  ['Niacin (B3)', '16 mg', '100%'], ['Pantothenic Acid (B5)', '6 mg', '120%'],
+  ['Vitamin B6', '1.4 mg', '82%'], ['Folic Acid', '200 mcg', '83%'],
+  ['Vitamin B12', '2.5 mcg', '104%'], ['Citicoline', '500 mg', '*'],
+  ['Rhodiola Rosea Extract', '400 mg', '*'], ['Bacopa Extract', '300 mg', '*'],
+  ['Panax Ginseng', '200 mg', '*'], ['Ginkgo Biloba', '100 mg', '*'],
+  ['L-Theanine', '100 mg', '*'],
+];
+
+document.getElementById('formulaList').innerHTML = FORMULA.map(([n, d, note]) => `
+  <li class="rise"><span class="name">${n}</span><span class="dose">${d}</span><span class="note">${note}</span></li>
+`).join('');
+
+document.getElementById('factRows').innerHTML = FACTS.map(([n, a, dv]) => `
+  <div class="row"><span>${n}</span><span class="vals"><span>${a}</span><span class="dv">${dv}</span></span></div>
+`).join('');
+
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ---------- scroll reveals ---------- */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { rootMargin: '0px 0px -12% 0px', threshold: .1 });
+document.querySelectorAll('.rise').forEach(el => io.observe(el));
+
+/* ---------- sticky buy bar, revealed past the hero ---------- */
+const sticky = document.getElementById('stickyBuy');
+const heroEnd = document.querySelector('.hero');
+new IntersectionObserver(([e]) => {
+  sticky.classList.toggle('show', !e.isIntersecting);
+}, { threshold: 0 }).observe(heroEnd);
+
+/* ---------- price / quantity / cart (mockup state only) ---------- */
+const PRICES = { sub: 58, once: 68 };
+let qty = 1;
+
+function plan() {
+  return document.querySelector('input[name="plan"]:checked')?.value || 'sub';
+}
+function refresh() {
+  document.querySelector('[data-qty-n]').textContent = qty;
+  document.querySelector('[data-total]').textContent = '$' + (PRICES[plan()] * qty);
+}
+document.querySelectorAll('[data-qty]').forEach(b => b.addEventListener('click', () => {
+  qty = Math.min(6, Math.max(1, qty + Number(b.dataset.qty)));
+  refresh();
+}));
+document.querySelectorAll('input[name="plan"]').forEach(r => r.addEventListener('change', refresh));
+
+let cart = 0;
+document.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', () => {
+  // Mockup: no checkout behind this, just the interaction and the count.
+  cart += btn.hasAttribute('data-live') ? qty : 1;
+  document.querySelector('[data-count]').textContent = cart;
+}));
+
+refresh();
+</script>
+</body>
+</html>

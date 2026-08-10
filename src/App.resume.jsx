@@ -88,7 +88,7 @@ const App = () => {
     Contact: nicholassappington@gmail.com | 310-621-8502
     Experience:
     - Nutraperfecto (2024-2026): Formulation & Research Specialist. Premium ingredient sourcing and engineering proprietary blends. Focus on researching ingredients that work well together and testing formulations.
-    - Lopass LLC (2023-2026): Founder & Operator. Built and ran a Los Angeles black-car chauffeur service for celebrity, entertainment, and high-net-worth clientele — airport transfers and special events. Managed the business itself (driver roster, dispatch, client relationships, brand reputation for discretion and reliability) — Nick ran operations and did not drive clients personally. Negotiated and closed a successful exit (sold the company).
+    - Lopass LLC (2023-Present): Founder & Operator. Built and ran a Los Angeles black-car chauffeur service for celebrity, entertainment, and high-net-worth clientele — airport transfers and special events. Managed the business itself (driver roster, dispatch, client relationships, brand reputation for discretion and reliability) — Nick ran operations and did not drive clients personally. Sold the cars-and-drivers chauffeur operation and is now transitioning Lopass LLC toward mobile app development.
     - TCM Film Festival (2024): Production Manager. Managed logistics for guest filmmakers and VIPs.
     - Technical Market Analyst (2020-2022): Paid charting / technical-analysis contributor for the Royce Jacob and MapleStax brands across YouTube and Twitter (X). Translated complex options and equity setups into clear visuals for retail audiences and published live trade ideas to subscriber communities.
     - The Gunter (2017-2018): Audio Production & Lead Sound Designer. Secured funding and lead sound effects library direction.
@@ -127,7 +127,7 @@ const App = () => {
       INSTRUCTIONS:
       - Highlight his versatility (Music + Markets + Supplements + Operations).
       - For Nutraperfecto, emphasize formulation testing and research.
-      - For Lopass LLC, emphasize founding, growing, and managing the celebrity-clientele service business — Nick ran operations, he did not drive clients himself.
+      - For Lopass LLC, emphasize founding, growing, and managing the celebrity-clientele chauffeur business — Nick ran operations, he did not drive clients himself. He sold off the cars-and-drivers side of the business and is now transitioning Lopass LLC into mobile app development.
       - For Technical Market Analyst, emphasize charting expertise and translating setups for retail audiences.
       - Use personal context to add genuine personality and depth when relevant — show who Nick is beyond the resume.
       - Keep answers concise, punchy, and under 100 words.
@@ -427,9 +427,9 @@ const App = () => {
               <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-4">
                 <div>
                   <h2 className="text-4xl font-black uppercase italic tracking-tighter leading-none">Lopass LLC</h2>
-                  <p className="text-[#00f2ff] font-bold text-sm tracking-[0.2em] mt-3 opacity-90 uppercase">Founder & Operator — Sold</p>
+                  <p className="text-[#00f2ff] font-bold text-sm tracking-[0.2em] mt-3 opacity-90 uppercase">Founder & Operator — Now Building Apps</p>
                 </div>
-                <div className="bg-[#00f2ff]/10 border border-[#00f2ff]/30 text-[#00f2ff] px-6 py-2 rounded-2xl text-[11px] font-black shadow-lg">2023 — 2026</div>
+                <div className="bg-[#00f2ff]/10 border border-[#00f2ff]/30 text-[#00f2ff] px-6 py-2 rounded-2xl text-[11px] font-black shadow-lg">2023 — Present</div>
               </div>
               <div className="space-y-4 text-zinc-100 text-base leading-relaxed">
                 <p className="flex gap-4 items-start">
@@ -438,7 +438,7 @@ const App = () => {
                 </p>
                 <p className="text-zinc-300 text-sm pl-9">Built the driver roster, ran dispatch, and set the operational standard for absolute discretion and white-glove reliability.</p>
                 <p className="text-zinc-300 text-sm pl-9">Owned client relationships and managed day-to-day business operations end-to-end.</p>
-                <p className="text-zinc-300 text-sm pl-9 italic">Negotiated and closed a successful exit, selling the company.</p>
+                <p className="text-zinc-300 text-sm pl-9 italic">Sold the cars-and-drivers chauffeur operation, and is now transitioning Lopass LLC into mobile app development.</p>
               </div>
             </div>
 

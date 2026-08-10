@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>NS Resume — Index Edition</title>
+<meta name="description" content="Nick Sappington — San Francisco Based">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================================
+     RESUME — VARIANT A · "INDEX"
+     Landing-page-led. The resume reads as an index of files: giant numbered
+     rows, hairline rules, per-letter neon hover, squiggles that draw in.
+     Liquid glass is kept, but rationed — it appears only where the page is
+     genuinely interactive (the photo frame and the agent), so it reads as a
+     material with meaning rather than decoration on every box.
+     ========================================================================== */
+
+  :root {
+    --bg: #000000;
+    --dim: #8f8f8f;
+    --dimmer: #5e5e5e;
+    --rule: #222222;
+    --white: #ffffff;
+
+    --lime: #E9F5A5;      /* carried over from the current resume */
+    --cyan: #00f2ff;
+    --magenta: #ff00ff;
+
+    --neon-green: #39FF14;
+    --neon-yellow: #FFFF00;
+
+    --gutter: 1.25rem;
+
+    --sym-tile: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22340%22%20height%3D%22340%22%20viewBox%3D%220%200%20340%20340%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221%22%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2254%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2284%22%20cy%3D%2264%22%20r%3D%222%22%20stroke-opacity%3D%22.48%22%2F%3E%3Ccircle%20cx%3D%2282%22%20cy%3D%2282%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2266%22%20cy%3D%2286%22%20r%3D%222%22%20stroke-opacity%3D%22.48%22%2F%3E%3Ccircle%20cx%3D%2254%22%20cy%3D%2272%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22250%22%20cy%3D%2290%22%20r%3D%227%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22205%22%20r%3D%225%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22272%22%20r%3D%226%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%2240%22%20r%3D%224%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%22120%22%20r%3D%222.6%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22150%22%20r%3D%222.4%22%20stroke-opacity%3D%22.46%22%2F%3E%3Ccircle%20cx%3D%22236%22%20cy%3D%22250%22%20r%3D%223.4%22%20stroke-opacity%3D%22.46%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2270%22%20r%3D%223%22%20fill-opacity%3D%22.7%22%2F%3E%3Ccircle%20cx%3D%22255%22%20cy%3D%2295%22%20r%3D%223%22%20fill-opacity%3D%22.68%22%2F%3E%3Ccircle%20cx%3D%22156%22%20cy%3D%22206%22%20r%3D%222.4%22%20fill-opacity%3D%22.68%22%2F%3E%3Ccircle%20cx%3D%2268%22%20cy%3D%22262%22%20r%3D%221.8%22%20fill-opacity%3D%22.6%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22150%22%20r%3D%221.6%22%20fill-opacity%3D%22.55%22%2F%3E%3Ccircle%20cx%3D%22196%22%20cy%3D%22150%22%20r%3D%221.5%22%20fill-opacity%3D%22.52%22%2F%3E%3Ccircle%20cx%3D%22330%22%20cy%3D%22220%22%20r%3D%221.4%22%20fill-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22128%22%20cy%3D%2260%22%20r%3D%221.5%22%20fill-opacity%3D%22.52%22%2F%3E%3Cpath%20transform%3D%22translate(258%2082)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.5%22%2F%3E%3Cpath%20transform%3D%22translate(146%20214)%20scale(.8)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.48%22%2F%3E%3Cpath%20transform%3D%22translate(90%2030)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.48%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+
+  @media (min-width: 900px) { :root { --gutter: 3rem; } }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  h1, h2, h3, h4, .heading {
+    font-family: "Courier Prime", monospace;
+    text-transform: uppercase; color: var(--white);
+    font-weight: 700; letter-spacing: .06em;
+  }
+
+  a { color: var(--white); text-decoration: none; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  /* ---------- Ambient field (the resume's glow + texture, dialled down) ---- */
+  .field { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .field .glow { position: absolute; border-radius: 50%; }
+  .glow-lime    { top: -12%; right: -6%;  width: 55vw; height: 40vh; background: var(--lime);    opacity: .10; filter: blur(150px); }
+  .glow-cyan    { bottom: -14%; left: -12%; width: 48vw; height: 46vh; background: var(--cyan);   opacity: .08; filter: blur(140px); }
+  .glow-magenta { bottom: -6%; right: -10%; width: 40vw; height: 40vh; background: var(--magenta);opacity: .06; filter: blur(130px); }
+  .field .tile {
+    position: absolute; inset: 0;
+    background-image: var(--sym-tile), var(--sym-tile);
+    background-size: 340px 340px, 250px 250px;
+    background-position: 0 var(--dot-shift, 0px), 150px calc(90px + var(--dot-shift, 0px));
+    /* Deliberately far fainter than the current resume's field: on pure black
+       the glowing tile reads as visual noise and fights the giant type. */
+    opacity: .16;
+    will-change: background-position;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 1400px; margin: 0 auto; }
+
+  /* ---------- Per-letter hover ---------- */
+  .hover-split .ltr { display: inline-block; color: inherit; transition: color .3s ease-out; }
+  .ltr:nth-child(5n + 1):hover { color: var(--neon-green); }
+  .ltr:nth-child(5n + 2):hover { color: var(--neon-yellow); }
+  .ltr:nth-child(5n + 3):hover { color: var(--magenta); }
+  .ltr:nth-child(5n + 4):hover { color: var(--cyan); }
+  .ltr:nth-child(5n):hover     { color: var(--lime); }
+
+  /* ---------- Cursor tooltip (straight from the landing page) ---------- */
+  #tip {
+    position: fixed; z-index: 9999; pointer-events: none;
+    background: #1a1a1a; border: 1px solid #3a3a3a; color: var(--white);
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .05em;
+    padding: 4px 8px; white-space: nowrap; opacity: 0;
+    transform: translate(16px, 16px); transition: opacity 150ms ease-out;
+  }
+  @media (hover: none) { #tip { display: none; } }
+
+  /* ---------- Squiggle ---------- */
+  .sq { display: block; opacity: 0; transition: opacity .2s ease-out; }
+  .sq svg {
+    display: block; width: 100%; height: 100%; overflow: visible;
+    fill: none; stroke: var(--white); stroke-width: 2.4; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,.7));
+    transition: stroke-dashoffset 450ms ease-out;
+  }
+  .sq.on { opacity: 1; }
+  .sq.on svg { stroke-dashoffset: 0; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .sq svg { transition: none; stroke-dashoffset: 0; }
+  }
+
+  /* ---------- Liquid glass (rationed) ---------- */
+  .glass {
+    position: relative; isolation: isolate; overflow: hidden;
+    border-radius: 1.75rem;
+    background: rgba(0,0,0,.45);
+    -webkit-backdrop-filter: blur(12px) brightness(1.12);
+    backdrop-filter: blur(12px) brightness(1.12);
+    box-shadow:
+      0 20px 50px rgba(0,0,0,.7),
+      0 0 55px -6px rgba(233,245,165,.12),
+      inset 0 0 0 1px rgba(255,255,255,.16),
+      inset 0 1.5px 1px rgba(255,255,255,.6),
+      inset 5px 5px 14px rgba(0,242,255,.16),
+      inset -5px -5px 14px rgba(255,0,255,.16);
+    transition: background .5s ease;
+  }
+  .glass::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+    background-image: var(--sym-tile);
+    background-size: 520px 520px;
+    background-position: 0 var(--dot-shift-lens, 0px);
+    opacity: .55; mix-blend-mode: screen; filter: blur(6px) brightness(1.15);
+  }
+  .glass::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 2; padding: 2px; opacity: .8; mix-blend-mode: screen;
+    background: conic-gradient(from 215deg, rgba(0,242,255,.85), rgba(233,245,165,.55), rgba(255,0,255,.85), rgba(255,120,0,.35), rgba(0,242,255,.85));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  /* ---------- Masthead ---------- */
+  header.masthead {
+    display: flex; flex-direction: column; gap: 2rem;
+    padding: 3rem var(--gutter) 2.5rem;
+  }
+  @media (min-width: 900px) {
+    header.masthead { flex-direction: row; align-items: center; gap: 3.5rem; padding-top: 5rem; }
+  }
+
+  .portrait { position: relative; flex: 0 0 auto; align-self: flex-start; }
+  .portrait .glass { width: 200px; height: 200px; border-radius: 3rem; padding: 4px; transform: rotate(2deg); transition: transform .6s ease; }
+  .portrait:hover .glass { transform: rotate(0deg) scale(1.03); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; border-radius: 2.75rem; display: block; opacity: .92; }
+  .portrait .tagpill {
+    position: absolute; bottom: -.75rem; right: -.75rem; z-index: 5;
+    background: var(--lime); color: #000;
+    font-family: "Courier Prime", monospace; font-weight: 700;
+    font-size: .6rem; letter-spacing: .16em; text-transform: uppercase;
+    padding: .5rem .9rem; border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(233,245,165,.28);
+  }
+
+  .namebox { min-width: 0; flex: 1; }
+  .namebox h1 {
+    font-size: clamp(2.6rem, 11vw, 7rem); line-height: .92;
+    letter-spacing: -.03em; margin-bottom: 1.25rem;
+  }
+  .namebox h1 .second { color: var(--lime); }
+  .namebox .role {
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .7rem; letter-spacing: .28em; color: var(--dimmer);
+    margin-bottom: 1.5rem;
+  }
+
+  .contact-row { display: flex; flex-wrap: wrap; gap: 0 1.75rem; }
+  .contact-row a, .contact-row span.static {
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .7rem; letter-spacing: .12em; color: var(--dim);
+    padding: .4rem 0; border-bottom: 1px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .contact-row a:hover { color: var(--white); border-bottom-color: var(--lime); }
+  .contact-row .lime { color: var(--lime); }
+
+  /* ---------- The index ---------- */
+  .index-label {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0 var(--gutter); margin-top: 1.5rem;
+    font-family: "Courier Prime", monospace; font-size: .65rem;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--dimmer);
+  }
+  .index-label::after { content: ""; flex: 1; height: 1px; background: var(--rule); }
+
+  .idx { border-top: 1px solid var(--rule); margin-top: 1rem; }
+  .entry { border-bottom: 1px solid var(--rule); }
+
+  .entry-head {
+    display: flex; align-items: center; width: 100%;
+    padding: 1.1rem var(--gutter); cursor: pointer;
+    background: none; border: none; font: inherit; color: inherit; text-align: left;
+  }
+
+  .entry-num {
+    flex: 0 0 auto; width: 3rem;
+    font-family: "Courier Prime", monospace; font-weight: 700;
+    font-size: .8rem; color: var(--dimmer);
+  }
+  @media (min-width: 768px) { .entry-num { width: 6rem; font-size: 1rem; } }
+
+  .entry-name {
+    flex: 0 1 auto; min-width: 0;
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-weight: 700; color: var(--dim);
+    font-size: clamp(1.15rem, 6.5vw, 4.25rem); line-height: 1.05;
+    letter-spacing: -.02em; white-space: nowrap;
+    overflow: hidden; text-overflow: ellipsis;
+  }
+
+  /* On a phone a truncated employer name is useless — and it can't simply wrap,
+     because splitLetters() makes every character its own inline-block, so a
+     wrap lands mid-word. Instead the row folds: index + year + chevron on the
+     first line, the full name on its own line beneath at full size. */
+  @media (max-width: 640px) {
+    .entry-head { flex-wrap: wrap; row-gap: .35rem; }
+    .entry-num  { width: auto; margin-right: .75rem; }
+    .entry-year { order: 1; }
+    .entry-chev { order: 1; }
+    .entry-name {
+      order: 2; flex: 1 1 100%;
+      font-size: clamp(1.3rem, 8vw, 2.6rem);
+      overflow: visible; text-overflow: clip;
+    }
+  }
+
+  /* Squiggle fills the gap between the role name and the year, exactly like
+     the landing page's list rows. Hover-only, so it never steals width on touch. */
+  /* flex-basis 0, not auto: an SVG with a viewBox reports a real intrinsic
+     width (height x aspect), which would otherwise claim ~314px of the row and
+     push long role names into an ellipsis. */
+  .entry-sq { display: none; flex: 1 1 0; min-width: 60px; height: 34px; margin: 0 1.5rem; }
+  @media (hover: hover) and (min-width: 768px) { .entry-sq { display: block; } }
+
+  .entry-year {
+    flex: 0 0 auto; margin-left: auto; padding-left: 1rem;
+    font-family: "Courier Prime", monospace; font-size: .7rem;
+    letter-spacing: .12em; color: var(--dimmer); white-space: nowrap;
+  }
+  @media (min-width: 768px) { .entry-year { font-size: .8rem; } }
+
+  .entry-chev {
+    flex: 0 0 auto; margin-left: 1rem; color: var(--white);
+    font-size: 1.1rem; opacity: 0; transition: opacity .2s, transform .25s;
+  }
+  .entry-head:hover .entry-chev { opacity: 1; }
+  /* No hover on touch — without this a collapsed row shows no sign it opens. */
+  @media (hover: none) { .entry-chev { opacity: .55; } }
+  .entry-head[aria-expanded="true"] .entry-chev { opacity: 1; transform: rotate(90deg); color: var(--lime); }
+  .entry-head[aria-expanded="true"] .entry-name { color: var(--white); }
+
+  .entry-body { display: none; padding: 0 var(--gutter) 2.25rem; }
+  .entry-head[aria-expanded="true"] + .entry-body { display: block; }
+  @media (min-width: 768px) { .entry-body { padding-left: calc(var(--gutter) + 6rem); } }
+
+  .entry-title {
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .72rem; letter-spacing: .2em; margin-bottom: 1rem;
+  }
+  .entry-title.lime { color: var(--lime); }
+  .entry-title.cyan { color: var(--cyan); }
+  .entry-title.mag  { color: var(--magenta); }
+
+  .entry-body p { max-width: 68ch; color: #c2c2c2; margin-bottom: .7rem; font-size: .86rem; }
+  .entry-body p.lead { color: var(--white); font-size: .95rem; }
+
+  /* ---------- Panels below the index ---------- */
+  .panels { display: grid; grid-template-columns: 1fr; gap: 1.5rem; padding: 3.5rem var(--gutter) 0; }
+  @media (min-width: 1024px) { .panels { grid-template-columns: minmax(0,1.1fr) minmax(0,.9fr); gap: 2rem; } }
+
+  .panel { padding: 2rem; }
+  .panel-head { display: flex; align-items: center; gap: .8rem; margin-bottom: 1.5rem; }
+  .panel-head h2 { font-size: .8rem; letter-spacing: .2em; }
+  .panel-head .sq { flex: 1; height: 20px; opacity: .55; }
+  .panel-head .sq svg { stroke-dashoffset: 0; stroke-width: 1.8; }
+
+  /* Agent */
+  .agent-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green);
+    box-shadow: 0 0 10px var(--neon-green); animation: blip 1.8s ease-in-out infinite;
+  }
+  @keyframes blip { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+
+  .agent-quote {
+    font-size: .82rem; color: #d6d6d6; border-left: 2px solid var(--lime);
+    padding-left: 1rem; margin-bottom: 1.5rem;
+  }
+  .qgrid { display: grid; gap: .5rem; margin-bottom: 1.25rem; }
+  .qbtn {
+    text-align: left; cursor: pointer; font: inherit;
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .68rem; letter-spacing: .08em;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.08);
+    color: var(--dim); padding: .7rem .85rem; border-radius: .75rem;
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+    transition: all .18s ease;
+  }
+  .qbtn:hover { background: var(--lime); color: #000; border-color: var(--lime); }
+  .qbtn .arrow { opacity: 0; }
+  .qbtn:hover .arrow { opacity: 1; }
+
+  .ask { position: relative; margin-bottom: 1.25rem; }
+  .ask input {
+    width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    border-radius: .9rem; padding: .9rem 3.4rem .9rem 1rem; color: var(--white);
+    font-family: "JetBrains Mono", monospace; font-size: .82rem;
+  }
+  .ask input::placeholder { color: rgba(255,255,255,.25); }
+  .ask button {
+    position: absolute; right: .5rem; top: .5rem; width: 2.4rem; height: 2.4rem;
+    border: none; border-radius: .65rem; background: var(--lime); color: #000;
+    cursor: pointer; font-weight: 700; font-size: .9rem;
+  }
+  .answer {
+    min-height: 120px; border: 1px dashed rgba(255,255,255,.12); border-radius: .9rem;
+    padding: 1.1rem; font-size: .82rem; color: #cfcfcf; background: rgba(0,0,0,.4);
+  }
+  .answer .tagline {
+    font-family: "Courier Prime", monospace; font-size: .6rem; letter-spacing: .2em;
+    text-transform: uppercase; color: var(--lime); display: block; margin-bottom: .6rem;
+  }
+  .answer.idle { display: flex; align-items: center; justify-content: center; color: var(--dimmer); }
+
+  /* Stack */
+  .stack-row {
+    display: flex; align-items: center; gap: .9rem;
+    padding: .7rem 0; border-bottom: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .72rem; letter-spacing: .08em; color: var(--dim);
+    transition: color .2s;
+  }
+  .stack-row:last-child { border-bottom: none; }
+  .stack-row:hover { color: var(--lime); }
+  .stack-row img { width: 20px; height: 20px; object-fit: contain; flex: 0 0 auto; }
+  .stack-row .n { font-size: .6rem; color: var(--dimmer); width: 1.5rem; flex: 0 0 auto; }
+
+  /* Languages */
+  .lang { margin-bottom: 1.1rem; }
+  .lang-top {
+    display: flex; justify-content: space-between;
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .68rem; letter-spacing: .12em; margin-bottom: .45rem; color: var(--dim);
+  }
+  .lang-bar { height: 2px; background: var(--rule); }
+  .lang-bar span { display: block; height: 100%; }
+
+  /* Education */
+  .edu-grid { display: grid; grid-template-columns: 1fr; gap: 1px; background: var(--rule); border: 1px solid var(--rule); margin-top: 1.25rem; }
+  @media (min-width: 620px) { .edu-grid { grid-template-columns: 1fr 1fr; } }
+  .edu { background: #000; padding: 1.25rem; }
+  .edu .school { font-family: "Courier Prime", monospace; font-size: .6rem; letter-spacing: .22em; text-transform: uppercase; color: var(--lime); margin-bottom: .6rem; }
+  .edu .deg { font-family: "Courier Prime", monospace; text-transform: uppercase; font-weight: 700; color: var(--white); font-size: 1rem; }
+  .edu .meta { font-size: .68rem; color: var(--dimmer); margin-top: .35rem; letter-spacing: .1em; text-transform: uppercase; }
+
+  /* ---------- Footer ---------- */
+  footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+    margin-top: 4rem; padding: 1.5rem var(--gutter);
+    border-top: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace; font-size: .65rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--dimmer);
+  }
+  footer a { color: var(--dimmer); }
+  footer a:hover { color: var(--white); }
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true">
+  <div class="glow glow-lime"></div>
+  <div class="glow glow-cyan"></div>
+  <div class="glow glow-magenta"></div>
+  <div class="tile"></div>
+</div>
+
+<div id="tip"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sq1" viewBox="0 0 435.2 47.8">
+    <g transform="translate(-5.6,-13.7)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m437.8 33.8c-5-7.8-14.3-13.8-24.8-14.3-27.4-1.2-40.7 27.9-61.7 35.8s-40.4-0.3-54.9-6.9c-20.7-12.3-36.9-23.4-56.4-23.3-30.5 0-55.4 24.5-85 31.9-39.5 6-62.8-21.9-91.9-35.8-16.8-7.5-43.1-7.7-54.5 16.7"/>
+  </g>
+  </symbol>
+  <symbol id="sq2" viewBox="0 0 437.3 53.4">
+    <g transform="translate(-5.0,-53.4)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m439.3 77.1c-4.3-2.8-10.3-3.2-17.4-0.1-12.4 5.6-18.9 13.8-30.9 14.1s-22.3-5.5-37-6.6c-25.6-1.4-47.8 13.9-74.9 18.5-17.1 2.8-36-1.3-43.8-15-8.2-13.8-2.7-31 11.4-31.6 14.3-0.5 18 16.8 7.8 25.1-3.5 2.8-8.8 5.6-18.3 5.8-14.5-0.2-28.5-11.3-44-14.5-22.8-3.8-37.2 14.8-57.3 21.3-11.8 3.8-26.2 2.5-40.7-2-19-5.4-36-15-55.3-17-11.7-0.4-22.3 1.5-30.9 10.1"/>
+  </g>
+  </symbol>
+  <symbol id="sq3" viewBox="0 0 427.3 35.4">
+    <g transform="translate(-9.7,-106.1)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m12.7 132.9c24.6 2 48.2-8.8 73.6-15.9 15.7-4.4 36-9 52.8-3 5.6 1.9 19.2 6.9 19.2 15.1-0.3 9.3-11.3 9.3-12.7 0.8-1.1-6 8.4-19.8 33.8-20.7 34.5-1.3 61.6 19.4 94.3 25.2 10.4 1.6 26.3 1.4 32.9-5 10.4-7.5 5.5-22.3-6.2-19.9-15.9 3.4-14.3 22.6 0.3 27.4 12 4.1 24.8-0.3 35.8-4.5 17-6.8 27.4-7.4 46.5-5.8l51 4.6"/>
+  </g>
+  </symbol>
+</svg>
+
+<div class="page">
+
+  <!-- ============================ MASTHEAD ============================ -->
+  <header class="masthead">
+    <div class="portrait" data-tip="Nick Sappington">
+      <div class="glass">
+        <img src="/Gemini_Generated_Image_w5iolew5iolew5io copy.png" alt="Nick Sappington"
+             onerror="this.style.opacity='0'">
+      </div>
+      <div class="tagpill">San Francisco Based</div>
+    </div>
+
+    <div class="namebox">
+      <h1><span class="hover-split">NICK</span><br><span class="hover-split second">SAPPINGTON</span></h1>
+      <div class="role">Formulation · Operations · Markets · Sound</div>
+      <div class="contact-row">
+        <a href="mailto:nicholassappington@gmail.com" data-tip="Send an email">nicholassappington@gmail.com</a>
+        <span class="static lime">310-621-8502</span>
+        <a href="/portfolio.html" data-tip="Nutraperfecto case study">Portfolio ↗</a>
+        <a href="/" data-tip="Back to index">Index ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================ EXPERIENCE ============================ -->
+  <div class="index-label">Experience</div>
+
+  <div class="idx">
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="true" data-tip="Formulation & Research Specialist">
+        <span class="entry-num"># 01</span>
+        <span class="entry-name hover-split">Nutraperfecto</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 435.2 47.8"><use href="#sq1"/></svg></span>
+        <span class="entry-year">2024 — 2026</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title lime">Formulation &amp; Research Specialist</div>
+        <p class="lead">Engineered proprietary blends by identifying synergistic active ingredients
+        through rigorous research and testing.</p>
+        <p>Managed global sourcing for supplement releases, holding suppliers to scientific efficacy
+        and ingredient purity rather than to price alone.</p>
+        <p><a href="/portfolio.html" style="border-bottom:1px solid var(--lime)">Read the neuropathy case study ↗</a></p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="false" data-tip="Founder &amp; Operator — sold">
+        <span class="entry-num"># 02</span>
+        <span class="entry-name hover-split">Lopass LLC</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 437.3 53.4"><use href="#sq2"/></svg></span>
+        <span class="entry-year">2023 — 2026</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title cyan">Founder &amp; Operator — Sold</div>
+        <p class="lead">Founded and grew a Los Angeles black-car chauffeur service for celebrity,
+        entertainment, and high-net-worth clientele — airport transfers and exclusive events.</p>
+        <p>Built the driver roster, ran dispatch, and set the operational standard for absolute
+        discretion and white-glove reliability.</p>
+        <p>Owned client relationships and day-to-day business operations end to end.</p>
+        <p>Negotiated and closed a successful exit, selling the company.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="false" data-tip="Charting &amp; technical analysis">
+        <span class="entry-num"># 03</span>
+        <span class="entry-name hover-split">Market Analyst</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 427.3 35.4"><use href="#sq3"/></svg></span>
+        <span class="entry-year">2020 — 2022</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title cyan">Technical Market Analyst — Royce Jacob &amp; MapleStax</div>
+        <p class="lead">Paid contributor providing technical charting analysis across the Royce Jacob
+        and MapleStax brands on YouTube and Twitter (X).</p>
+        <p>Translated complex options and equity setups into accessible, engaging visuals for
+        retail audiences.</p>
+        <p>Published live trade ideas and chart breakdowns to active subscriber communities.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="false" data-tip="Production Manager">
+        <span class="entry-num"># 04</span>
+        <span class="entry-name hover-split">TCM Festival</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 435.2 47.8"><use href="#sq1"/></svg></span>
+        <span class="entry-year">2024</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title mag">Production Manager</div>
+        <p class="lead">Managed logistics for guest filmmakers and VIPs across the festival run.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="false" data-tip="Audio Production Lead">
+        <span class="entry-num"># 05</span>
+        <span class="entry-name hover-split">The Gunter</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 437.3 53.4"><use href="#sq2"/></svg></span>
+        <span class="entry-year">2017 — 2018</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title mag">Audio Production &amp; Lead Sound Designer</div>
+        <p class="lead">Lead sound designer responsible for sound-effects library curation and
+        score direction.</p>
+        <p>Secured critical funding for the audio side of the production.</p>
+      </div>
+    </div>
+
+    <div class="entry">
+      <button class="entry-head" aria-expanded="false" data-tip="Assistant Store Manager">
+        <span class="entry-num"># 06</span>
+        <span class="entry-name hover-split">Sprint</span>
+        <span class="sq entry-sq"><svg preserveAspectRatio="none" viewBox="0 0 427.3 35.4"><use href="#sq3"/></svg></span>
+        <span class="entry-year">2014 — 2017</span>
+        <span class="entry-chev">▸</span>
+      </button>
+      <div class="entry-body">
+        <div class="entry-title lime">Assistant Store Manager &amp; Sales Representative</div>
+        <p class="lead">Top 10 business sales in district; Salesforce power user.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ============================ PANELS ============================ -->
+  <div class="panels">
+
+    <!-- Agent -->
+    <div class="glass panel">
+      <div class="panel-head">
+        <span class="agent-dot" aria-hidden="true"></span>
+        <h2 class="hover-split">General Info Agent</h2>
+        <span class="sq on"><svg preserveAspectRatio="none" viewBox="0 0 435.2 47.8"><use href="#sq1"/></svg></span>
+      </div>
+
+      <p class="agent-quote">“Verified agent online. Ask about Nick's work at Nutraperfecto, his
+      Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator
+      expertise.”</p>
+
+      <div class="qgrid" id="qgrid"></div>
+
+      <div class="ask">
+        <input id="askInput" type="text" placeholder="Ask a question…" aria-label="Ask the agent a question">
+        <button id="askBtn" aria-label="Send">→</button>
+      </div>
+
+      <div class="answer idle" id="answer">Awaiting input</div>
+    </div>
+
+    <div>
+      <!-- Stack -->
+      <div class="glass panel" style="margin-bottom:1.5rem">
+        <div class="panel-head">
+          <h2 class="hover-split">Tech Stack</h2>
+          <span class="sq on"><svg preserveAspectRatio="none" viewBox="0 0 437.3 53.4"><use href="#sq2"/></svg></span>
+        </div>
+        <div class="stack-row"><span class="n">01</span><img src="/logos/ableton.png" alt="">Ableton Live 12</div>
+        <div class="stack-row"><span class="n">02</span><img src="/logos/claude.svg" alt="">Claude Code / Cowork &amp; Gemini Canvas</div>
+        <div class="stack-row"><span class="n">03</span><img src="/logos/thinkorswim.png" alt="">thinkorswim</div>
+        <div class="stack-row"><span class="n">04</span><img src="/logos/illustrator.svg" alt="">Adobe Illustrator</div>
+        <div class="stack-row"><span class="n">05</span><img src="/logos/salesforce.svg" alt="">Salesforce</div>
+        <div class="stack-row"><span class="n">06</span><img src="/logos/msoffice.svg" alt="">MS Office</div>
+      </div>
+
+      <!-- Languages -->
+      <div class="glass panel">
+        <div class="panel-head">
+          <h2 class="hover-split">Linguistics</h2>
+          <span class="sq on"><svg preserveAspectRatio="none" viewBox="0 0 427.3 35.4"><use href="#sq3"/></svg></span>
+        </div>
+        <div class="lang">
+          <div class="lang-top"><span>English</span><span style="color:var(--lime)">Native</span></div>
+          <div class="lang-bar"><span style="width:100%;background:var(--lime);box-shadow:0 0 8px rgba(233,245,165,.5)"></span></div>
+        </div>
+        <div class="lang">
+          <div class="lang-top"><span>Spanish</span><span style="color:var(--cyan)">Advanced</span></div>
+          <div class="lang-bar"><span style="width:80%;background:var(--cyan);box-shadow:0 0 8px rgba(0,242,255,.5)"></span></div>
+        </div>
+        <div class="lang" style="margin-bottom:0">
+          <div class="lang-top"><span>French</span><span style="color:var(--magenta)">Intermediate</span></div>
+          <div class="lang-bar"><span style="width:50%;background:var(--magenta);box-shadow:0 0 8px rgba(255,0,255,.5)"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================ EDUCATION ============================ -->
+  <div style="padding: 3.5rem var(--gutter) 0;">
+    <div class="index-label" style="padding:0">Education</div>
+    <div class="edu-grid">
+      <div class="edu">
+        <div class="school">CSU Los Angeles</div>
+        <div class="deg">B.A. Political Science</div>
+        <div class="meta">3.5 GPA</div>
+      </div>
+      <div class="edu">
+        <div class="school">Santa Monica College</div>
+        <div class="deg">A.A. Humanities</div>
+        <div class="meta">Transfer</div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Nick Sappington</span>
+    <span>San Francisco</span>
+    <a href="mailto:nicholassappington@gmail.com">nicholassappington@gmail.com</a>
+  </footer>
+</div>
+
+<script>
+// ------------------------------------------------------------ letter splitter
+function splitLetters() {
+  document.querySelectorAll('.hover-split').forEach((el) => {
+    [...el.childNodes].forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      const text = node.textContent.replace(/\s+/g, ' ');
+      if (!text.trim()) { node.remove(); return; }
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.className = 'ltr';
+        s.textContent = ch === ' ' ? ' ' : ch;
+        frag.appendChild(s);
+      }
+      el.replaceChild(frag, node);
+    });
+  });
+}
+
+// --------------------------------------------------------------- squiggle/hover
+function initEntries() {
+  document.querySelectorAll('.entry-head').forEach((head) => {
+    const sq = head.querySelector('.entry-sq');
+    head.addEventListener('mouseenter', () => sq && sq.classList.add('on'));
+    head.addEventListener('mouseleave', () => sq && sq.classList.remove('on'));
+    head.addEventListener('click', () => {
+      head.setAttribute('aria-expanded', head.getAttribute('aria-expanded') !== 'true');
+    });
+  });
+}
+
+// ----------------------------------------------------------- cursor tooltip
+function initTooltip() {
+  const tip = document.getElementById('tip');
+  document.addEventListener('mousemove', (e) => {
+    tip.style.left = e.clientX + 'px';
+    tip.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('[data-tip]').forEach((el) => {
+    el.addEventListener('mouseenter', () => { tip.textContent = el.dataset.tip; tip.style.opacity = '1'; });
+    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+  });
+}
+
+// ---------------------------------------------------------- parallax texture
+function initParallax() {
+  let raf = 0;
+  const onScroll = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      document.documentElement.style.setProperty('--dot-shift', (window.scrollY * -0.4) + 'px');
+      document.documentElement.style.setProperty('--dot-shift-lens', (window.scrollY * -0.2) + 'px');
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// ------------------------------------------------------------------- agent
+// Static mockup: the live build calls Gemini. Canned answers here so the
+// panel can be judged with real content in it.
+const QA = {
+  'Nutraperfecto role details':
+    'Formulation & Research Specialist, 2024–2026. Sourced premium ingredients and engineered proprietary blends — the work was finding actives that actually work together, then testing the combination rather than trusting the label.',
+  'Lopass LLC story':
+    'Founded a Los Angeles black-car service for celebrity and high-net-worth clients. Nick ran the business — driver roster, dispatch, client relationships, and a reputation built on discretion. He never drove clients himself. Exited via a negotiated sale.',
+  'Charting analyst background':
+    'Paid technical-analysis contributor for the Royce Jacob and MapleStax brands, 2020–2022. Turned dense options and equity setups into visuals retail traders could actually act on, and published live ideas to subscriber communities.',
+  'Tech stack overview':
+    'Ableton Live 12 for production, Claude Code / Cowork and Gemini Canvas for building, thinkorswim for markets, Illustrator for design, plus Salesforce and MS Office from the sales years.',
+  'Music production setup':
+    'A closet studio built around Kali Audio LP-6 monitors with boundary EQ properly dialled in, Neumann NDH 20 headphones, and Focal Alpha Evo 65s. Current obsession: humanizing drum patterns in Ableton.',
+  'What makes Nick unique?':
+    'The range is the point — supplement formulation, running an operations business to a sale, technical charting, and sound design. Same instinct each time: learn the system deeply, then build something in it.'
+};
+
+function initAgent() {
+  const grid   = document.getElementById('qgrid');
+  const answer = document.getElementById('answer');
+  const input  = document.getElementById('askInput');
+
+  const show = (q) => {
+    const text = QA[q] || 'In the live build this question goes to the agent, which answers from Nick\'s resume and personal context.';
+    answer.classList.remove('idle');
+    answer.innerHTML = '<span class="tagline">Verified response · mockup</span>' + text;
+  };
+
+  // Four at random, exactly like the current resume does.
+  const keys = Object.keys(QA).sort(() => Math.random() - 0.5).slice(0, 4);
+  keys.forEach((q) => {
+    const b = document.createElement('button');
+    b.className = 'qbtn';
+    b.innerHTML = `<span>${q}</span><span class="arrow">↗</span>`;
+    b.addEventListener('click', () => { input.value = q; show(q); });
+    grid.appendChild(b);
+  });
+
+  const submit = () => { if (input.value.trim()) show(input.value.trim()); };
+  document.getElementById('askBtn').addEventListener('click', submit);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+}
+
+splitLetters();
+initEntries();
+initTooltip();
+initParallax();
+initAgent();
+</script>
+</body>
+</html>

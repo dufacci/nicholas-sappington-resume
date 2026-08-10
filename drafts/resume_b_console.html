@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<title>NS Resume — Console Edition</title>
+<meta name="description" content="Nick Sappington — San Francisco Based">
+<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+  /* ==========================================================================
+     RESUME — VARIANT B · "CONSOLE"
+     Glass-led. Keeps the current resume's architecture — the two-column card
+     grid, the lime accent, the refractive liquid-glass panels, the colour
+     glows — and swaps its voice: every typeface is mono and uppercase, the
+     internal dividers are landing-page hairlines instead of padding, and each
+     card header carries a squiggle rule. The landing page's micro-interactions
+     (per-letter neon hover, ↗ arrows, cursor tooltip) run throughout.
+     ========================================================================== */
+
+  :root {
+    --bg: #05080a;         /* not pure black — the glow field needs somewhere to sit */
+    --dim: #9a9a9a;
+    --dimmer: #626262;
+    --rule: rgba(255,255,255,.10);
+    --white: #ffffff;
+
+    --lime: #E9F5A5;
+    --cyan: #00f2ff;
+    --magenta: #ff00ff;
+
+    --neon-green: #39FF14;
+    --neon-yellow: #FFFF00;
+
+    --sym-tile: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22340%22%20height%3D%22340%22%20viewBox%3D%220%200%20340%20340%22%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23ffffff%22%20stroke-width%3D%221%22%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2254%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2284%22%20cy%3D%2264%22%20r%3D%222%22%20stroke-opacity%3D%22.48%22%2F%3E%3Ccircle%20cx%3D%2282%22%20cy%3D%2282%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2266%22%20cy%3D%2286%22%20r%3D%222%22%20stroke-opacity%3D%22.48%22%2F%3E%3Ccircle%20cx%3D%2254%22%20cy%3D%2272%22%20r%3D%222.2%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22250%22%20cy%3D%2290%22%20r%3D%227%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22150%22%20cy%3D%22205%22%20r%3D%225%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%2280%22%20cy%3D%22272%22%20r%3D%226%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%2240%22%20r%3D%224%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%22120%22%20r%3D%222.6%22%20stroke-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22300%22%20cy%3D%22150%22%20r%3D%222.4%22%20stroke-opacity%3D%22.46%22%2F%3E%3Ccircle%20cx%3D%22236%22%20cy%3D%22250%22%20r%3D%223.4%22%20stroke-opacity%3D%22.46%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23ffffff%22%3E%3Ccircle%20cx%3D%2270%22%20cy%3D%2270%22%20r%3D%223%22%20fill-opacity%3D%22.7%22%2F%3E%3Ccircle%20cx%3D%22255%22%20cy%3D%2295%22%20r%3D%223%22%20fill-opacity%3D%22.68%22%2F%3E%3Ccircle%20cx%3D%22156%22%20cy%3D%22206%22%20r%3D%222.4%22%20fill-opacity%3D%22.68%22%2F%3E%3Ccircle%20cx%3D%2268%22%20cy%3D%22262%22%20r%3D%221.8%22%20fill-opacity%3D%22.6%22%2F%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%22150%22%20r%3D%221.6%22%20fill-opacity%3D%22.55%22%2F%3E%3Ccircle%20cx%3D%22196%22%20cy%3D%22150%22%20r%3D%221.5%22%20fill-opacity%3D%22.52%22%2F%3E%3Ccircle%20cx%3D%22330%22%20cy%3D%22220%22%20r%3D%221.4%22%20fill-opacity%3D%22.5%22%2F%3E%3Ccircle%20cx%3D%22128%22%20cy%3D%2260%22%20r%3D%221.5%22%20fill-opacity%3D%22.52%22%2F%3E%3Cpath%20transform%3D%22translate(258%2082)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.5%22%2F%3E%3Cpath%20transform%3D%22translate(146%20214)%20scale(.8)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.48%22%2F%3E%3Cpath%20transform%3D%22translate(90%2030)%22%20d%3D%22M0%2C-6%20C0.6%2C-1.6%201.6%2C-0.6%206%2C0%20C1.6%2C0.6%200.6%2C1.6%200%2C6%20C-0.6%2C1.6%20-1.6%2C0.6%20-6%2C0%20C-1.6%2C-0.6%20-0.6%2C-1.6%200%2C-6%20Z%22%20fill-opacity%3D%22.48%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg); color: var(--dim);
+    font-family: "JetBrains Mono", monospace;
+    font-size: 14px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; padding-bottom: 4rem;
+  }
+
+  h1, h2, h3, h4, .heading {
+    font-family: "Courier Prime", monospace;
+    text-transform: uppercase; color: var(--white);
+    font-weight: 700; letter-spacing: .06em;
+  }
+
+  a { color: var(--white); text-decoration: none; }
+  ::selection { background: var(--lime); color: #000; }
+  :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+
+  /* ---------- Poster shading field (kept from the current resume) ---------- */
+  .field { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+  .field .glow { position: absolute; }
+  .glow-lime    { top: -8%;  right: 2%;   width: 60vw; height: 42vh; background: var(--lime);    opacity: .20; filter: blur(150px); }
+  .glow-cyan    { bottom: -12%; left: -12%; width: 52vw; height: 52vh; background: var(--cyan);   opacity: .16; filter: blur(130px); }
+  .glow-magenta { bottom: -8%; right: -8%;  width: 46vw; height: 46vh; background: var(--magenta);opacity: .12; filter: blur(120px); }
+  .field .vignette { position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,.35)); }
+  .field .tile {
+    position: absolute; inset: 0;
+    background-image: var(--sym-tile), var(--sym-tile);
+    background-size: 340px 340px, 250px 250px;
+    background-position: 0 var(--dot-shift, 0px), 150px calc(90px + var(--dot-shift, 0px));
+    filter: drop-shadow(0 0 2px rgba(233,245,165,.55)) drop-shadow(0 0 6px rgba(255,255,255,.3));
+    will-change: background-position;
+  }
+  .field .grain {
+    position: absolute; inset: 0; opacity: .06; mix-blend-mode: overlay;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 200px 200px;
+  }
+
+  .page { position: relative; z-index: 1; max-width: 1200px; margin: 0 auto; padding: 0 1.25rem; }
+  @media (min-width: 900px) { .page { padding: 0 2rem; } }
+
+  /* ---------- Per-letter hover ---------- */
+  .hover-split .ltr { display: inline-block; color: inherit; transition: color .3s ease-out; }
+  .ltr:nth-child(5n + 1):hover { color: var(--neon-green); }
+  .ltr:nth-child(5n + 2):hover { color: var(--neon-yellow); }
+  .ltr:nth-child(5n + 3):hover { color: var(--magenta); }
+  .ltr:nth-child(5n + 4):hover { color: var(--cyan); }
+  .ltr:nth-child(5n):hover     { color: var(--lime); }
+
+  /* ---------- Cursor tooltip ---------- */
+  #tip {
+    position: fixed; z-index: 9999; pointer-events: none;
+    background: #14181c; border: 1px solid rgba(255,255,255,.22); color: var(--white);
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .05em;
+    padding: 4px 8px; white-space: nowrap; opacity: 0;
+    transform: translate(16px, 16px); transition: opacity 150ms ease-out;
+  }
+  @media (hover: none) { #tip { display: none; } }
+
+  /* ---------- Squiggle ---------- */
+  .sq { display: block; flex: 1 1 0; min-width: 30px; height: 22px; }
+  .sq svg {
+    display: block; width: 100%; height: 100%; overflow: visible;
+    fill: none; stroke: currentColor; stroke-width: 1.9; stroke-linecap: round;
+    stroke-dasharray: 1; stroke-dashoffset: 1;
+    filter: drop-shadow(0 0 4px currentColor);
+    transition: stroke-dashoffset 600ms ease-out;
+  }
+  .sq.on svg { stroke-dashoffset: 0; }
+  @media (prefers-reduced-motion: reduce) { .sq svg { transition: none; stroke-dashoffset: 0; } }
+
+  /* ---------- Liquid glass (everywhere — this is the variant's identity) ---- */
+  .card {
+    position: relative; isolation: isolate; overflow: hidden;
+    border-radius: 2rem; padding: 1.75rem;
+    background: rgba(0,0,0,.42);
+    -webkit-backdrop-filter: blur(12px) brightness(1.12);
+    backdrop-filter: blur(12px) brightness(1.12);
+    transition: background .5s ease;
+  }
+  @media (min-width: 900px) { .card { padding: 2rem; } }
+  .card:hover { background: rgba(0,0,0,.5); }
+
+  .card::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+    background-image: var(--sym-tile);
+    background-size: 520px 520px; background-position: 0 var(--dot-shift-lens, 0px);
+    opacity: .55; mix-blend-mode: screen; filter: blur(6px) brightness(1.15);
+  }
+  .card::after {
+    content: ""; position: absolute; inset: 0; border-radius: inherit;
+    pointer-events: none; z-index: 2; mix-blend-mode: screen;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  /* Variant A — subtle (older roles) */
+  .ca { box-shadow:
+      0 20px 50px rgba(0,0,0,.7),
+      0 0 55px -6px rgba(233,245,165,.10),
+      inset 0 0 0 1px rgba(255,255,255,.14),
+      inset 0 1px 1px rgba(255,255,255,.5),
+      inset 3px 3px 10px rgba(0,242,255,.10),
+      inset -3px -3px 10px rgba(255,0,255,.10); }
+  .ca::after { padding: 1.5px; opacity: .5;
+    background: conic-gradient(from 215deg, rgba(0,242,255,.5), rgba(233,245,165,.3), rgba(255,0,255,.5), rgba(0,242,255,.2), rgba(0,242,255,.5)); }
+
+  /* Variant B — featured */
+  .cb { box-shadow:
+      0 20px 50px rgba(0,0,0,.7),
+      0 0 55px -6px rgba(233,245,165,.12),
+      inset 0 0 0 1px rgba(255,255,255,.16),
+      inset 0 1.5px 1px rgba(255,255,255,.7),
+      inset 5px 5px 14px rgba(0,242,255,.18),
+      inset -5px -5px 14px rgba(255,0,255,.18); }
+  .cb::after { padding: 2.5px; opacity: .8;
+    background: conic-gradient(from 215deg, rgba(0,242,255,.85), rgba(233,245,165,.55), rgba(255,0,255,.85), rgba(255,120,0,.35), rgba(0,242,255,.85)); }
+
+  /* ---------- Masthead ---------- */
+  header {
+    display: flex; flex-direction: column; align-items: flex-start; gap: 2rem;
+    padding: 3rem 0 2.5rem;
+  }
+  @media (min-width: 1000px) { header { flex-direction: row; align-items: center; gap: 3rem; padding: 4rem 0 3rem; } }
+
+  .portrait { position: relative; flex: 0 0 auto; }
+  .portrait .frame {
+    width: 190px; height: 190px; border-radius: 3rem; padding: 4px; transform: rotate(2deg);
+    transition: transform .6s ease;
+  }
+  .portrait:hover .frame { transform: rotate(0) scale(1.03); }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; border-radius: 2.7rem; display: block; opacity: .92; }
+  .portrait .tagpill {
+    position: absolute; bottom: -.7rem; right: -.7rem; z-index: 5;
+    background: var(--lime); color: #000;
+    font-family: "Courier Prime", monospace; font-weight: 700;
+    font-size: .58rem; letter-spacing: .16em; text-transform: uppercase;
+    padding: .5rem .9rem; border-radius: 1rem;
+    box-shadow: 0 10px 30px rgba(233,245,165,.3);
+  }
+
+  .id { min-width: 0; flex: 1; }
+  .id h1 { font-size: clamp(2.4rem, 8vw, 5.5rem); line-height: .95; letter-spacing: -.03em; margin-bottom: 1.1rem; }
+  .id h1 .lime { color: var(--lime); text-shadow: 0 0 40px rgba(233,245,165,.25); }
+
+  .pills { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .pill {
+    display: inline-flex; align-items: center; gap: .5rem;
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .62rem; letter-spacing: .14em;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12);
+    color: var(--dim); padding: .65rem 1rem; border-radius: 1rem;
+    transition: all .2s ease;
+  }
+  .pill:hover { background: var(--lime); color: #000; border-color: var(--lime); }
+  .pill.solid { background: var(--lime); color: #000; border-color: var(--lime); font-weight: 700; }
+  .pill.solid:hover { background: var(--white); border-color: var(--white); }
+  .pill.static { color: var(--lime); }
+  .pill.static:hover { background: rgba(255,255,255,.05); color: var(--lime); border-color: rgba(255,255,255,.12); }
+
+  /* ---------- Grid ---------- */
+  .grid { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 1000px) { .grid { grid-template-columns: minmax(0,4fr) minmax(0,7fr); gap: 1.75rem; align-items: start; } }
+  .col { display: flex; flex-direction: column; gap: 1.5rem; }
+  @media (min-width: 1000px) { .col { gap: 1.75rem; } }
+
+  /* ---------- Card internals ---------- */
+  .card-head { display: flex; align-items: center; gap: .85rem; margin-bottom: 1.35rem; }
+  .card-head h2 { font-size: .78rem; letter-spacing: .2em; white-space: nowrap; }
+  .card-head .sq { color: rgba(233,245,165,.55); }
+  .card-head .sq.cyan { color: rgba(0,242,255,.55); }
+  .card-head .sq.mag  { color: rgba(255,0,255,.5); }
+
+  .role-head { display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: .75rem; margin-bottom: 1.25rem; }
+  .role-head .title { font-family: "Courier Prime", monospace; text-transform: uppercase; font-weight: 700; color: var(--white); font-size: clamp(1.4rem, 3.4vw, 2.2rem); line-height: 1; letter-spacing: -.02em; }
+  .role-head .sub { font-family: "Courier Prime", monospace; text-transform: uppercase; font-size: .64rem; letter-spacing: .22em; margin-top: .7rem; }
+  .role-head .sub.lime { color: var(--lime); }
+  .role-head .sub.cyan { color: var(--cyan); }
+  .role-head .sub.mag  { color: var(--magenta); }
+  .yr {
+    font-family: "Courier Prime", monospace; font-size: .62rem; letter-spacing: .14em;
+    padding: .5rem .9rem; border-radius: 1rem; white-space: nowrap; flex: 0 0 auto;
+  }
+  .yr.lime { background: var(--lime); color: #000; font-weight: 700; }
+  .yr.cyan { background: rgba(0,242,255,.1); border: 1px solid rgba(0,242,255,.3); color: var(--cyan); }
+  .yr.ghost { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); color: var(--dimmer); }
+
+  /* Hairline bullet list — landing-page rules instead of card padding. */
+  .lines { border-top: 1px solid var(--rule); }
+  .lines li { list-style: none; padding: .8rem 0; border-bottom: 1px solid var(--rule); font-size: .84rem; color: #c7c7c7; display: flex; gap: .8rem; }
+  .lines li:last-child { border-bottom: none; }
+  .lines li .k { flex: 0 0 auto; font-family: "Courier Prime", monospace; font-size: .6rem; letter-spacing: .16em; color: var(--dimmer); width: 2rem; padding-top: .25rem; }
+  .lines li.lead { color: var(--white); font-size: .92rem; }
+
+  /* Agent */
+  .agent-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--neon-green); box-shadow: 0 0 10px var(--neon-green); animation: blip 1.8s ease-in-out infinite; flex: 0 0 auto; }
+  @keyframes blip { 0%,100% { opacity: .45; } 50% { opacity: 1; } }
+  .agent-quote { font-size: .8rem; color: #d6d6d6; border-left: 2px solid var(--lime); padding-left: 1rem; margin-bottom: 1.35rem; }
+  .qgrid { display: grid; gap: .45rem; margin-bottom: 1.15rem; }
+  .qbtn {
+    text-align: left; cursor: pointer; font-family: "Courier Prime", monospace;
+    text-transform: uppercase; font-size: .64rem; letter-spacing: .08em;
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.07);
+    color: var(--dim); padding: .65rem .8rem; border-radius: .8rem;
+    display: flex; justify-content: space-between; align-items: center; gap: .5rem;
+    transition: all .18s ease;
+  }
+  .qbtn:hover { background: var(--lime); color: #000; border-color: var(--lime); }
+  .qbtn .arrow { opacity: 0; }
+  .qbtn:hover .arrow { opacity: 1; }
+  .ask { position: relative; margin-bottom: 1.15rem; }
+  .ask input {
+    width: 100%; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1);
+    border-radius: 1rem; padding: .9rem 3.4rem .9rem 1rem; color: var(--white);
+    font-family: "JetBrains Mono", monospace; font-size: .8rem;
+  }
+  .ask input::placeholder { color: rgba(255,255,255,.25); }
+  .ask button {
+    position: absolute; right: .5rem; top: .5rem; width: 2.35rem; height: 2.35rem;
+    border: none; border-radius: .7rem; background: var(--lime); color: #000;
+    cursor: pointer; font-weight: 700;
+  }
+  .answer {
+    min-height: 118px; border: 1px dashed rgba(255,255,255,.12); border-radius: 1rem;
+    padding: 1.05rem; font-size: .8rem; color: #cfcfcf; background: rgba(0,0,0,.45);
+  }
+  .answer .tagline { font-family: "Courier Prime", monospace; font-size: .58rem; letter-spacing: .2em; text-transform: uppercase; color: var(--lime); display: block; margin-bottom: .55rem; }
+  .answer.idle { display: flex; align-items: center; justify-content: center; color: var(--dimmer); font-family: "Courier Prime", monospace; letter-spacing: .2em; text-transform: uppercase; font-size: .62rem; }
+
+  /* Stack */
+  .stack-row {
+    display: flex; align-items: center; gap: .85rem; padding: .65rem 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace; text-transform: uppercase;
+    font-size: .68rem; letter-spacing: .08em; color: var(--dim); transition: color .2s;
+  }
+  .stack-row:last-child { border-bottom: none; }
+  .stack-row:hover { color: var(--lime); }
+  .stack-row img { width: 19px; height: 19px; object-fit: contain; flex: 0 0 auto; }
+  .stack-row .n { font-size: .56rem; color: var(--dimmer); width: 1.4rem; flex: 0 0 auto; }
+
+  /* Languages */
+  .lang { margin-bottom: 1.05rem; }
+  .lang:last-child { margin-bottom: 0; }
+  .lang-top { display: flex; justify-content: space-between; font-family: "Courier Prime", monospace; text-transform: uppercase; font-size: .64rem; letter-spacing: .12em; margin-bottom: .4rem; color: var(--dim); }
+  .lang-bar { height: 2px; background: rgba(255,255,255,.08); }
+  .lang-bar span { display: block; height: 100%; }
+
+  /* Education */
+  .edu-pair { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+  @media (min-width: 620px) { .edu-pair { grid-template-columns: 1fr 1fr; } }
+  .edu .school { font-family: "Courier Prime", monospace; font-size: .58rem; letter-spacing: .24em; text-transform: uppercase; color: var(--lime); margin-bottom: .8rem; }
+  .edu .deg { font-family: "Courier Prime", monospace; text-transform: uppercase; font-weight: 700; color: var(--white); font-size: 1.15rem; line-height: 1.15; }
+  .edu .meta { font-size: .62rem; color: var(--dimmer); margin-top: .5rem; letter-spacing: .12em; text-transform: uppercase; }
+
+  /* Footer */
+  .footbar { position: fixed; bottom: 0; left: 0; width: 100%; height: 2px; z-index: 5;
+    background: linear-gradient(to right, transparent, var(--lime), transparent);
+    opacity: .4; box-shadow: 0 0 20px rgba(233,245,165,.5); }
+  footer {
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem;
+    margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid var(--rule);
+    font-family: "Courier Prime", monospace; font-size: .62rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--dimmer);
+  }
+  footer a { color: var(--dimmer); }
+  footer a:hover { color: var(--lime); }
+</style>
+</head>
+<body>
+
+<div class="field" aria-hidden="true">
+  <div class="glow glow-lime"></div>
+  <div class="glow glow-cyan"></div>
+  <div class="glow glow-magenta"></div>
+  <div class="tile"></div>
+  <div class="vignette"></div>
+  <div class="grain"></div>
+</div>
+
+<div id="tip"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sq1" viewBox="0 0 435.2 47.8">
+    <g transform="translate(-5.6,-13.7)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m437.8 33.8c-5-7.8-14.3-13.8-24.8-14.3-27.4-1.2-40.7 27.9-61.7 35.8s-40.4-0.3-54.9-6.9c-20.7-12.3-36.9-23.4-56.4-23.3-30.5 0-55.4 24.5-85 31.9-39.5 6-62.8-21.9-91.9-35.8-16.8-7.5-43.1-7.7-54.5 16.7"/>
+  </g>
+  </symbol>
+  <symbol id="sq2" viewBox="0 0 437.3 53.4">
+    <g transform="translate(-5.0,-53.4)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m439.3 77.1c-4.3-2.8-10.3-3.2-17.4-0.1-12.4 5.6-18.9 13.8-30.9 14.1s-22.3-5.5-37-6.6c-25.6-1.4-47.8 13.9-74.9 18.5-17.1 2.8-36-1.3-43.8-15-8.2-13.8-2.7-31 11.4-31.6 14.3-0.5 18 16.8 7.8 25.1-3.5 2.8-8.8 5.6-18.3 5.8-14.5-0.2-28.5-11.3-44-14.5-22.8-3.8-37.2 14.8-57.3 21.3-11.8 3.8-26.2 2.5-40.7-2-19-5.4-36-15-55.3-17-11.7-0.4-22.3 1.5-30.9 10.1"/>
+  </g>
+  </symbol>
+  <symbol id="sq3" viewBox="0 0 427.3 35.4">
+    <g transform="translate(-9.7,-106.1)">
+    <path pathLength="1" vector-effect="non-scaling-stroke" d="m12.7 132.9c24.6 2 48.2-8.8 73.6-15.9 15.7-4.4 36-9 52.8-3 5.6 1.9 19.2 6.9 19.2 15.1-0.3 9.3-11.3 9.3-12.7 0.8-1.1-6 8.4-19.8 33.8-20.7 34.5-1.3 61.6 19.4 94.3 25.2 10.4 1.6 26.3 1.4 32.9-5 10.4-7.5 5.5-22.3-6.2-19.9-15.9 3.4-14.3 22.6 0.3 27.4 12 4.1 24.8-0.3 35.8-4.5 17-6.8 27.4-7.4 46.5-5.8l51 4.6"/>
+  </g>
+  </symbol>
+</svg>
+
+<div class="page">
+
+  <!-- ============================ MASTHEAD ============================ -->
+  <header>
+    <div class="portrait" data-tip="Nick Sappington">
+      <div class="card cb frame">
+        <img src="/Gemini_Generated_Image_w5iolew5iolew5io copy.png" alt="Nick Sappington" onerror="this.style.opacity='0'">
+      </div>
+      <div class="tagpill">San Francisco Based</div>
+    </div>
+
+    <div class="id">
+      <h1><span class="hover-split">NICK</span><br><span class="hover-split lime">SAPPINGTON</span></h1>
+      <div class="pills">
+        <a class="pill" href="mailto:nicholassappington@gmail.com" data-tip="Send an email">✉ nicholassappington@gmail.com</a>
+        <span class="pill static">☎ 310-621-8502</span>
+        <a class="pill solid" href="/portfolio.html" data-tip="Nutraperfecto case study">⚗ View Portfolio ↗</a>
+        <a class="pill" href="/" data-tip="Back to index">⌂ Index ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================ GRID ============================ -->
+  <div class="grid">
+
+    <!-- ---------- LEFT RAIL ---------- -->
+    <div class="col">
+
+      <!-- Agent -->
+      <div class="card cb">
+        <div class="card-head">
+          <span class="agent-dot" aria-hidden="true"></span>
+          <h2 class="hover-split">General Info Agent</h2>
+          <span class="sq on"><svg preserveAspectRatio="none" viewBox="0 0 435.2 47.8"><use href="#sq1"/></svg></span>
+        </div>
+
+        <p class="agent-quote">“Verified agent online. Ask about Nick's work at Nutraperfecto, his
+        Lopass LLC operations, his charting analyst background, or his Ableton 12 and Illustrator
+        expertise.”</p>
+
+        <div class="qgrid" id="qgrid"></div>
+
+        <div class="ask">
+          <input id="askInput" type="text" placeholder="Ask a question…" aria-label="Ask the agent a question">
+          <button id="askBtn" aria-label="Send">→</button>
+        </div>
+
+        <div class="answer idle" id="answer">Awaiting input</div>
+      </div>
+
+      <!-- Stack -->
+      <div class="card cb">
+        <div class="card-head">
+          <h2 class="hover-split">Tech Stack</h2>
+          <span class="sq on cyan"><svg preserveAspectRatio="none" viewBox="0 0 437.3 53.4"><use href="#sq2"/></svg></span>
+        </div>
+        <div class="stack-row"><span class="n">01</span><img src="/logos/ableton.png" alt="">Ableton Live 12</div>
+        <div class="stack-row"><span class="n">02</span><img src="/logos/claude.svg" alt="">Claude Code / Cowork &amp; Gemini Canvas</div>
+        <div class="stack-row"><span class="n">03</span><img src="/logos/thinkorswim.png" alt="">thinkorswim</div>
+        <div class="stack-row"><span class="n">04</span><img src="/logos/illustrator.svg" alt="">Adobe Illustrator</div>
+        <div class="stack-row"><span class="n">05</span><img src="/logos/salesforce.svg" alt="">Salesforce</div>
+        <div class="stack-row"><span class="n">06</span><img src="/logos/msoffice.svg" alt="">MS Office</div>
+      </div>
+
+      <!-- Languages -->
+      <div class="card ca">
+        <div class="card-head">
+          <h2 class="hover-split">Linguistics</h2>
+          <span class="sq on mag"><svg preserveAspectRatio="none" viewBox="0 0 427.3 35.4"><use href="#sq3"/></svg></span>
+        </div>
+        <div class="lang">
+          <div class="lang-top"><span>English</span><span style="color:var(--lime)">Native</span></div>
+          <div class="lang-bar"><span style="width:100%;background:var(--lime);box-shadow:0 0 8px rgba(233,245,165,.5)"></span></div>
+        </div>
+        <div class="lang">
+          <div class="lang-top"><span>Spanish</span><span style="color:var(--cyan)">Advanced</span></div>
+          <div class="lang-bar"><span style="width:80%;background:var(--cyan);box-shadow:0 0 8px rgba(0,242,255,.5)"></span></div>
+        </div>
+        <div class="lang">
+          <div class="lang-top"><span>French</span><span style="color:var(--magenta)">Intermediate</span></div>
+          <div class="lang-bar"><span style="width:50%;background:var(--magenta);box-shadow:0 0 8px rgba(255,0,255,.5)"></span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ---------- RIGHT COLUMN ---------- -->
+    <div class="col">
+
+      <!-- Nutraperfecto -->
+      <div class="card cb" data-tip="2024 — 2026">
+        <div class="role-head">
+          <div>
+            <div class="title hover-split">Nutraperfecto</div>
+            <div class="sub lime">Formulation &amp; Research Specialist</div>
+          </div>
+          <span class="yr lime">2024 — 2026</span>
+        </div>
+        <ul class="lines">
+          <li class="lead"><span class="k">01</span><span>Engineered proprietary formulation blends by identifying synergistic active ingredients through rigorous research and testing.</span></li>
+          <li><span class="k">02</span><span>Managed global sourcing for supplement releases, holding suppliers to scientific efficacy and ingredient purity.</span></li>
+          <li><span class="k">03</span><span><a href="/portfolio.html" style="border-bottom:1px solid var(--lime)">Read the neuropathy case study ↗</a></span></li>
+        </ul>
+      </div>
+
+      <!-- Lopass -->
+      <div class="card ca" data-tip="2023 — 2026 · sold">
+        <div class="role-head">
+          <div>
+            <div class="title hover-split">Lopass LLC</div>
+            <div class="sub cyan">Founder &amp; Operator — Sold</div>
+          </div>
+          <span class="yr cyan">2023 — 2026</span>
+        </div>
+        <ul class="lines">
+          <li class="lead"><span class="k">01</span><span>Founded and grew a Los Angeles black-car chauffeur service for celebrity, entertainment, and high-net-worth clientele.</span></li>
+          <li><span class="k">02</span><span>Built the driver roster, ran dispatch, and set the operational standard for absolute discretion and white-glove reliability.</span></li>
+          <li><span class="k">03</span><span>Owned client relationships and day-to-day business operations end to end.</span></li>
+          <li><span class="k">04</span><span>Negotiated and closed a successful exit, selling the company.</span></li>
+        </ul>
+      </div>
+
+      <!-- Analyst -->
+      <div class="card ca" data-tip="2020 — 2022">
+        <div class="role-head">
+          <div>
+            <div class="title hover-split">Market Analyst</div>
+            <div class="sub cyan">Royce Jacob &amp; MapleStax — YouTube / X</div>
+          </div>
+          <span class="yr ghost">2020 — 2022</span>
+        </div>
+        <ul class="lines">
+          <li class="lead"><span class="k">01</span><span>Paid contributor providing technical charting analysis across both brands.</span></li>
+          <li><span class="k">02</span><span>Translated complex options and equity setups into accessible visuals for retail audiences.</span></li>
+          <li><span class="k">03</span><span>Published live trade ideas and chart breakdowns to active subscriber communities.</span></li>
+        </ul>
+      </div>
+
+      <!-- TCM + Gunter -->
+      <div class="card ca" data-tip="Earlier work">
+        <div class="role-head">
+          <div>
+            <div class="title hover-split">Earlier</div>
+            <div class="sub mag">Production &amp; Audio</div>
+          </div>
+          <span class="yr ghost">2014 — 2024</span>
+        </div>
+        <ul class="lines">
+          <li><span class="k">24</span><span><strong style="color:var(--white)">TCM Film Festival</strong> — Production Manager. Logistics for guest filmmakers and VIPs.</span></li>
+          <li><span class="k">17</span><span><strong style="color:var(--white)">The Gunter</strong> — Lead Sound Designer. Sound-effects library direction; secured funding for the audio side.</span></li>
+          <li><span class="k">14</span><span><strong style="color:var(--white)">Sprint</strong> — Assistant Store Manager. Top 10 business sales in district; Salesforce power user.</span></li>
+        </ul>
+      </div>
+
+      <!-- Education -->
+      <div class="edu-pair">
+        <div class="card ca edu">
+          <div class="school">CSU Los Angeles</div>
+          <div class="deg">B.A. Political Science</div>
+          <div class="meta">3.5 GPA</div>
+        </div>
+        <div class="card ca edu">
+          <div class="school">Santa Monica College</div>
+          <div class="deg">A.A. Humanities</div>
+          <div class="meta">Transfer</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <span>Nick Sappington</span>
+    <span>San Francisco</span>
+    <a href="mailto:nicholassappington@gmail.com">nicholassappington@gmail.com</a>
+  </footer>
+</div>
+
+<div class="footbar" aria-hidden="true"></div>
+
+<script>
+function splitLetters() {
+  document.querySelectorAll('.hover-split').forEach((el) => {
+    [...el.childNodes].forEach((node) => {
+      if (node.nodeType !== Node.TEXT_NODE) return;
+      const text = node.textContent.replace(/\s+/g, ' ');
+      if (!text.trim()) { node.remove(); return; }
+      const frag = document.createDocumentFragment();
+      for (const ch of text) {
+        const s = document.createElement('span');
+        s.className = 'ltr';
+        s.textContent = ch === ' ' ? '\u00A0' : ch;
+        frag.appendChild(s);
+      }
+      el.replaceChild(frag, node);
+    });
+  });
+}
+
+function initTooltip() {
+  const tip = document.getElementById('tip');
+  document.addEventListener('mousemove', (e) => {
+    tip.style.left = e.clientX + 'px';
+    tip.style.top  = e.clientY + 'px';
+  });
+  document.querySelectorAll('[data-tip]').forEach((el) => {
+    el.addEventListener('mouseenter', () => { tip.textContent = el.dataset.tip; tip.style.opacity = '1'; });
+    el.addEventListener('mouseleave', () => { tip.style.opacity = '0'; });
+  });
+}
+
+function initParallax() {
+  let raf = 0;
+  const onScroll = () => {
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      document.documentElement.style.setProperty('--dot-shift', (window.scrollY * -0.4) + 'px');
+      document.documentElement.style.setProperty('--dot-shift-lens', (window.scrollY * -0.2) + 'px');
+    });
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+// Static mockup: the live build calls Gemini. Canned answers so the panel can
+// be judged with real content in it.
+const QA = {
+  'Nutraperfecto role details':
+    'Formulation & Research Specialist, 2024–2026. Sourced premium ingredients and engineered proprietary blends — the work was finding actives that actually work together, then testing the combination rather than trusting the label.',
+  'Lopass LLC story':
+    'Founded a Los Angeles black-car service for celebrity and high-net-worth clients. Nick ran the business — driver roster, dispatch, client relationships, and a reputation built on discretion. He never drove clients himself. Exited via a negotiated sale.',
+  'Charting analyst background':
+    'Paid technical-analysis contributor for the Royce Jacob and MapleStax brands, 2020–2022. Turned dense options and equity setups into visuals retail traders could actually act on, and published live ideas to subscriber communities.',
+  'Tech stack overview':
+    'Ableton Live 12 for production, Claude Code / Cowork and Gemini Canvas for building, thinkorswim for markets, Illustrator for design, plus Salesforce and MS Office from the sales years.',
+  'Music production setup':
+    'A closet studio built around Kali Audio LP-6 monitors with boundary EQ properly dialled in, Neumann NDH 20 headphones, and Focal Alpha Evo 65s. Current obsession: humanizing drum patterns in Ableton.',
+  'What makes Nick unique?':
+    'The range is the point — supplement formulation, running an operations business to a sale, technical charting, and sound design. Same instinct each time: learn the system deeply, then build something in it.'
+};
+
+function initAgent() {
+  const grid   = document.getElementById('qgrid');
+  const answer = document.getElementById('answer');
+  const input  = document.getElementById('askInput');
+
+  const show = (q) => {
+    const text = QA[q] || 'In the live build this question goes to the agent, which answers from Nick\'s resume and personal context.';
+    answer.classList.remove('idle');
+    answer.innerHTML = '<span class="tagline">Verified response · mockup</span>' + text;
+  };
+
+  Object.keys(QA).sort(() => Math.random() - 0.5).slice(0, 4).forEach((q) => {
+    const b = document.createElement('button');
+    b.className = 'qbtn';
+    b.innerHTML = `<span>${q}</span><span class="arrow">↗</span>`;
+    b.addEventListener('click', () => { input.value = q; show(q); });
+    grid.appendChild(b);
+  });
+
+  const submit = () => { if (input.value.trim()) show(input.value.trim()); };
+  document.getElementById('askBtn').addEventListener('click', submit);
+  input.addEventListener('keydown', (e) => { if (e.key === 'Enter') submit(); });
+}
+
+splitLetters();
+initTooltip();
+initParallax();
+initAgent();
+</script>
+</body>
+</html>
