@@ -86,6 +86,8 @@ const App = () => {
   const [qOptions] = useState(() => pickRandom(2));
   const [askInput, setAskInput] = useState('');
   const [answer, setAnswer] = useState(null);
+  const [isAsking, setIsAsking] = useState(false);
+  const [askError, setAskError] = useState(null);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -109,11 +111,36 @@ const App = () => {
   };
   const onEntryLeave = () => { hideTip(); setHoveredEntry(null); };
 
-  const showAnswer = (q) => {
-    setAnswer(QA[q] || "In the live build this question goes to the agent, which answers from Nick's resume and personal context.");
+  const showPreset = (q) => {
+    setAskError(null);
+    setAnswer({ text: QA[q], source: 'preset' });
     setAskInput(q);
   };
-  const submitAsk = () => { if (askInput.trim()) showAnswer(askInput.trim()); };
+
+  const submitAsk = async () => {
+    const q = askInput.trim();
+    if (!q || isAsking) return;
+    if (QA[q]) { showPreset(q); return; }
+
+    setIsAsking(true);
+    setAskError(null);
+    setAnswer(null);
+
+    try {
+      const res = await fetch('/api/agent', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query: q }),
+      });
+      const data = await res.json();
+      if (!res.ok || data.error) throw new Error(data.error || 'Something went wrong');
+      setAnswer({ text: data.text, source: 'live' });
+    } catch {
+      setAskError("Couldn't reach the agent — try again in a moment.");
+    } finally {
+      setIsAsking(false);
+    }
+  };
 
   return (
     <div className="resume-root" onMouseMove={onFieldMove}>
@@ -177,7 +204,7 @@ const App = () => {
 
               <div className="qgrid">
                 {qOptions.map((q) => (
-                  <button key={q} className="qbtn" onClick={() => showAnswer(q)}>
+                  <button key={q} className="qbtn" onClick={() => showPreset(q)}>
                     <span>{q}</span><span>↗</span>
                   </button>
                 ))}
@@ -189,17 +216,22 @@ const App = () => {
                   placeholder="Ask a question…"
                   aria-label="Ask the agent a question"
                   value={askInput}
+                  disabled={isAsking}
                   onChange={(e) => setAskInput(e.target.value)}
                   onKeyDown={(e) => { if (e.key === 'Enter') submitAsk(); }}
                 />
-                <button aria-label="Send" onClick={submitAsk}>→</button>
+                <button aria-label="Send" onClick={submitAsk} disabled={isAsking}>→</button>
               </div>
 
-              <div className={`answer ${answer ? '' : 'idle'}`}>
-                {answer ? (
+              <div className={`answer ${answer || isAsking || askError ? '' : 'idle'}`}>
+                {isAsking ? (
+                  'Agent thinking…'
+                ) : askError ? (
+                  askError
+                ) : answer ? (
                   <div>
-                    <span className="tagline-sm">Verified response · mockup</span>
-                    {answer}
+                    <span className="tagline-sm">{answer.source === 'live' ? 'Live response · Gemini' : 'Verified response'}</span>
+                    {answer.text}
                   </div>
                 ) : 'Awaiting input'}
               </div>
