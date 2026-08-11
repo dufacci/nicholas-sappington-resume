@@ -56,7 +56,10 @@ export async function onRequestPost(context) {
     return new Response(JSON.stringify({ error: 'Question is too long' }), { status: 400, headers: jsonHeaders });
   }
 
-  const apiKey = env.GEMINI_API_KEY;
+  // Accept either name — GEMINI_API_KEY is the intended one, VITE_GEMINI_API_KEY
+  // is the name the old client-side template used, in case the Pages project
+  // still has it set under that name.
+  const apiKey = env.GEMINI_API_KEY || env.VITE_GEMINI_API_KEY;
   if (!apiKey) {
     return new Response(JSON.stringify({ error: 'Agent is not configured yet.' }), { status: 500, headers: jsonHeaders });
   }
